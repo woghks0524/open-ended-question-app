@@ -19,28 +19,12 @@ const STEPS = [
   "확인/저장",
 ];
 
-// Assistant/VectorStore 매핑 (클라이언트에서 사용)
-const ASSISTANT_MAP: Record<string, { teacher: string; student: string; vectorStore: string }> = {
-  "4학년 1학기|사회|비상교과서": {
-    teacher: "asst_x2x5kNPZ5zgwj1YV9iY8E7UC",
-    student: "asst_65Lz4YnySDXpYMAcEvnHsIdS",
-    vectorStore: "vs_6854160fff988191b8501574aa4bc607",
-  },
-  "4학년 1학기|과학|천재교과서/천재교육": {
-    teacher: "asst_3F0iurK76Erqbyyg3NxFxYIl",
-    student: "asst_lCIy1fw83OCSwDnY3cWGTy5Z",
-    vectorStore: "vs_686a385a08e48191b39c585677beb24d",
-  },
-  "5학년 2학기|사회|천재교과서/천재교육": {
-    teacher: "asst_eUL9dRiu88WsBaB91SMIKKWL",
-    student: "asst_bC4O0pNuoPiZupthVLReYRwD",
-    vectorStore: "vs_6852f0add000819192ca520c178ed3a8",
-  },
-  "4학년 1학기|과학|아이스크림미디어": {
-    teacher: "asst_qpkqBrNPTCkZgbULxfjd5SzV",
-    student: "asst_gwIroXpW51kbri9Kfvc6SrK1",
-    vectorStore: "vs_68738b9f916c8191ac60d8db176b7207",
-  },
+// 교과서 선택(학년|과목|출판사) → 기본 벡터스토어(교과서 자료) 매핑
+const VECTORSTORE_MAP: Record<string, string> = {
+  "4학년 1학기|사회|비상교과서": "vs_6854160fff988191b8501574aa4bc607",
+  "4학년 1학기|과학|천재교과서/천재교육": "vs_686a385a08e48191b39c585677beb24d",
+  "5학년 2학기|사회|천재교과서/천재교육": "vs_6852f0add000819192ca520c178ed3a8",
+  "4학년 1학기|과학|아이스크림미디어": "vs_68738b9f916c8191ac60d8db176b7207",
 };
 
 export default function TeacherPage() {
@@ -51,8 +35,6 @@ export default function TeacherPage() {
   const [grade, setGrade] = useState("");
   const [subject, setSubject] = useState("");
   const [publisher, setPublisher] = useState("");
-  const [teacherAssistantId, setTeacherAssistantId] = useState("");
-  const [studentAssistantId, setStudentAssistantId] = useState("");
   const [defaultVectorStoreId, setDefaultVectorStoreId] = useState("");
   const [vectorStoreId, setVectorStoreId] = useState("");
   const [questions, setQuestions] = useState(["", "", ""]);
@@ -70,22 +52,12 @@ export default function TeacherPage() {
     setPublisher(p);
 
     const key = `${g}|${s}|${p}`;
-    const config = ASSISTANT_MAP[key];
-    if (config) {
-      setTeacherAssistantId(config.teacher);
-      setStudentAssistantId(config.student);
-      setDefaultVectorStoreId(config.vectorStore);
-    }
+    setDefaultVectorStoreId(VECTORSTORE_MAP[key] || "");
   }, []);
 
-  const handleResourcesCreated = useCallback(
-    (data: { vectorStoreId: string; teacherAssistantId: string; studentAssistantId: string }) => {
-      setVectorStoreId(data.vectorStoreId);
-      setTeacherAssistantId(data.teacherAssistantId);
-      setStudentAssistantId(data.studentAssistantId);
-    },
-    []
-  );
+  const handleResourcesCreated = useCallback((data: { vectorStoreId: string }) => {
+    setVectorStoreId(data.vectorStoreId);
+  }, []);
 
   const handleUseExisting = useCallback((vsId: string) => {
     setVectorStoreId(vsId);
@@ -121,8 +93,6 @@ export default function TeacherPage() {
         {step === 2 && (
           <Step3Materials
             settingName={settingName}
-            teacherAssistantId={teacherAssistantId}
-            studentAssistantId={studentAssistantId}
             defaultVectorStoreId={defaultVectorStoreId}
             onResourcesCreated={handleResourcesCreated}
             onUseExisting={handleUseExisting}
@@ -149,8 +119,6 @@ export default function TeacherPage() {
             correctAnswers={correctAnswers}
             images={images}
             feedbackInstruction={feedbackInstruction}
-            teacherAssistantId={teacherAssistantId}
-            studentAssistantId={studentAssistantId}
             vectorStoreId={vectorStoreId}
             sheetUrl={sheetUrl}
             onSheetUrlChange={setSheetUrl}

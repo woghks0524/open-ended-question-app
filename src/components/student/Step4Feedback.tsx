@@ -13,7 +13,6 @@ interface Props {
   questions: string[];
   answers: string[];
   feedbackInstruction: string;
-  assistantId: string;
   vectorStoreId: string;
   feedbacks: FeedbackItem[];
   onFeedbacksReceived: (feedbacks: FeedbackItem[]) => void;
@@ -23,7 +22,6 @@ export default function Step4Feedback({
   questions,
   answers,
   feedbackInstruction,
-  assistantId,
   vectorStoreId,
   feedbacks,
   onFeedbacksReceived,
@@ -44,7 +42,6 @@ export default function Step4Feedback({
           questions,
           answers,
           feedbackInstruction,
-          assistantId,
           vectorStoreId,
         }),
       });

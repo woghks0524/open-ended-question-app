@@ -24,7 +24,6 @@ export default function StudentPage() {
   const [questions, setQuestions] = useState(["", "", ""]);
   const [images, setImages] = useState(["", "", ""]);
   const [feedbackInstruction, setFeedbackInstruction] = useState("");
-  const [assistantId, setAssistantId] = useState("");
   const [vectorStoreId, setVectorStoreId] = useState("");
   const [sheetUrl, setSheetUrl] = useState("");
   const [assessmentLoaded, setAssessmentLoaded] = useState(false);
@@ -45,7 +44,6 @@ export default function StudentPage() {
     setQuestions([data.question1 || "", data.question2 || "", data.question3 || ""]);
     setImages([data.image1 || "", data.image2 || "", data.image3 || ""]);
     setFeedbackInstruction(data.feedbackinstruction || "");
-    setAssistantId(data.assiapi2 || "");
     setVectorStoreId(data.vectorapi || "");
     setSheetUrl(data.sheeturl || "");
     setAssessmentLoaded(true);
@@ -93,7 +91,6 @@ export default function StudentPage() {
             questions={questions}
             answers={answers}
             feedbackInstruction={feedbackInstruction}
-            assistantId={assistantId}
             vectorStoreId={vectorStoreId}
             feedbacks={feedbacks}
             onFeedbacksReceived={setFeedbacks}

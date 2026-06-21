@@ -5,7 +5,7 @@ let clientInstance: OpenAI | null = null;
 export function getOpenAIClient(): OpenAI {
   if (clientInstance) return clientInstance;
 
-  const keys = process.env.OPENAI_API_KEYS?.split(",") || [];
+  const keys = process.env.OPENAI_API_KEYS?.split(",").map((k) => k.trim()).filter(Boolean) || [];
   if (keys.length === 0) throw new Error("No OpenAI API keys configured");
 
   const randomKey = keys[Math.floor(Math.random() * keys.length)];
@@ -13,47 +13,35 @@ export function getOpenAIClient(): OpenAI {
   return clientInstance;
 }
 
-export async function createThread(): Promise<string> {
+/**
+ * Responses API로 채점/피드백을 1회 호출한다.
+ * - 폐기 예정(2026-08-26)인 Assistants/Threads API 대신 사용.
+ * - vectorStoreId를 요청마다 직접 넘기므로(file_search) 공유 Assistant를 갈아끼우던
+ *   기존 방식의 동시성 문제가 사라진다.
+ */
+export async function gradeWithFiles({
+  instructions,
+  input,
+  vectorStoreId,
+  model = "gpt-4o",
+}: {
+  instructions: string;
+  input: string;
+  vectorStoreId?: string;
+  model?: string;
+}): Promise<string> {
   const client = getOpenAIClient();
-  const thread = await client.beta.threads.create();
-  return thread.id;
-}
 
-export async function runAssistantAndWait(
-  threadId: string,
-  assistantId: string,
-  userMessage: string
-): Promise<string> {
-  const client = getOpenAIClient();
-
-  await client.beta.threads.messages.create(threadId, {
-    role: "user",
-    content: userMessage,
-  });
-
-  const run = await client.beta.threads.runs.create(threadId, {
-    assistant_id: assistantId,
+  const resp = await client.responses.create({
+    model,
+    instructions,
+    input,
     temperature: 0.01,
     top_p: 0.01,
+    ...(vectorStoreId
+      ? { tools: [{ type: "file_search" as const, vector_store_ids: [vectorStoreId] }] }
+      : {}),
   });
 
-  // Poll until completed
-  let status = run.status;
-  while (status !== "completed" && status !== "failed" && status !== "cancelled") {
-    await new Promise((r) => setTimeout(r, 2000));
-    const result = await client.beta.threads.runs.retrieve(run.id, { thread_id: threadId });
-    status = result.status;
-  }
-
-  if (status !== "completed") {
-    throw new Error(`Run ended with status: ${status}`);
-  }
-
-  const messages = await client.beta.threads.messages.list(threadId);
-  const lastMessage = messages.data[0];
-  if (lastMessage.content[0].type === "text") {
-    return lastMessage.content[0].text.value.trim();
-  }
-
-  return "";
+  return (resp.output_text || "").trim();
 }

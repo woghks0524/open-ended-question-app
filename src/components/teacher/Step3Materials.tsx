@@ -6,21 +6,13 @@ import LoadingSpinner from "@/components/LoadingSpinner";
 
 interface Props {
   settingName: string;
-  teacherAssistantId: string;
-  studentAssistantId: string;
   defaultVectorStoreId: string;
-  onResourcesCreated: (data: {
-    vectorStoreId: string;
-    teacherAssistantId: string;
-    studentAssistantId: string;
-  }) => void;
+  onResourcesCreated: (data: { vectorStoreId: string }) => void;
   onUseExisting: (vectorStoreId: string) => void;
 }
 
 export default function Step3Materials({
   settingName,
-  teacherAssistantId,
-  studentAssistantId,
   defaultVectorStoreId,
   onResourcesCreated,
   onUseExisting,
@@ -49,8 +41,6 @@ export default function Step3Materials({
         body: JSON.stringify({
           action: "create",
           settingName,
-          teacherAssistantId,
-          studentAssistantId,
           defaultVectorStoreId,
         }),
       });

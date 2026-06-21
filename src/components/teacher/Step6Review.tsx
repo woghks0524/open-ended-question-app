@@ -10,8 +10,6 @@ interface Props {
   correctAnswers: string[];
   images: string[];
   feedbackInstruction: string;
-  teacherAssistantId: string;
-  studentAssistantId: string;
   vectorStoreId: string;
   sheetUrl: string;
   onSheetUrlChange: (url: string) => void;
@@ -23,8 +21,6 @@ export default function Step6Review({
   correctAnswers,
   images,
   feedbackInstruction,
-  teacherAssistantId,
-  studentAssistantId,
   vectorStoreId,
   sheetUrl,
   onSheetUrlChange,
@@ -48,7 +44,7 @@ export default function Step6Review({
           questions,
           correctAnswers,
           feedbackInstruction,
-          assistantId: teacherAssistantId,
+          vectorStoreId,
         }),
       });
       const data = await res.json();
@@ -90,7 +86,6 @@ export default function Step6Review({
           correctanswer2: correctAnswers[1],
           correctanswer3: correctAnswers[2],
           feedbackinstruction: feedbackInstruction,
-          assiapi2: studentAssistantId,
           vectorapi: vectorStoreId,
           sheeturl: localSheetUrl,
         }),
