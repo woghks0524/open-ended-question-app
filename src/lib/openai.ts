@@ -22,15 +22,32 @@ export function getOpenAIClient(): OpenAI {
 export async function gradeWithFiles({
   instructions,
   input,
-  vectorStoreId,
+  vectorStoreIds = [],
+  unitKey,
   model = "gpt-4o",
 }: {
   instructions: string;
   input: string;
-  vectorStoreId?: string;
+  /** 검색 대상 벡터스토어들. [단원 라이브러리, (선택)평가별 교사 보관함] */
+  vectorStoreIds?: (string | undefined)[];
+  /** 단원 attribute 필터값. 라이브러리·교사파일 모두 이 key로 태그됨 → 해당 단원만 검색 */
+  unitKey?: string;
   model?: string;
 }): Promise<string> {
   const client = getOpenAIClient();
+
+  const ids = vectorStoreIds.filter((v): v is string => Boolean(v));
+  const tools = ids.length
+    ? [
+        {
+          type: "file_search" as const,
+          vector_store_ids: ids,
+          ...(unitKey
+            ? { filters: { key: "key", type: "eq" as const, value: unitKey } }
+            : {}),
+        },
+      ]
+    : [];
 
   const resp = await client.responses.create({
     model,
@@ -38,9 +55,7 @@ export async function gradeWithFiles({
     input,
     temperature: 0.01,
     top_p: 0.01,
-    ...(vectorStoreId
-      ? { tools: [{ type: "file_search" as const, vector_store_ids: [vectorStoreId] }] }
-      : {}),
+    ...(tools.length ? { tools } : {}),
   });
 
   return (resp.output_text || "").trim();

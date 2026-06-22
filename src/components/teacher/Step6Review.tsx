@@ -3,25 +3,28 @@
 import { useState } from "react";
 import AlertMessage from "@/components/AlertMessage";
 import LoadingSpinner from "@/components/LoadingSpinner";
+import { BasicInfo } from "@/components/teacher/Step2BasicInfo";
 
 interface Props {
   settingName: string;
+  info: BasicInfo;
   questions: string[];
   correctAnswers: string[];
   images: string[];
   feedbackInstruction: string;
-  vectorStoreId: string;
+  extraVectorStoreId: string;
   sheetUrl: string;
   onSheetUrlChange: (url: string) => void;
 }
 
 export default function Step6Review({
   settingName,
+  info,
   questions,
   correctAnswers,
   images,
   feedbackInstruction,
-  vectorStoreId,
+  extraVectorStoreId,
   sheetUrl,
   onSheetUrlChange,
 }: Props) {
@@ -44,7 +47,8 @@ export default function Step6Review({
           questions,
           correctAnswers,
           feedbackInstruction,
-          vectorStoreId,
+          unitKey: info.unitKey,
+          extraVectorStoreId,
         }),
       });
       const data = await res.json();
@@ -86,7 +90,13 @@ export default function Step6Review({
           correctanswer2: correctAnswers[1],
           correctanswer3: correctAnswers[2],
           feedbackinstruction: feedbackInstruction,
-          vectorapi: vectorStoreId,
+          unitkey: info.unitKey,
+          grade: info.grade,
+          semester: info.semester,
+          subject: info.subject,
+          publisher: info.publisher,
+          unit: info.unit,
+          vectorapi: extraVectorStoreId,
           sheeturl: localSheetUrl,
         }),
       });

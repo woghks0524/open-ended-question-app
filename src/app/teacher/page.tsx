@@ -4,7 +4,7 @@ import { useState, useCallback } from "react";
 import Stepper from "@/components/Stepper";
 import StepNavigation from "@/components/StepNavigation";
 import Step1Code from "@/components/teacher/Step1Code";
-import Step2BasicInfo from "@/components/teacher/Step2BasicInfo";
+import Step2BasicInfo, { BasicInfo } from "@/components/teacher/Step2BasicInfo";
 import Step3Materials from "@/components/teacher/Step3Materials";
 import Step4Questions from "@/components/teacher/Step4Questions";
 import Step5Instructions from "@/components/teacher/Step5Instructions";
@@ -12,31 +12,23 @@ import Step6Review from "@/components/teacher/Step6Review";
 
 const STEPS = [
   "평가 코드",
-  "기본정보",
-  "참고자료",
+  "교과서·단원",
+  "추가 자료",
   "문항 입력",
   "주의 사항",
   "확인/저장",
 ];
 
-// 교과서 선택(학년|과목|출판사) → 기본 벡터스토어(교과서 자료) 매핑
-const VECTORSTORE_MAP: Record<string, string> = {
-  "4학년 1학기|사회|비상교과서": "vs_6854160fff988191b8501574aa4bc607",
-  "4학년 1학기|과학|천재교과서/천재교육": "vs_686a385a08e48191b39c585677beb24d",
-  "5학년 2학기|사회|천재교과서/천재교육": "vs_6852f0add000819192ca520c178ed3a8",
-  "4학년 1학기|과학|아이스크림미디어": "vs_68738b9f916c8191ac60d8db176b7207",
-};
+const EMPTY_INFO: BasicInfo = { grade: "", semester: "", subject: "", publisher: "", unit: "", unitKey: "" };
 
 export default function TeacherPage() {
   const [step, setStep] = useState(0);
 
   // State
   const [settingName, setSettingName] = useState("");
-  const [grade, setGrade] = useState("");
-  const [subject, setSubject] = useState("");
-  const [publisher, setPublisher] = useState("");
-  const [defaultVectorStoreId, setDefaultVectorStoreId] = useState("");
-  const [vectorStoreId, setVectorStoreId] = useState("");
+  const [info, setInfo] = useState<BasicInfo>(EMPTY_INFO);
+  // 이 평가 전용 교사 추가자료 보관함(선택). 비어있으면 단원 라이브러리만 사용.
+  const [extraVectorStoreId, setExtraVectorStoreId] = useState("");
   const [questions, setQuestions] = useState(["", "", ""]);
   const [correctAnswers, setCorrectAnswers] = useState(["", "", ""]);
   const [images, setImages] = useState(["", "", ""]);
@@ -45,23 +37,6 @@ export default function TeacherPage() {
 
   const next = () => setStep((s) => Math.min(s + 1, STEPS.length - 1));
   const prev = () => setStep((s) => Math.max(s - 1, 0));
-
-  const handleBasicInfoSave = useCallback((g: string, s: string, p: string) => {
-    setGrade(g);
-    setSubject(s);
-    setPublisher(p);
-
-    const key = `${g}|${s}|${p}`;
-    setDefaultVectorStoreId(VECTORSTORE_MAP[key] || "");
-  }, []);
-
-  const handleResourcesCreated = useCallback((data: { vectorStoreId: string }) => {
-    setVectorStoreId(data.vectorStoreId);
-  }, []);
-
-  const handleUseExisting = useCallback((vsId: string) => {
-    setVectorStoreId(vsId);
-  }, []);
 
   const handleQuestionsSave = useCallback((qs: string[], ans: string[], imgs: string[]) => {
     setQuestions(qs);
@@ -83,19 +58,14 @@ export default function TeacherPage() {
           <Step1Code settingName={settingName} onSettingNameChange={setSettingName} />
         )}
         {step === 1 && (
-          <Step2BasicInfo
-            grade={grade}
-            subject={subject}
-            publisher={publisher}
-            onSave={handleBasicInfoSave}
-          />
+          <Step2BasicInfo value={info} onSave={setInfo} />
         )}
         {step === 2 && (
           <Step3Materials
             settingName={settingName}
-            defaultVectorStoreId={defaultVectorStoreId}
-            onResourcesCreated={handleResourcesCreated}
-            onUseExisting={handleUseExisting}
+            unitKey={info.unitKey}
+            extraVectorStoreId={extraVectorStoreId}
+            onExtraVectorStore={setExtraVectorStoreId}
           />
         )}
         {step === 3 && (
@@ -115,11 +85,12 @@ export default function TeacherPage() {
         {step === 5 && (
           <Step6Review
             settingName={settingName}
+            info={info}
             questions={questions}
             correctAnswers={correctAnswers}
             images={images}
             feedbackInstruction={feedbackInstruction}
-            vectorStoreId={vectorStoreId}
+            extraVectorStoreId={extraVectorStoreId}
             sheetUrl={sheetUrl}
             onSheetUrlChange={setSheetUrl}
           />
@@ -131,7 +102,7 @@ export default function TeacherPage() {
         onNext={step < STEPS.length - 1 ? next : undefined}
         showPrev={step > 0}
         showNext={step < STEPS.length - 1}
-        nextDisabled={step === 0 && !settingName}
+        nextDisabled={(step === 0 && !settingName) || (step === 1 && !info.unitKey)}
       />
     </div>
   );

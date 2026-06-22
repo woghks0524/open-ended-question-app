@@ -6,7 +6,8 @@ import { TEACHER_INSTRUCTIONS } from "@/lib/instructions";
 // Responses API + file_search 사용.
 export async function POST(req: NextRequest) {
   try {
-    const { questions, correctAnswers, feedbackInstruction, vectorStoreId } = await req.json();
+    const { questions, correctAnswers, feedbackInstruction, unitKey, extraVectorStoreId } = await req.json();
+    const vectorStoreIds = [process.env.LIBRARY_VECTORSTORE_ID, extraVectorStoreId];
 
     // 문항 및 모범 답안 등록 메시지
     let input = "평가 문항 및 모범 답안 등록:\n";
@@ -30,7 +31,8 @@ export async function POST(req: NextRequest) {
     const result = await gradeWithFiles({
       instructions: TEACHER_INSTRUCTIONS,
       input,
-      vectorStoreId,
+      vectorStoreIds,
+      unitKey,
     });
 
     return NextResponse.json({ result });

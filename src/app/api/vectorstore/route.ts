@@ -1,44 +1,47 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getOpenAIClient } from "@/lib/openai";
+import { toFile } from "openai";
 
-// POST: 벡터스토어 생성(기본 교과서 자료 복사) 또는 추가 파일 업로드
-// Assistant 복제는 더 이상 하지 않는다(폐기 대상). 채점은 Responses API가 vectorStoreId로 직접 수행.
+// POST(multipart): 교사가 이 평가에만 쓸 추가 자료를 업로드한다.
+// - 단원 라이브러리는 공유/읽기전용이라 복사하지 않는다.
+// - 평가별 전용 벡터스토어(개인 보관함)를 만들어 파일을 올리고, 단원 key로 태그한다.
+//   → 채점 시 [라이브러리, 이 보관함]을 key 필터로 함께 검색해도 이 평가 파일만 잡힌다.
 export async function POST(req: NextRequest) {
   try {
-    const body = await req.json();
-    const { action } = body;
+    const form = await req.formData();
+    const file = form.get("file") as File | null;
+    const unitKey = (form.get("unitKey") as string) || "";
+    let vectorStoreId = (form.get("vectorStoreId") as string) || "";
+    const settingName = (form.get("settingName") as string) || "";
+
+    if (!file) {
+      return NextResponse.json({ error: "파일이 없습니다." }, { status: 400 });
+    }
+
     const client = getOpenAIClient();
 
-    if (action === "create") {
-      // 새 벡터스토어 생성 + 기본(교과서) 벡터스토어 파일 복사
-      const { settingName, defaultVectorStoreId } = body;
-
-      const newVectorStore = await client.vectorStores.create({
-        name: settingName ? `${settingName}_vs` : "새 벡터 스토어",
+    // 평가 전용 벡터스토어가 아직 없으면 생성
+    if (!vectorStoreId) {
+      const vs = await client.vectorStores.create({
+        name: settingName ? `${settingName}_교사자료` : "교사 추가 자료",
       });
-
-      // 선택한 교과서의 기본 자료를 새 벡터스토어로 복사
-      if (defaultVectorStoreId) {
-        const sourceFiles = await client.vectorStores.files.list(defaultVectorStoreId);
-        for (const file of sourceFiles.data || []) {
-          await client.vectorStores.files.create(newVectorStore.id, { file_id: file.id });
-          await new Promise((r) => setTimeout(r, 500));
-        }
-      }
-
-      return NextResponse.json({ vectorStoreId: newVectorStore.id });
+      vectorStoreId = vs.id;
     }
 
-    if (action === "upload") {
-      // 추가 파일 업로드(file_id 기반)
-      const { vectorStoreId, fileId } = body;
-      await client.vectorStores.files.create(vectorStoreId, { file_id: fileId });
-      return NextResponse.json({ success: true });
-    }
+    // 파일 업로드 후 단원 key로 태그하여 벡터스토어에 연결
+    const buffer = Buffer.from(await file.arrayBuffer());
+    const uploaded = await client.files.create({
+      file: await toFile(buffer, file.name),
+      purpose: "assistants",
+    });
+    await client.vectorStores.files.create(vectorStoreId, {
+      file_id: uploaded.id,
+      attributes: { key: unitKey, source: "teacher", filename: file.name },
+    });
 
-    return NextResponse.json({ error: "Unknown action" }, { status: 400 });
+    return NextResponse.json({ vectorStoreId });
   } catch (e) {
     console.error("Vectorstore error:", e);
-    return NextResponse.json({ error: "벡터스토어 처리 중 오류가 발생했습니다." }, { status: 500 });
+    return NextResponse.json({ error: "추가 자료 처리 중 오류가 발생했습니다." }, { status: 500 });
   }
 }

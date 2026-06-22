@@ -13,7 +13,8 @@ interface Props {
   questions: string[];
   answers: string[];
   feedbackInstruction: string;
-  vectorStoreId: string;
+  unitKey: string;
+  extraVectorStoreId: string;
   feedbacks: FeedbackItem[];
   onFeedbacksReceived: (feedbacks: FeedbackItem[]) => void;
 }
@@ -22,7 +23,8 @@ export default function Step4Feedback({
   questions,
   answers,
   feedbackInstruction,
-  vectorStoreId,
+  unitKey,
+  extraVectorStoreId,
   feedbacks,
   onFeedbacksReceived,
 }: Props) {
@@ -42,7 +44,8 @@ export default function Step4Feedback({
           questions,
           answers,
           feedbackInstruction,
-          vectorStoreId,
+          unitKey,
+          extraVectorStoreId,
         }),
       });
       const data = await res.json();
