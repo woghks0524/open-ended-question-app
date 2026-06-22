@@ -49,23 +49,19 @@ export async function lookupAssessment(code: string) {
   return null;
 }
 
-// 만들어진 평가 전체 목록(공유용). 학생 답안 등 민감정보는 없고 문항 메타만 반환.
-export async function listAssessments() {
-  const sheet = await getQuestionSheet();
-  const rows = await sheet.getRows();
-  const pick = (r: GoogleSpreadsheetRow, k: string) => r.get(k) || "";
-  return rows
-    .map((r) => ({
-      code: pick(r, "settingname"),
-      grade: pick(r, "grade"),
-      semester: pick(r, "semester"),
-      subject: pick(r, "subject"),
-      publisher: pick(r, "publisher"),
-      unit: pick(r, "unit"),
-      questions: [pick(r, "question1"), pick(r, "question2"), pick(r, "question3")].filter(Boolean),
-      timestamp: pick(r, "timestamp"),
-    }))
-    .filter((a) => a.code);
+// 만들어진 평가가 들어있는 마스터 시트의 웹 주소(공유용 링크).
+export async function getQuestionSheetUrl(): Promise<string> {
+  const auth = getAuth();
+  const sheetName = process.env.GOOGLE_SHEET_NAME || "서술형 평가 문항";
+  const { google } = await import("googleapis");
+  const drive = google.drive({ version: "v3", auth });
+  const res = await drive.files.list({
+    q: `name='${sheetName}' and mimeType='application/vnd.google-apps.spreadsheet'`,
+    fields: "files(id, webViewLink)",
+  });
+  const file = res.data.files?.[0];
+  if (!file?.id) throw new Error(`Sheet "${sheetName}" not found`);
+  return file.webViewLink || `https://docs.google.com/spreadsheets/d/${file.id}/edit`;
 }
 
 export async function isCodeDuplicate(code: string): Promise<boolean> {
