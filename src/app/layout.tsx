@@ -37,6 +37,9 @@ export default function RootLayout({
               <a href="/student" className="text-gray-600 hover:text-blue-600 transition-colors">
                 학생용
               </a>
+              <a href="/assessments" className="text-gray-600 hover:text-blue-600 transition-colors">
+                문항 목록
+              </a>
             </nav>
           </div>
         </header>

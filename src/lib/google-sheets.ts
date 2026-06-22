@@ -49,6 +49,25 @@ export async function lookupAssessment(code: string) {
   return null;
 }
 
+// 만들어진 평가 전체 목록(공유용). 학생 답안 등 민감정보는 없고 문항 메타만 반환.
+export async function listAssessments() {
+  const sheet = await getQuestionSheet();
+  const rows = await sheet.getRows();
+  const pick = (r: GoogleSpreadsheetRow, k: string) => r.get(k) || "";
+  return rows
+    .map((r) => ({
+      code: pick(r, "settingname"),
+      grade: pick(r, "grade"),
+      semester: pick(r, "semester"),
+      subject: pick(r, "subject"),
+      publisher: pick(r, "publisher"),
+      unit: pick(r, "unit"),
+      questions: [pick(r, "question1"), pick(r, "question2"), pick(r, "question3")].filter(Boolean),
+      timestamp: pick(r, "timestamp"),
+    }))
+    .filter((a) => a.code);
+}
+
 export async function isCodeDuplicate(code: string): Promise<boolean> {
   const sheet = await getQuestionSheet();
   const rows = await sheet.getRows();
