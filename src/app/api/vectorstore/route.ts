@@ -28,7 +28,8 @@ export async function POST(req: NextRequest) {
       vectorStoreId = vs.id;
     }
 
-    // 파일 업로드 후 단원 key로 태그하여 벡터스토어에 연결
+    // 파일 업로드 후 교과서 단위(bookKey)로 태그 → 채점 시 라이브러리와 같은 필터에 함께 잡힘
+    const bookKey = unitKey.split("|").slice(0, 4).join("|");
     const buffer = Buffer.from(await file.arrayBuffer());
     const uploaded = await client.files.create({
       file: await toFile(buffer, file.name),
@@ -36,7 +37,7 @@ export async function POST(req: NextRequest) {
     });
     await client.vectorStores.files.create(vectorStoreId, {
       file_id: uploaded.id,
-      attributes: { key: unitKey, source: "teacher", filename: file.name },
+      attributes: { bookKey, source: "teacher", filename: file.name },
     });
 
     return NextResponse.json({ vectorStoreId });

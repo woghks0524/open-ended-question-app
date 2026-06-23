@@ -23,15 +23,16 @@ export async function gradeWithFiles({
   instructions,
   input,
   vectorStoreIds = [],
-  unitKey,
+  bookKey,
   model = "gpt-4o",
 }: {
   instructions: string;
   input: string;
-  /** 검색 대상 벡터스토어들. [단원 라이브러리, (선택)평가별 교사 보관함] */
+  /** 검색 대상 벡터스토어들. [지도서 라이브러리, (선택)평가별 교사 보관함] */
   vectorStoreIds?: (string | undefined)[];
-  /** 단원 attribute 필터값. 라이브러리·교사파일 모두 이 key로 태그됨 → 해당 단원만 검색 */
-  unitKey?: string;
+  /** 교과서 attribute 필터값(과목|학년|학기|출판사). 라이브러리·교사파일 모두 이 bookKey로
+   *  태그됨 → 그 교과서(지도서)만 검색. 단원은 입력 프롬프트로 좁힌다. */
+  bookKey?: string;
   model?: string;
 }): Promise<string> {
   const client = getOpenAIClient();
@@ -42,8 +43,8 @@ export async function gradeWithFiles({
         {
           type: "file_search" as const,
           vector_store_ids: ids,
-          ...(unitKey
-            ? { filters: { key: "key", type: "eq" as const, value: unitKey } }
+          ...(bookKey
+            ? { filters: { key: "bookKey", type: "eq" as const, value: bookKey } }
             : {}),
         },
       ]
