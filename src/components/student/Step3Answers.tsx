@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import AlertMessage from "@/components/AlertMessage";
+import QuestionText from "@/components/QuestionText";
+import ZoomableImage from "@/components/ZoomableImage";
 
 interface Props {
   questions: string[];
@@ -54,14 +56,8 @@ export default function Step3Answers({ questions, images, answers, onSave }: Pro
         {activeQuestions.map(({ q, i }) => (
           <div key={i} className={activeTab === i ? "block" : "hidden"}>
             <div className="mb-4 p-4 bg-gray-50 rounded-lg">
-              <p className="text-sm font-medium text-gray-800 whitespace-pre-wrap">{q}</p>
-              {images[i] && (
-                <img
-                  src={images[i]}
-                  alt={`${i + 1}번 문항 이미지`}
-                  className="mt-3 max-w-[300px] rounded border"
-                />
-              )}
+              <QuestionText text={q} className="text-sm font-medium text-gray-800" />
+              {images[i] && <ZoomableImage src={images[i]} alt={`${i + 1}번 문항 이미지`} />}
             </div>
             <textarea
               value={localAnswers[i]}
