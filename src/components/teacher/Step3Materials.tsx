@@ -70,7 +70,7 @@ export default function Step3Materials({
               onClick={handleUpload}
               className="mt-3 px-5 py-2.5 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors text-sm"
             >
-              '{uploadFile.name}' 올리기
+              &lsquo;{uploadFile.name}&rsquo; 올리기
             </button>
           )}
         </div>

@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# 생각교실 정규화 결과(모범답안 포함) — 공개 저장소에 올리지 않음 (데이터는 구글 시트에 있음)
+scripts/thinking-class-rows*.json

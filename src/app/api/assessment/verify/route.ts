@@ -22,7 +22,7 @@ export async function POST(req: NextRequest) {
     }
     input += `\n- 출처는 【5:12†source】와 같은 참조는 보이지 않도록 합니다.`;
     input += `\n- ***[교과서 18쪽]과 같이 참고한 파일과 페이지 수로 나타냅니다.`;
-    input += `\n- 모범 답안은 파일에서 직접적으로 확인할 수 없는 경우에도 Assistant의 지식을 바탕으로 생성하되, 파일 내용과 상반되지 않도록 한다.`;
+    input += `\n- 모범 답안은 파일에서 직접적으로 확인할 수 없는 경우에도 AI의 지식을 바탕으로 생성하되, 파일 내용과 상반되지 않도록 한다.`;
     input += `\n- 답안이 비워지거나 생략되지 않도록 한다.`;
 
     if (feedbackInstruction) {

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -27,16 +28,16 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-50 min-h-screen`}>
         <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
           <div className="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
-            <a href="/" className="text-lg font-bold text-blue-600">
+            <Link href="/" className="text-lg font-bold text-blue-600">
               AI 서술형 평가 도우미
-            </a>
+            </Link>
             <nav className="flex gap-4 text-sm">
-              <a href="/teacher" className="text-gray-600 hover:text-blue-600 transition-colors">
+              <Link href="/teacher" className="text-gray-600 hover:text-blue-600 transition-colors">
                 교사용
-              </a>
-              <a href="/student" className="text-gray-600 hover:text-blue-600 transition-colors">
+              </Link>
+              <Link href="/student" className="text-gray-600 hover:text-blue-600 transition-colors">
                 학생용
-              </a>
+              </Link>
               <a href="/sheet" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-blue-600 transition-colors">
                 문항 목록
               </a>
