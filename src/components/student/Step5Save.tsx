@@ -18,7 +18,6 @@ interface Props {
   questions: string[];
   answers: string[];
   feedbacks: FeedbackItem[];
-  sheetUrl: string;
 }
 
 export default function Step5Save({
@@ -30,7 +29,6 @@ export default function Step5Save({
   questions,
   answers,
   feedbacks,
-  sheetUrl,
 }: Props) {
   const [loading, setLoading] = useState(false);
   const [alert, setAlert] = useState<{ type: "success" | "error"; message: string } | null>(null);
@@ -69,7 +67,8 @@ export default function Step5Save({
       const res = await fetch("/api/results", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ sheetUrl, rowData }),
+        // 보안: 교사 시트 URL 대신 평가 코드만 전송 — 서버가 시트에서 직접 찾음
+        body: JSON.stringify({ code: settingName, rowData }),
       });
 
       if (!res.ok) {

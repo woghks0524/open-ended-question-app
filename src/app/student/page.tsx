@@ -20,13 +20,11 @@ export default function StudentPage() {
   const [step, setStep] = useState(0);
 
   // Assessment data (from teacher)
+  // 보안: 학생 화면은 문항·이미지만 보관. 모범답안·채점지침·교사 시트 URL 등
+  // 민감 정보는 서버가 코드로 직접 조회하므로 클라이언트에 내려오지 않는다.
   const [settingName, setSettingName] = useState("");
   const [questions, setQuestions] = useState(["", "", ""]);
   const [images, setImages] = useState(["", "", ""]);
-  const [feedbackInstruction, setFeedbackInstruction] = useState("");
-  const [unitKey, setUnitKey] = useState("");
-  const [extraVectorStoreId, setExtraVectorStoreId] = useState("");
-  const [sheetUrl, setSheetUrl] = useState("");
   const [assessmentLoaded, setAssessmentLoaded] = useState(false);
 
   // Student data
@@ -44,10 +42,6 @@ export default function StudentPage() {
     setSettingName(data.settingname || "");
     setQuestions([data.question1 || "", data.question2 || "", data.question3 || ""]);
     setImages([data.image1 || "", data.image2 || "", data.image3 || ""]);
-    setFeedbackInstruction(data.feedbackinstruction || "");
-    setUnitKey(data.unitkey || "");
-    setExtraVectorStoreId(data.vectorapi || "");
-    setSheetUrl(data.sheeturl || "");
     setAssessmentLoaded(true);
   }, []);
 
@@ -90,11 +84,9 @@ export default function StudentPage() {
         )}
         {step === 3 && (
           <Step4Feedback
+            settingName={settingName}
             questions={questions}
             answers={answers}
-            feedbackInstruction={feedbackInstruction}
-            unitKey={unitKey}
-            extraVectorStoreId={extraVectorStoreId}
             feedbacks={feedbacks}
             onFeedbacksReceived={setFeedbacks}
           />
@@ -109,7 +101,6 @@ export default function StudentPage() {
             questions={questions}
             answers={answers}
             feedbacks={feedbacks}
-            sheetUrl={sheetUrl}
           />
         )}
       </div>

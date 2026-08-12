@@ -10,21 +10,17 @@ interface FeedbackItem {
 }
 
 interface Props {
+  settingName: string;
   questions: string[];
   answers: string[];
-  feedbackInstruction: string;
-  unitKey: string;
-  extraVectorStoreId: string;
   feedbacks: FeedbackItem[];
   onFeedbacksReceived: (feedbacks: FeedbackItem[]) => void;
 }
 
 export default function Step4Feedback({
+  settingName,
   questions,
   answers,
-  feedbackInstruction,
-  unitKey,
-  extraVectorStoreId,
   feedbacks,
   onFeedbacksReceived,
 }: Props) {
@@ -40,13 +36,8 @@ export default function Step4Feedback({
       const res = await fetch("/api/grade", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          questions,
-          answers,
-          feedbackInstruction,
-          unitKey,
-          extraVectorStoreId,
-        }),
+        // 보안: 코드와 답안만 전송 — 문항·모범답안·채점지침은 서버가 시트에서 직접 조회
+        body: JSON.stringify({ code: settingName, answers }),
       });
       const data = await res.json();
 

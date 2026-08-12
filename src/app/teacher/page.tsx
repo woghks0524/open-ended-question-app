@@ -44,6 +44,24 @@ export default function TeacherPage() {
     setImages(imgs);
   }, []);
 
+  // 기존 문항(공유 문항 등)을 코드로 불러와 폼 전체를 채움.
+  // 평가 코드(settingName)와 결과 시트 주소(sheetUrl)는 교사 본인 것을 쓰므로 건드리지 않음.
+  const handleImport = useCallback((data: Record<string, string>) => {
+    setInfo({
+      grade: data.grade || "",
+      semester: data.semester || "",
+      subject: data.subject || "",
+      publisher: data.publisher || "",
+      unit: data.unit || "",
+      unitKey: data.unitkey || "",
+    });
+    setQuestions([data.question1 || "", data.question2 || "", data.question3 || ""]);
+    setCorrectAnswers([data.correctanswer1 || "", data.correctanswer2 || "", data.correctanswer3 || ""]);
+    setImages([data.image1 || "", data.image2 || "", data.image3 || ""]);
+    setFeedbackInstruction(data.feedbackinstruction || "");
+    setExtraVectorStoreId(data.vectorapi || ""); // 원본에 딸린 교사 자료 보관함도 채점에 활용
+  }, []);
+
   return (
     <div>
       <h1 className="text-2xl font-bold text-gray-900 mb-1">서술형 평가 설계하기 (교사용)</h1>
@@ -55,7 +73,7 @@ export default function TeacherPage() {
 
       <div className="mt-6">
         {step === 0 && (
-          <Step1Code settingName={settingName} onSettingNameChange={setSettingName} />
+          <Step1Code settingName={settingName} onSettingNameChange={setSettingName} onImport={handleImport} />
         )}
         {step === 1 && (
           <Step2BasicInfo value={info} onSave={setInfo} />
