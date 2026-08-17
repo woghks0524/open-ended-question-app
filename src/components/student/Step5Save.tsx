@@ -6,7 +6,7 @@ import LoadingSpinner from "@/components/LoadingSpinner";
 
 interface FeedbackItem {
   feedback: string;
-  score: number | null;
+  score: string | null;
 }
 
 interface Props {
@@ -58,7 +58,7 @@ export default function Step5Save({
       for (let i = 0; i < 3; i++) {
         rowData.push(
           questions[i] || "",
-          feedbacks[i]?.score?.toString() || "",
+          feedbacks[i]?.score || "",
           answers[i] || "",
           feedbacks[i]?.feedback ? getPartialFeedback(feedbacks[i].feedback) : ""
         );
@@ -96,7 +96,7 @@ export default function Step5Save({
           {feedbacks.map((fb, i) => (
             fb.score !== null && (
               <div key={i} className="text-sm text-gray-600">
-                <span className="font-medium">{i + 1}번 문항:</span> {fb.score}점
+                <span className="font-medium">{i + 1}번 문항:</span> {fb.score}
               </div>
             )
           ))}

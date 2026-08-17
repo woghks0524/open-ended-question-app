@@ -22,7 +22,12 @@ export default function Step5Instructions({ feedbackInstruction, onSave }: Props
       <h2 className="text-xl font-semibold mb-4">5단계. 평가 주의 사항 입력하기</h2>
       <div className="bg-white rounded-lg border border-gray-200 p-6">
         <p className="text-sm text-gray-600 mb-3">
-          피드백 내용, 길이, 수준, 말투, 언어, 채점 결과 단계(3단계, 5단계 등), 문단 구성 등을 자유롭게 입력하세요.
+          피드백 내용, 길이, 수준, 말투, 언어, 문단 구성 등을 자유롭게 입력하세요.
+          채점 척도도 바꿀 수 있습니다 — 기본은 1~4점이며, 다른 척도를 원하면 명확하게 적어주세요.
+        </p>
+        <p className="text-xs text-gray-400 mb-3">
+          예시: &ldquo;상/중/하 3단계로 채점해주세요&rdquo; · &ldquo;5점 척도로 채점&rdquo; ·
+          &ldquo;도달/미도달로만 표시&rdquo; · &ldquo;칭찬을 먼저 하고 보완점은 질문 형태로&rdquo;
         </p>
         <textarea
           value={note}

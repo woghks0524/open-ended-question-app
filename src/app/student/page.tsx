@@ -13,7 +13,7 @@ const STEPS = ["평가 코드", "학생 정보", "답안 작성", "채점/피드
 
 interface FeedbackItem {
   feedback: string;
-  score: number | null;
+  score: string | null;
 }
 
 export default function StudentPage() {

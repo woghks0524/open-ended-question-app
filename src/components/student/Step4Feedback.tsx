@@ -6,7 +6,7 @@ import LoadingSpinner from "@/components/LoadingSpinner";
 
 interface FeedbackItem {
   feedback: string;
-  score: number | null;
+  score: string | null;
 }
 
 interface Props {
@@ -83,7 +83,7 @@ export default function Step4Feedback({
                   {i + 1}번 피드백
                   {feedbacks[i]?.score !== null && (
                     <span className="ml-1 text-xs bg-green-100 text-green-700 px-1.5 py-0.5 rounded-full">
-                      {feedbacks[i].score}점
+                      {feedbacks[i].score}
                     </span>
                   )}
                 </button>

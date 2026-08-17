@@ -3,12 +3,16 @@ import { gradeWithFiles } from "@/lib/openai";
 import { STUDENT_INSTRUCTIONS } from "@/lib/instructions";
 import { lookupAssessment } from "@/lib/google-sheets";
 
-// 피드백에서 점수 추출. instructions가 3문단을 '채점 결과: (n점)…' 형식으로 고정하므로
-// 그 라인에서 1~4점만 찾는다. ("5점 만점", "3점 이상이면" 같은 본문 숫자에 속지 않도록)
-function extractScore(feedback: string): number | null {
-  const line = feedback.match(/채점\s*결과\s*[:：][^\n]*/);
-  const m = (line ? line[0] : feedback).match(/([1-4])\s*점/);
-  return m ? parseInt(m[1]) : null;
+// 피드백에서 채점 결과 추출. instructions가 3문단을 '채점 결과: (척도값)(등급) - …' 형식으로
+// 고정하므로 그 라인의 첫 값을 척도 그대로 읽는다. 교사가 척도를 바꾼 경우
+// "5점", "상", "도달" 같은 값도 그대로 인식된다.
+function extractScore(feedback: string): string | null {
+  const line = feedback.match(/채점\s*결과\s*[:：]\s*([^\n]*)/);
+  if (!line) return null;
+  // "(4점)(매우 우수) - 이유" / "상(잘함) - 이유" / "도달 - 이유" 등에서 첫 값만
+  const m = line[1].replace(/^[(\s]+/, "").match(/^([^()\-–,·\n]{1,12}?)\s*(?:[()\-–,·]|$)/);
+  const v = m?.[1].trim();
+  return v || null;
 }
 
 // POST: AI 채점 및 피드백 생성 (학생용 4단계)
@@ -41,7 +45,7 @@ export async function POST(req: NextRequest) {
     // 공용 지도서 라이브러리 + (있으면) 이 평가 전용 교사 보관함
     const vectorStoreIds = [process.env.LIBRARY_VECTORSTORE_ID, extraVectorStoreId];
 
-    const feedbacks: { feedback: string; score: number | null }[] = [];
+    const feedbacks: { feedback: string; score: string | null }[] = [];
 
     for (let i = 0; i < questions.length; i++) {
       const q = questions[i];
@@ -65,7 +69,7 @@ instructions에 따르면 채점 결과에 따라 생성하는 피드백의 내�
 평가 주의 사항: ${feedbackInstruction || "(없음)"}${
         correctAnswers?.[i]
           ? `
-교사가 등록한 모범답안(채점 기준으로 참고하되, instructions의 점수별 피드백 규칙을 따를 것 — 1~3점일 때는 모범답안 전체를 그대로 노출하지 않기): ${correctAnswers[i]}`
+교사가 등록한 모범답안(채점 기준으로 참고하되, instructions의 수준별 피드백 규칙을 따를 것 — 최고 수준이 아닐 때는 모범답안 전체를 그대로 노출하지 않기): ${correctAnswers[i]}`
           : ""
       }
 문항: ${q}
