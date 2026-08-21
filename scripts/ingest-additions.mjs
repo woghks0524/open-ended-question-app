@@ -8,7 +8,12 @@ const keys = (process.env.OPENAI_API_KEYS || "").split(",").map((s) => s.trim())
 const client = new OpenAI({ apiKey: keys[0] });
 const VS = process.env.LIBRARY_VECTORSTORE_ID;
 
-const manifest = JSON.parse(readFileSync("/private/tmp/claude-501/-Users-jawoon-dev-open-ended-question-app/dbf26737-b17f-41b8-9213-b5b0dbe25fb4/scratchpad/g56s2_txt/manifest.json"))
+const manifestPath = process.argv[2];
+if (!manifestPath) {
+  console.error("사용법: node scripts/ingest-additions.mjs <manifest.json 경로>");
+  process.exit(1);
+}
+const manifest = JSON.parse(readFileSync(manifestPath))
   .filter((m) => m.txt); // 메뉴 전용 항목 제외
 
 // 이미 적재된 bookKey는 건너뜀 (재실행 안전)
