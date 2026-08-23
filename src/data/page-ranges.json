@@ -1,0 +1,6017 @@
+{
+ "과학|3|1|비상": {
+  "source": "명시",
+  "anchors": 77,
+  "loo": {
+   "n": 52,
+   "정확": 22,
+   "±1쪽": 49,
+   "±2쪽": 52,
+   "중앙오차": 1
+  },
+  "units": {
+   "힘과 우리 생활": {
+    "from": 12,
+    "to": 37,
+    "samples": 94,
+    "guide": [
+     49,
+     191
+    ],
+    "confident": true
+   },
+   "동물의 생활": {
+    "from": 37,
+    "to": 63,
+    "samples": 90,
+    "guide": [
+     192,
+     305
+    ],
+    "confident": true
+   },
+   "식물의 생활": {
+    "from": 63,
+    "to": 89,
+    "samples": 88,
+    "guide": [
+     306,
+     413
+    ],
+    "confident": true
+   },
+   "생물의 한살이": {
+    "from": 90,
+    "to": 117,
+    "samples": 85,
+    "guide": [
+     414,
+     648
+    ],
+    "confident": true
+   }
+  }
+ },
+ "과학|3|1|아이스크림미디어": {
+  "source": "명시",
+  "anchors": 73,
+  "loo": {
+   "n": 65,
+   "정확": 44,
+   "±1쪽": 64,
+   "±2쪽": 65,
+   "중앙오차": 0
+  },
+  "units": {
+   "힘과 우리 생활": {
+    "from": 14,
+    "to": 34,
+    "samples": 58,
+    "guide": [
+     1,
+     73
+    ],
+    "confident": true
+   },
+   "동물의 생활": {
+    "from": 36,
+    "to": 58,
+    "samples": 58,
+    "guide": [
+     74,
+     145
+    ],
+    "confident": true
+   },
+   "식물의 생활": {
+    "from": 60,
+    "to": 82,
+    "samples": 68,
+    "guide": [
+     146,
+     227
+    ],
+    "confident": true
+   },
+   "생물의 한살이": {
+    "from": 84,
+    "to": 110,
+    "samples": 70,
+    "guide": [
+     228,
+     310
+    ],
+    "confident": true
+   }
+  }
+ },
+ "과학|3|1|천재교과서(정용재)": {
+  "source": "명시",
+  "anchors": 81,
+  "loo": {
+   "n": 71,
+   "정확": 40,
+   "±1쪽": 71,
+   "±2쪽": 71,
+   "중앙오차": 0
+  },
+  "units": {
+   "힘과 우리 생활": {
+    "from": 10,
+    "to": 36,
+    "samples": 102,
+    "guide": [
+     116,
+     217
+    ],
+    "confident": true
+   },
+   "동물의 생활": {
+    "from": 37,
+    "to": 62,
+    "samples": 100,
+    "guide": [
+     218,
+     317
+    ],
+    "confident": true
+   },
+   "식물의 생활": {
+    "from": 63,
+    "to": 88,
+    "samples": 94,
+    "guide": [
+     318,
+     411
+    ],
+    "confident": true
+   },
+   "생물의 한살이": {
+    "from": 88,
+    "to": 118,
+    "samples": 95,
+    "guide": [
+     412,
+     516
+    ],
+    "confident": true
+   }
+  }
+ },
+ "과학|3|2|비상": {
+  "source": "명시",
+  "anchors": 79,
+  "loo": {
+   "n": 55,
+   "정확": 26,
+   "±1쪽": 54,
+   "±2쪽": 55,
+   "중앙오차": 1
+  },
+  "units": {
+   "지구와 바다": {
+    "from": 37,
+    "to": 61,
+    "samples": 88,
+    "guide": [
+     196,
+     305
+    ],
+    "confident": true
+   },
+   "소리의 성질": {
+    "from": 61,
+    "to": 85,
+    "samples": 88,
+    "guide": [
+     306,
+     415
+    ],
+    "confident": true
+   },
+   "감염병과 건강한 생활": {
+    "from": 85,
+    "to": 109,
+    "samples": 83,
+    "guide": [
+     416,
+     527
+    ],
+    "confident": true
+   }
+  }
+ },
+ "과학|3|2|아이스크림미디어": {
+  "source": "명시",
+  "anchors": 74,
+  "loo": {
+   "n": 64,
+   "정확": 48,
+   "±1쪽": 64,
+   "±2쪽": 64,
+   "중앙오차": 0
+  },
+  "units": {
+   "물체와 물질": {
+    "from": 16,
+    "to": 36,
+    "samples": 57,
+    "guide": [
+     1,
+     72
+    ],
+    "confident": true
+   },
+   "지구와 바다": {
+    "from": 41,
+    "to": 60,
+    "samples": 58,
+    "guide": [
+     73,
+     144
+    ],
+    "confident": true
+   },
+   "소리의 성질": {
+    "from": 65,
+    "to": 86,
+    "samples": 66,
+    "guide": [
+     145,
+     224
+    ],
+    "confident": true
+   },
+   "감염병과 건강한 생활": {
+    "from": 90,
+    "to": 108,
+    "samples": 58,
+    "guide": [
+     225,
+     296
+    ],
+    "confident": true
+   }
+  }
+ },
+ "과학|3|2|천재교과서(정용재)": {
+  "source": "명시",
+  "anchors": 81,
+  "loo": {
+   "n": 72,
+   "정확": 39,
+   "±1쪽": 71,
+   "±2쪽": 72,
+   "중앙오차": 0
+  },
+  "units": {
+   "물질의 성질": {
+    "from": 10,
+    "to": 38,
+    "samples": 96,
+    "guide": [
+     116,
+     221
+    ],
+    "confident": true
+   },
+   "지구와 바다": {
+    "from": 38,
+    "to": 66,
+    "samples": 97,
+    "guide": [
+     222,
+     318
+    ],
+    "confident": true
+   },
+   "소리의 성질": {
+    "from": 66,
+    "to": 116,
+    "samples": 180,
+    "guide": [
+     319,
+     508
+    ],
+    "confident": true
+   }
+  }
+ },
+ "과학|4|1|비상": {
+  "source": "명시",
+  "anchors": 76,
+  "loo": {
+   "n": 55,
+   "정확": 27,
+   "±1쪽": 55,
+   "±2쪽": 55,
+   "중앙오차": 1
+  },
+  "units": {
+   "자석의 이용": {
+    "from": 12,
+    "to": 35,
+    "samples": 78,
+    "guide": [
+     70,
+     181
+    ],
+    "confident": true
+   },
+   "물의 상태 변화": {
+    "from": 35,
+    "to": 57,
+    "samples": 80,
+    "guide": [
+     182,
+     285
+    ],
+    "confident": true
+   },
+   "땅의 변화": {
+    "from": 57,
+    "to": 87,
+    "samples": 109,
+    "guide": [
+     286,
+     415
+    ],
+    "confident": true
+   },
+   "다양한 생물과 우리 생활": {
+    "from": 87,
+    "to": 109,
+    "samples": 77,
+    "guide": [
+     416,
+     880
+    ],
+    "confident": true
+   }
+  }
+ },
+ "과학|4|1|아이스크림미디어": {
+  "source": "명시",
+  "anchors": 73,
+  "loo": {
+   "n": 64,
+   "정확": 46,
+   "±1쪽": 64,
+   "±2쪽": 64,
+   "중앙오차": 0
+  },
+  "units": {
+   "자석의 이용": {
+    "from": 17,
+    "to": 34,
+    "samples": 68,
+    "guide": [
+     1,
+     84
+    ],
+    "confident": true
+   },
+   "물의 상태 변화": {
+    "from": 39,
+    "to": 60,
+    "samples": 64,
+    "guide": [
+     85,
+     164
+    ],
+    "confident": true
+   },
+   "땅의 변화": {
+    "from": 65,
+    "to": 86,
+    "samples": 64,
+    "guide": [
+     165,
+     244
+    ],
+    "confident": true
+   },
+   "다양한 생물과 우리 생활": {
+    "from": 91,
+    "to": 110,
+    "samples": 64,
+    "guide": [
+     245,
+     324
+    ],
+    "confident": true
+   }
+  }
+ },
+ "과학|4|1|천재교과서(정용재)": {
+  "source": "명시",
+  "anchors": 79,
+  "loo": {
+   "n": 66,
+   "정확": 38,
+   "±1쪽": 66,
+   "±2쪽": 66,
+   "중앙오차": 0
+  },
+  "units": {
+   "자석의 이용": {
+    "from": 10,
+    "to": 36,
+    "samples": 96,
+    "guide": [
+     116,
+     211
+    ],
+    "confident": true
+   },
+   "물의 상태 변화": {
+    "from": 36,
+    "to": 62,
+    "samples": 94,
+    "guide": [
+     212,
+     305
+    ],
+    "confident": true
+   },
+   "땅의 변화": {
+    "from": 62,
+    "to": 92,
+    "samples": 107,
+    "guide": [
+     306,
+     412
+    ],
+    "confident": true
+   },
+   "다양한 생물과 우리 생활": {
+    "from": 92,
+    "to": 114,
+    "samples": 80,
+    "guide": [
+     413,
+     508
+    ],
+    "confident": true
+   }
+  }
+ },
+ "과학|4|2|비상": {
+  "source": "명시",
+  "anchors": 77,
+  "loo": {
+   "n": 58,
+   "정확": 26,
+   "±1쪽": 57,
+   "±2쪽": 58,
+   "중앙오차": 1
+  },
+  "units": {
+   "밤하늘 관찰": {
+    "from": 16,
+    "to": 39,
+    "samples": 80,
+    "guide": [
+     70,
+     187
+    ],
+    "confident": true
+   },
+   "생물과 환경": {
+    "from": 43,
+    "to": 65,
+    "samples": 78,
+    "guide": [
+     188,
+     297
+    ],
+    "confident": true
+   },
+   "여러 가지 기체": {
+    "from": 65,
+    "to": 110,
+    "samples": 169,
+    "guide": [
+     298,
+     712
+    ],
+    "confident": true
+   }
+  }
+ },
+ "과학|4|2|아이스크림미디어": {
+  "source": "명시",
+  "anchors": 66,
+  "loo": {
+   "n": 55,
+   "정확": 34,
+   "±1쪽": 55,
+   "±2쪽": 55,
+   "중앙오차": 0
+  },
+  "units": {
+   "밤하늘 관찰": {
+    "from": 17,
+    "to": 36,
+    "samples": 56,
+    "guide": [
+     1,
+     72
+    ],
+    "confident": true
+   },
+   "생물과 환경": {
+    "from": 41,
+    "to": 60,
+    "samples": 60,
+    "guide": [
+     73,
+     148
+    ],
+    "confident": true
+   },
+   "여러 가지 기체": {
+    "from": 65,
+    "to": 82,
+    "samples": 58,
+    "guide": [
+     149,
+     222
+    ],
+    "confident": true
+   },
+   "기후변화와 우리 생활": {
+    "from": 87,
+    "to": 102,
+    "samples": 54,
+    "guide": [
+     223,
+     292
+    ],
+    "confident": true
+   }
+  }
+ },
+ "과학|4|2|천재교과서(정용재)": {
+  "source": "명시",
+  "anchors": 79,
+  "loo": {
+   "n": 66,
+   "정확": 35,
+   "±1쪽": 66,
+   "±2쪽": 66,
+   "중앙오차": 0
+  },
+  "units": {
+   "밤하늘 관찰": {
+    "from": 10,
+    "to": 36,
+    "samples": 104,
+    "guide": [
+     116,
+     219
+    ],
+    "confident": true
+   },
+   "생물과 환경": {
+    "from": 36,
+    "to": 62,
+    "samples": 96,
+    "guide": [
+     220,
+     315
+    ],
+    "confident": true
+   },
+   "여러 가지 기체": {
+    "from": 62,
+    "to": 90,
+    "samples": 101,
+    "guide": [
+     316,
+     416
+    ],
+    "confident": true
+   },
+   "기후변화와 우리 생활": {
+    "from": 90,
+    "to": 112,
+    "samples": 88,
+    "guide": [
+     417,
+     514
+    ],
+    "confident": true
+   }
+  }
+ },
+ "과학|5|1|아이스크림미디어": {
+  "source": "명시",
+  "anchors": 72,
+  "loo": {
+   "n": 62,
+   "정확": 40,
+   "±1쪽": 62,
+   "±2쪽": 62,
+   "중앙오차": 0
+  },
+  "units": {
+   "1. 지층과 화석": {
+    "from": 12,
+    "to": 60,
+    "samples": 124,
+    "guide": [
+     2,
+     153
+    ],
+    "confident": true
+   },
+   "3. 용해와 용액": {
+    "from": 64,
+    "to": 84,
+    "samples": 56,
+    "guide": [
+     154,
+     222
+    ],
+    "confident": true
+   },
+   "4. 우리 몸의 구조와 기능": {
+    "from": 88,
+    "to": 110,
+    "samples": 68,
+    "guide": [
+     223,
+     304
+    ],
+    "confident": true
+   }
+  }
+ },
+ "과학|5|1|지학사": {
+  "source": "명시",
+  "anchors": 58,
+  "loo": {
+   "n": 48,
+   "정확": 35,
+   "±1쪽": 48,
+   "±2쪽": 48,
+   "중앙오차": 0
+  },
+  "units": {
+   "1. 지층과 화석": {
+    "from": 16,
+    "to": 36,
+    "samples": 42,
+    "guide": [
+     133,
+     194
+    ],
+    "confident": true
+   },
+   "2. 빛의 성질": {
+    "from": 42,
+    "to": 61,
+    "samples": 34,
+    "guide": [
+     195,
+     246
+    ],
+    "confident": true
+   },
+   "3. 용해와 용액": {
+    "from": 64,
+    "to": 87,
+    "samples": 40,
+    "guide": [
+     247,
+     304
+    ],
+    "confident": true
+   },
+   "4. 우리 몸의 구조와 기능": {
+    "from": 90,
+    "to": 113,
+    "samples": 38,
+    "guide": [
+     305,
+     422
+    ],
+    "confident": true
+   }
+  }
+ },
+ "과학|5|1|천재교과서(정용재)": {
+  "source": "명시",
+  "anchors": 90,
+  "loo": {
+   "n": 81,
+   "정확": 72,
+   "±1쪽": 81,
+   "±2쪽": 81,
+   "중앙오차": 0
+  },
+  "units": {
+   "1. 지층과 화석": {
+    "from": 10,
+    "to": 36,
+    "samples": 92,
+    "guide": [
+     116,
+     207
+    ],
+    "confident": true
+   },
+   "2. 빛의 성질": {
+    "from": 36,
+    "to": 64,
+    "samples": 94,
+    "guide": [
+     208,
+     301
+    ],
+    "confident": true
+   },
+   "3. 용해와 용액": {
+    "from": 64,
+    "to": 90,
+    "samples": 91,
+    "guide": [
+     302,
+     392
+    ],
+    "confident": true
+   },
+   "4. 우리 몸의 구조와 기능": {
+    "from": 90,
+    "to": 113,
+    "samples": 86,
+    "guide": [
+     393,
+     490
+    ],
+    "confident": true
+   }
+  }
+ },
+ "과학|5|2|미래엔": {
+  "source": "명시",
+  "anchors": 84,
+  "loo": {
+   "n": 81,
+   "정확": 22,
+   "±1쪽": 80,
+   "±2쪽": 81,
+   "중앙오차": 1
+  },
+  "units": {
+   "1. 혼합물의 분리": {
+    "from": 8,
+    "to": 32,
+    "samples": 57,
+    "guide": [
+     100,
+     174
+    ],
+    "confident": true
+   },
+   "2. 열과 우리 생활": {
+    "from": 33,
+    "to": 62,
+    "samples": 74,
+    "guide": [
+     175,
+     248
+    ],
+    "confident": true
+   },
+   "3. 날씨와 우리 생활": {
+    "from": 63,
+    "to": 86,
+    "samples": 60,
+    "guide": [
+     249,
+     308
+    ],
+    "confident": true
+   },
+   "4. 자원과 에너지": {
+    "from": 87,
+    "to": 106,
+    "samples": 55,
+    "guide": [
+     309,
+     444
+    ],
+    "confident": true
+   }
+  }
+ },
+ "과학|5|2|비상": {
+  "source": "명시",
+  "anchors": 79,
+  "loo": {
+   "n": 67,
+   "정확": 34,
+   "±1쪽": 67,
+   "±2쪽": 67,
+   "중앙오차": 0
+  },
+  "units": {
+   "1. 혼합물의 분리": {
+    "from": 12,
+    "to": 32,
+    "samples": 65,
+    "guide": [
+     53,
+     152
+    ],
+    "confident": true
+   },
+   "2. 열과 우리 생활": {
+    "from": 34,
+    "to": 60,
+    "samples": 91,
+    "guide": [
+     153,
+     260
+    ],
+    "confident": true
+   },
+   "3. 날씨와 우리 생활": {
+    "from": 62,
+    "to": 89,
+    "samples": 88,
+    "guide": [
+     261,
+     364
+    ],
+    "confident": true
+   },
+   "4. 자원과 에너지": {
+    "from": 93,
+    "to": 114,
+    "samples": 71,
+    "guide": [
+     365,
+     568
+    ],
+    "confident": true
+   }
+  }
+ },
+ "과학|5|2|아이스크림미디어": {
+  "source": "명시",
+  "anchors": 67,
+  "loo": {
+   "n": 56,
+   "정확": 36,
+   "±1쪽": 55,
+   "±2쪽": 56,
+   "중앙오차": 0
+  },
+  "units": {
+   "1. 혼합물의 분리": {
+    "from": 9,
+    "to": 30,
+    "samples": 57,
+    "guide": [
+     105,
+     170
+    ],
+    "confident": true
+   },
+   "2. 날씨와 우리 생활": {
+    "from": 34,
+    "to": 56,
+    "samples": 64,
+    "guide": [
+     171,
+     247
+    ],
+    "confident": true
+   },
+   "3. 열과 우리 생활": {
+    "from": 60,
+    "to": 82,
+    "samples": 74,
+    "guide": [
+     248,
+     336
+    ],
+    "confident": true
+   },
+   "4. 자원과 에너지": {
+    "from": 86,
+    "to": 102,
+    "samples": 54,
+    "guide": [
+     337,
+     406
+    ],
+    "confident": true
+   }
+  }
+ },
+ "과학|5|2|지학사": {
+  "source": "명시",
+  "anchors": 60,
+  "loo": {
+   "n": 52,
+   "정확": 31,
+   "±1쪽": 51,
+   "±2쪽": 52,
+   "중앙오차": 0
+  },
+  "units": {
+   "1. 혼합물의 분리": {
+    "from": 10,
+    "to": 33,
+    "samples": 42,
+    "guide": [
+     117,
+     174
+    ],
+    "confident": true
+   },
+   "2. 날씨와 우리 생활": {
+    "from": 36,
+    "to": 59,
+    "samples": 40,
+    "guide": [
+     175,
+     232
+    ],
+    "confident": true
+   },
+   "3. 열과 우리 생활": {
+    "from": 62,
+    "to": 85,
+    "samples": 42,
+    "guide": [
+     233,
+     292
+    ],
+    "confident": true
+   },
+   "4. 자원과 에너지": {
+    "from": 88,
+    "to": 107,
+    "samples": 34,
+    "guide": [
+     293,
+     407
+    ],
+    "confident": true
+   }
+  }
+ },
+ "과학|5|2|천재교과서(정용재)": {
+  "source": "명시",
+  "anchors": 87,
+  "loo": {
+   "n": 78,
+   "정확": 66,
+   "±1쪽": 77,
+   "±2쪽": 78,
+   "중앙오차": 0
+  },
+  "units": {
+   "1. 혼합물의 분리": {
+    "from": 10,
+    "to": 36,
+    "samples": 90,
+    "guide": [
+     116,
+     205
+    ],
+    "confident": true
+   },
+   "2. 날씨와 우리 생활": {
+    "from": 36,
+    "to": 64,
+    "samples": 102,
+    "guide": [
+     206,
+     307
+    ],
+    "confident": true
+   },
+   "3. 열과 우리 생활": {
+    "from": 64,
+    "to": 92,
+    "samples": 108,
+    "guide": [
+     308,
+     415
+    ],
+    "confident": true
+   },
+   "4. 자원과 에너지": {
+    "from": 92,
+    "to": 113,
+    "samples": 75,
+    "guide": [
+     416,
+     502
+    ],
+    "confident": true
+   }
+  }
+ },
+ "과학|6|1|아이스크림미디어": {
+  "source": "명시",
+  "anchors": 72,
+  "loo": {
+   "n": 64,
+   "정확": 39,
+   "±1쪽": 64,
+   "±2쪽": 64,
+   "중앙오차": 0
+  },
+  "units": {
+   "1. 산과 염기": {
+    "from": 12,
+    "to": 32,
+    "samples": 62,
+    "guide": [
+     1,
+     77
+    ],
+    "confident": true
+   },
+   "2. 물체의 운동": {
+    "from": 36,
+    "to": 56,
+    "samples": 64,
+    "guide": [
+     78,
+     154
+    ],
+    "confident": true
+   },
+   "3. 식물의 구조와 기능": {
+    "from": 60,
+    "to": 106,
+    "samples": 126,
+    "guide": [
+     155,
+     308
+    ],
+    "confident": true
+   }
+  }
+ },
+ "과학|6|1|지학사": {
+  "source": "명시",
+  "anchors": 65,
+  "loo": {
+   "n": 56,
+   "정확": 38,
+   "±1쪽": 56,
+   "±2쪽": 56,
+   "중앙오차": 0
+  },
+  "units": {
+   "1. 산과 염기": {
+    "from": 17,
+    "to": 41,
+    "samples": 47,
+    "guide": [
+     137,
+     194
+    ],
+    "confident": true
+   },
+   "2. 물체의 운동": {
+    "from": 44,
+    "to": 65,
+    "samples": 34,
+    "guide": [
+     195,
+     246
+    ],
+    "confident": true
+   },
+   "3. 식물의 구조와 기능": {
+    "from": 68,
+    "to": 89,
+    "samples": 38,
+    "guide": [
+     247,
+     302
+    ],
+    "confident": true
+   },
+   "4. 지구의 운동": {
+    "from": 92,
+    "to": 115,
+    "samples": 38,
+    "guide": [
+     303,
+     420
+    ],
+    "confident": true
+   }
+  }
+ },
+ "과학|6|1|천재교과서(정용재)": {
+  "source": "명시",
+  "anchors": 90,
+  "loo": {
+   "n": 81,
+   "정확": 75,
+   "±1쪽": 81,
+   "±2쪽": 81,
+   "중앙오차": 0
+  },
+  "units": {
+   "1. 산과 염기": {
+    "from": 10,
+    "to": 38,
+    "samples": 104,
+    "guide": [
+     116,
+     219
+    ],
+    "confident": true
+   },
+   "2. 물체의 운동": {
+    "from": 38,
+    "to": 64,
+    "samples": 92,
+    "guide": [
+     220,
+     311
+    ],
+    "confident": true
+   },
+   "3. 식물의 구조와 기능": {
+    "from": 64,
+    "to": 88,
+    "samples": 90,
+    "guide": [
+     312,
+     401
+    ],
+    "confident": true
+   },
+   "4. 지구의 운동": {
+    "from": 88,
+    "to": 111,
+    "samples": 91,
+    "guide": [
+     402,
+     816
+    ],
+    "confident": true
+   }
+  }
+ },
+ "과학|6|2|미래엔": {
+  "source": "명시",
+  "anchors": 79,
+  "loo": {
+   "n": 77,
+   "정확": 26,
+   "±1쪽": 77,
+   "±2쪽": 77,
+   "중앙오차": 1
+  },
+  "units": {
+   "1. 계절의 변화": {
+    "from": 10,
+    "to": 54,
+    "samples": 114,
+    "guide": [
+     95,
+     232
+    ],
+    "confident": true
+   },
+   "3. 전기의 이용": {
+    "from": 55,
+    "to": 78,
+    "samples": 70,
+    "guide": [
+     233,
+     302
+    ],
+    "confident": true
+   },
+   "4. 과학과 나의 진로": {
+    "from": 79,
+    "to": 98,
+    "samples": 49,
+    "guide": [
+     303,
+     606
+    ],
+    "confident": true
+   }
+  }
+ },
+ "과학|6|2|비상": {
+  "source": "명시",
+  "anchors": 69,
+  "loo": {
+   "n": 56,
+   "정확": 38,
+   "±1쪽": 54,
+   "±2쪽": 56,
+   "중앙오차": 0
+  },
+  "units": {
+   "1. 계절의 변화": {
+    "from": 12,
+    "to": 37,
+    "samples": 83,
+    "guide": [
+     51,
+     170
+    ],
+    "confident": true
+   },
+   "2. 물질의 연소": {
+    "from": 41,
+    "to": 58,
+    "samples": 67,
+    "guide": [
+     171,
+     254
+    ],
+    "confident": true
+   },
+   "3. 전기의 이용": {
+    "from": 60,
+    "to": 85,
+    "samples": 82,
+    "guide": [
+     255,
+     352
+    ],
+    "confident": true
+   },
+   "4. 과학과 나의 진로": {
+    "from": 89,
+    "to": 104,
+    "samples": 55,
+    "guide": [
+     353,
+     540
+    ],
+    "confident": true
+   }
+  }
+ },
+ "과학|6|2|아이스크림미디어": {
+  "source": "명시",
+  "anchors": 67,
+  "loo": {
+   "n": 55,
+   "정확": 39,
+   "±1쪽": 55,
+   "±2쪽": 55,
+   "중앙오차": 0
+  },
+  "units": {
+   "1. 계절의 변화": {
+    "from": 9,
+    "to": 32,
+    "samples": 67,
+    "guide": [
+     105,
+     179
+    ],
+    "confident": true
+   },
+   "2. 물질의 연소": {
+    "from": 36,
+    "to": 54,
+    "samples": 60,
+    "guide": [
+     180,
+     253
+    ],
+    "confident": true
+   },
+   "3. 전기의 이용": {
+    "from": 58,
+    "to": 78,
+    "samples": 62,
+    "guide": [
+     254,
+     330
+    ],
+    "confident": true
+   },
+   "4. 과학과 나의 진로": {
+    "from": 82,
+    "to": 107,
+    "samples": 65,
+    "guide": [
+     331,
+     548
+    ],
+    "confident": true
+   }
+  }
+ },
+ "과학|6|2|지학사": {
+  "source": "명시",
+  "anchors": 52,
+  "loo": {
+   "n": 44,
+   "정확": 32,
+   "±1쪽": 44,
+   "±2쪽": 44,
+   "중앙오차": 0
+  },
+  "units": {
+   "1. 계절의 변화": {
+    "from": 8,
+    "to": 29,
+    "samples": 38,
+    "guide": [
+     117,
+     170
+    ],
+    "confident": true
+   },
+   "2. 물질의 연소": {
+    "from": 32,
+    "to": 53,
+    "samples": 38,
+    "guide": [
+     171,
+     226
+    ],
+    "confident": true
+   },
+   "3. 전기의 이용": {
+    "from": 56,
+    "to": 79,
+    "samples": 38,
+    "guide": [
+     227,
+     282
+    ],
+    "confident": true
+   },
+   "4. 과학과 나의 진로": {
+    "from": 82,
+    "to": 101,
+    "samples": 28,
+    "guide": [
+     283,
+     381
+    ],
+    "confident": true
+   }
+  }
+ },
+ "과학|6|2|천재교과서(정용재)": {
+  "source": "명시",
+  "anchors": 85,
+  "loo": {
+   "n": 75,
+   "정확": 59,
+   "±1쪽": 75,
+   "±2쪽": 75,
+   "중앙오차": 0
+  },
+  "units": {
+   "1. 계절의 변화": {
+    "from": 10,
+    "to": 36,
+    "samples": 90,
+    "guide": [
+     116,
+     205
+    ],
+    "confident": true
+   },
+   "2. 물질의 연소": {
+    "from": 36,
+    "to": 64,
+    "samples": 100,
+    "guide": [
+     206,
+     305
+    ],
+    "confident": true
+   },
+   "3. 전기의 이용": {
+    "from": 64,
+    "to": 92,
+    "samples": 94,
+    "guide": [
+     306,
+     399
+    ],
+    "confident": true
+   },
+   "4. 과학과 나의 진로": {
+    "from": 92,
+    "to": 122,
+    "samples": 72,
+    "guide": [
+     400,
+     676
+    ],
+    "confident": true
+   }
+  }
+ },
+ "국어|3|1|국정": {
+  "source": "명시",
+  "anchors": 51,
+  "loo": {
+   "n": 31,
+   "정확": 29,
+   "±1쪽": 31,
+   "±2쪽": 31,
+   "중앙오차": 0
+  },
+  "units": {
+   "1. 생생하게 표현해요": {
+    "from": 33,
+    "to": 66,
+    "samples": 39,
+    "guide": [
+     87,
+     128
+    ],
+    "confident": true
+   },
+   "2. 분명하고 유창하게": {
+    "from": 66,
+    "to": 73,
+    "samples": 11,
+    "guide": [
+     129,
+     168
+    ],
+    "confident": true
+   },
+   "3. 짜임새 있는 글, 재미와 감동이 있는 글": {
+    "from": 107,
+    "to": 168,
+    "samples": 28,
+    "guide": [
+     169,
+     244
+    ],
+    "confident": true
+   },
+   "4. 중요한 내용을 찾아요": {
+    "from": 175,
+    "to": 208,
+    "samples": 10,
+    "guide": [
+     245,
+     283
+    ],
+    "confident": true
+   },
+   "5. 인물에게 마음을 전해요": {
+    "from": 227,
+    "to": 254,
+    "samples": 35,
+    "guide": [
+     284,
+     330
+    ],
+    "confident": true
+   },
+   "6. 자신 있게 읽고 써요": {
+    "from": 254,
+    "to": 283,
+    "samples": 30,
+    "guide": [
+     331,
+     412
+    ],
+    "confident": true
+   }
+  }
+ },
+ "국어|3|2|국정": {
+  "source": "명시",
+  "anchors": 72,
+  "loo": {
+   "n": 56,
+   "정확": 47,
+   "±1쪽": 54,
+   "±2쪽": 56,
+   "중앙오차": 0
+  },
+  "units": {
+   "1. 경험과 관련지으며 이해해요": {
+    "from": 47,
+    "to": 63,
+    "samples": 24,
+    "guide": [
+     80,
+     121
+    ],
+    "confident": true
+   },
+   "2. 유창하게 읽고 발표해요": {
+    "from": 80,
+    "to": 103,
+    "samples": 26,
+    "guide": [
+     122,
+     165
+    ],
+    "confident": true
+   },
+   "3. 정확하게 글을 써요": {
+    "from": 112,
+    "to": 176,
+    "samples": 45,
+    "guide": [
+     166,
+     242
+    ],
+    "confident": true
+   },
+   "4. 서로 존중하며 대화해요": {
+    "from": 176,
+    "to": 216,
+    "samples": 38,
+    "guide": [
+     243,
+     294
+    ],
+    "confident": true
+   },
+   "5. 사전으로 여는 세상": {
+    "from": 216,
+    "to": 230,
+    "samples": 17,
+    "guide": [
+     295,
+     334
+    ],
+    "confident": true
+   },
+   "6. 감상과 표현의 즐거움": {
+    "from": 257,
+    "to": 283,
+    "samples": 28,
+    "guide": [
+     335,
+     373
+    ],
+    "confident": true
+   }
+  }
+ },
+ "국어|4|1|국정": {
+  "source": "명시",
+  "anchors": 59,
+  "loo": {
+   "n": 39,
+   "정확": 36,
+   "±1쪽": 39,
+   "±2쪽": 39,
+   "중앙오차": 0
+  },
+  "units": {
+   "1. 깊이 있게 읽어요": {
+    "from": 40,
+    "to": 71,
+    "samples": 28,
+    "guide": [
+     86,
+     127
+    ],
+    "confident": true
+   },
+   "2. 서로 다른 의견": {
+    "from": 82,
+    "to": 114,
+    "samples": 35,
+    "guide": [
+     128,
+     169
+    ],
+    "confident": true
+   },
+   "3. 자세하게 살펴요": {
+    "from": 114,
+    "to": 174,
+    "samples": 50,
+    "guide": [
+     170,
+     247
+    ],
+    "confident": true
+   },
+   "4. 뜻을 파악하며 읽어요": {
+    "from": 179,
+    "to": 196,
+    "samples": 16,
+    "guide": [
+     248,
+     285
+    ],
+    "confident": true
+   },
+   "5. 말과 글로 전하는 생각": {
+    "from": 225,
+    "to": 251,
+    "samples": 26,
+    "guide": [
+     286,
+     325
+    ],
+    "confident": true
+   },
+   "6. 경험을 표현해요": {
+    "from": 257,
+    "to": 283,
+    "samples": 28,
+    "guide": [
+     326,
+     404
+    ],
+    "confident": true
+   }
+  }
+ },
+ "국어|4|2|국정": {
+  "source": "명시",
+  "anchors": 70,
+  "loo": {
+   "n": 53,
+   "정확": 49,
+   "±1쪽": 53,
+   "±2쪽": 53,
+   "중앙오차": 0
+  },
+  "units": {
+   "1. 비교하며 읽어요": {
+    "from": 58,
+    "to": 80,
+    "samples": 28,
+    "guide": [
+     85,
+     126
+    ],
+    "confident": true
+   },
+   "2. 우리말 우리글": {
+    "from": 80,
+    "to": 111,
+    "samples": 33,
+    "guide": [
+     127,
+     166
+    ],
+    "confident": true
+   },
+   "3. 의견을 모아서": {
+    "from": 120,
+    "to": 176,
+    "samples": 46,
+    "guide": [
+     167,
+     244
+    ],
+    "confident": true
+   },
+   "4. 책 속의 길을 따라": {
+    "from": 196,
+    "to": 204,
+    "samples": 12,
+    "guide": [
+     245,
+     288
+    ],
+    "confident": true
+   },
+   "5. 오가는 마음": {
+    "from": 225,
+    "to": 249,
+    "samples": 25,
+    "guide": [
+     289,
+     324
+    ],
+    "confident": true
+   },
+   "6. 상상의 날개": {
+    "from": 256,
+    "to": 285,
+    "samples": 27,
+    "guide": [
+     325,
+     413
+    ],
+    "confident": true
+   }
+  }
+ },
+ "국어|5|1|국정": {
+  "source": "명시",
+  "anchors": 56,
+  "loo": {
+   "n": 41,
+   "정확": 39,
+   "±1쪽": 41,
+   "±2쪽": 41,
+   "중앙오차": 0
+  },
+  "units": {
+   "1. 대화를 나누어요": {
+    "from": 35,
+    "to": 48,
+    "samples": 15,
+    "guide": [
+     83,
+     117
+    ],
+    "confident": true
+   },
+   "2. 체험한 일을 글로 써요": {
+    "from": 78,
+    "to": 108,
+    "samples": 31,
+    "guide": [
+     118,
+     156
+    ],
+    "confident": true
+   },
+   "3. 발표하고 질문해요": {
+    "from": 109,
+    "to": 178,
+    "samples": 28,
+    "guide": [
+     157,
+     228
+    ],
+    "confident": true
+   },
+   "4. 대상을 설명해요": {
+    "from": 187,
+    "to": 220,
+    "samples": 31,
+    "guide": [
+     229,
+     268
+    ],
+    "confident": true
+   },
+   "5. 의논하며 토의해요": {
+    "from": 245,
+    "to": 261,
+    "samples": 20,
+    "guide": [
+     269,
+     306
+    ],
+    "confident": true
+   },
+   "6. 작품을 즐겨요": {
+    "from": 261,
+    "to": 276,
+    "samples": 18,
+    "guide": [
+     307,
+     398
+    ],
+    "confident": true
+   }
+  }
+ },
+ "국어|5|2|국정": {
+  "source": "명시",
+  "anchors": 51,
+  "loo": {
+   "n": 32,
+   "정확": 31,
+   "±1쪽": 32,
+   "±2쪽": 32,
+   "중앙오차": 0
+  },
+  "units": {
+   "1. 작품에 대한 의견을 나누어요": {
+    "from": 37,
+    "to": 64,
+    "samples": 9,
+    "guide": [
+     83,
+     117
+    ],
+    "confident": true
+   },
+   "2. 올바른 문장으로 글을 써요": {
+    "from": 77,
+    "to": 109,
+    "samples": 21,
+    "guide": [
+     118,
+     158
+    ],
+    "confident": true
+   },
+   "3. 표준어와 방언을 알아봐요": {
+    "from": 110,
+    "to": 166,
+    "samples": 31,
+    "guide": [
+     159,
+     224
+    ],
+    "confident": true
+   },
+   "4. 의견을 조정해요": {
+    "from": 186,
+    "to": 207,
+    "samples": 23,
+    "guide": [
+     225,
+     258
+    ],
+    "confident": true
+   },
+   "5. 추론하며 읽어요": {
+    "from": 242,
+    "to": 250,
+    "samples": 9,
+    "guide": [
+     259,
+     296
+    ],
+    "confident": true
+   },
+   "6. 작품을 감상해요": {
+    "from": 270,
+    "to": 300,
+    "samples": 11,
+    "guide": [
+     297,
+     392
+    ],
+    "confident": true
+   }
+  }
+ },
+ "국어|6|1|국정": {
+  "source": "명시",
+  "anchors": 57,
+  "loo": {
+   "n": 38,
+   "정확": 37,
+   "±1쪽": 38,
+   "±2쪽": 38,
+   "중앙오차": 0
+  },
+  "units": {
+   "1. 자신의 삶과 관련지어 읽어요": {
+    "from": 67,
+    "to": 84,
+    "samples": 5,
+    "guide": [
+     82,
+     123
+    ],
+    "confident": true
+   },
+   "2. 바르게 고쳐 써요": {
+    "from": 94,
+    "to": 116,
+    "samples": 24,
+    "guide": [
+     124,
+     159
+    ],
+    "confident": true
+   },
+   "3. 절차를 지키며 토론해요": {
+    "from": 126,
+    "to": 186,
+    "samples": 32,
+    "guide": [
+     160,
+     225
+    ],
+    "confident": true
+   },
+   "4. 상황에 맞게 표현해요": {
+    "from": 187,
+    "to": 220,
+    "samples": 36,
+    "guide": [
+     226,
+     267
+    ],
+    "confident": true
+   },
+   "5. 자신의 글쓰기 과정을 살펴봐요": {
+    "from": 240,
+    "to": 265,
+    "samples": 26,
+    "guide": [
+     268,
+     309
+    ],
+    "confident": true
+   },
+   "6. 비판적으로 읽어요": {
+    "from": 280,
+    "to": 303,
+    "samples": 23,
+    "guide": [
+     310,
+     392
+    ],
+    "confident": true
+   }
+  }
+ },
+ "국어|6|2|국정": {
+  "source": "명시",
+  "anchors": 54,
+  "loo": {
+   "n": 35,
+   "정확": 35,
+   "±1쪽": 35,
+   "±2쪽": 35,
+   "중앙오차": 0
+  },
+  "units": {
+   "1. 깊이 있게 감상해요": {
+    "from": 56,
+    "to": 76,
+    "samples": 22,
+    "guide": [
+     85,
+     120
+    ],
+    "confident": true
+   },
+   "2. 궁금한 점을 해결해요": {
+    "from": 77,
+    "to": 114,
+    "samples": 38,
+    "guide": [
+     121,
+     158
+    ],
+    "confident": true
+   },
+   "3. 보거나 듣고 판단해요": {
+    "from": 114,
+    "to": 176,
+    "samples": 50,
+    "guide": [
+     159,
+     225
+    ],
+    "confident": true
+   },
+   "4. 소중한 우리말": {
+    "from": 177,
+    "to": 188,
+    "samples": 14,
+    "guide": [
+     226,
+     262
+    ],
+    "confident": true
+   },
+   "5. 언어와 소통": {
+    "from": 221,
+    "to": 250,
+    "samples": 28,
+    "guide": [
+     263,
+     299
+    ],
+    "confident": true
+   },
+   "6. 시와 이야기로 표현해요": {
+    "from": 261,
+    "to": 270,
+    "samples": 10,
+    "guide": [
+     300,
+     410
+    ],
+    "confident": true
+   }
+  }
+ },
+ "사회|3|1|비상": {
+  "source": "명시",
+  "anchors": 98,
+  "loo": {
+   "n": 96,
+   "정확": 91,
+   "±1쪽": 96,
+   "±2쪽": 96,
+   "중앙오차": 0
+  },
+  "units": {
+   "우리가 사는 곳": {
+    "from": 7,
+    "to": 58,
+    "samples": 55,
+    "guide": [
+     64,
+     132
+    ],
+    "confident": true
+   },
+   "일상에서 만나는 과거": {
+    "from": 58,
+    "to": 129,
+    "samples": 81,
+    "guide": [
+     133,
+     214
+    ],
+    "confident": false
+   }
+  }
+ },
+ "사회|3|1|아이스크림미디어": {
+  "source": "명시",
+  "anchors": 35,
+  "loo": {
+   "n": 23,
+   "정확": 13,
+   "±1쪽": 23,
+   "±2쪽": 23,
+   "중앙오차": 0
+  },
+  "units": {
+   "1. 우리가 사는 곳": {
+    "from": 6,
+    "to": 48,
+    "samples": 41,
+    "guide": [
+     1,
+     108
+    ],
+    "confident": true
+   },
+   "2. 일상에서 만나는 과거": {
+    "from": 66,
+    "to": 134,
+    "samples": 79,
+    "guide": [
+     109,
+     264
+    ],
+    "confident": true
+   }
+  }
+ },
+ "사회|3|1|천재-김정인": {
+  "source": "명시",
+  "anchors": 70,
+  "loo": {
+   "n": 57,
+   "정확": 31,
+   "±1쪽": 55,
+   "±2쪽": 57,
+   "중앙오차": 0
+  },
+  "units": {
+   "일상에서 만나는 과거": {
+    "from": 56,
+    "to": 128,
+    "samples": 129,
+    "guide": [
+     194,
+     596
+    ],
+    "confident": false
+   }
+  }
+ },
+ "사회|3|2|비상": {
+  "source": "명시",
+  "anchors": 102,
+  "loo": {
+   "n": 100,
+   "정확": 94,
+   "±1쪽": 100,
+   "±2쪽": 100,
+   "중앙오차": 0
+  },
+  "units": {
+   "사회 변화와 다양한 문화": {
+    "from": 7,
+    "to": 56,
+    "samples": 55,
+    "guide": [
+     73,
+     132
+    ],
+    "confident": true
+   },
+   "옛날과 오늘날의 생활 모습": {
+    "from": 56,
+    "to": 131,
+    "samples": 88,
+    "guide": [
+     133,
+     220
+    ],
+    "confident": false
+   }
+  }
+ },
+ "사회|3|2|아이스크림미디어": {
+  "source": "명시",
+  "anchors": 53,
+  "loo": {
+   "n": 39,
+   "정확": 20,
+   "±1쪽": 39,
+   "±2쪽": 39,
+   "중앙오차": 0
+  },
+  "units": {
+   "1. 사회 변화와 다양한 문화": {
+    "from": 6,
+    "to": 52,
+    "samples": 71,
+    "guide": [
+     1,
+     100
+    ],
+    "confident": true
+   },
+   "2. 옛날과 오늘날의 생활 모습": {
+    "from": 60,
+    "to": 137,
+    "samples": 98,
+    "guide": [
+     101,
+     268
+    ],
+    "confident": false
+   }
+  }
+ },
+ "사회|3|2|천재-김정인": {
+  "source": "명시",
+  "anchors": 66,
+  "loo": {
+   "n": 53,
+   "정확": 29,
+   "±1쪽": 52,
+   "±2쪽": 53,
+   "중앙오차": 0
+  },
+  "units": {
+   "옛날과 오늘날의 생활 모습": {
+    "from": 10,
+    "to": 135,
+    "samples": 196,
+    "guide": [
+     45,
+     358
+    ],
+    "confident": false
+   }
+  }
+ },
+ "사회|4|1|비상": {
+  "source": "명시",
+  "anchors": 109,
+  "loo": {
+   "n": 107,
+   "정확": 98,
+   "±1쪽": 107,
+   "±2쪽": 107,
+   "중앙오차": 0
+  },
+  "units": {
+   "지도로 만나는 우리 지역": {
+    "from": 7,
+    "to": 54,
+    "samples": 55,
+    "guide": [
+     143,
+     215
+    ],
+    "confident": true
+   },
+   "우리 지역의 국가유산": {
+    "from": 54,
+    "to": 100,
+    "samples": 54,
+    "guide": [
+     216,
+     269
+    ],
+    "confident": true
+   },
+   "경제활동과 지역 간 교류": {
+    "from": 100,
+    "to": 145,
+    "samples": 53,
+    "guide": [
+     270,
+     448
+    ],
+    "confident": true
+   }
+  }
+ },
+ "사회|4|1|아이스크림미디어": {
+  "source": "명시",
+  "anchors": 43,
+  "loo": {
+   "n": 29,
+   "정확": 15,
+   "±1쪽": 29,
+   "±2쪽": 29,
+   "중앙오차": 0
+  },
+  "units": {
+   "지도로 만나는 우리 지역": {
+    "from": 6,
+    "to": 40,
+    "samples": 45,
+    "guide": [
+     1,
+     98
+    ],
+    "confident": true
+   },
+   "우리 지역의 국가유산": {
+    "from": 54,
+    "to": 90,
+    "samples": 58,
+    "guide": [
+     99,
+     182
+    ],
+    "confident": true
+   },
+   "경제활동과 지역 간 교류": {
+    "from": 100,
+    "to": 138,
+    "samples": 52,
+    "guide": [
+     183,
+     272
+    ],
+    "confident": true
+   }
+  }
+ },
+ "사회|4|1|천재-김정인": {
+  "source": "명시",
+  "anchors": 69,
+  "loo": {
+   "n": 55,
+   "정확": 26,
+   "±1쪽": 53,
+   "±2쪽": 55,
+   "중앙오차": 1
+  },
+  "units": {
+   "우리 지역의 국가유산": {
+    "from": 56,
+    "to": 93,
+    "samples": 62,
+    "guide": [
+     194,
+     295
+    ],
+    "confident": true
+   },
+   "경제활동과 지역 간 교류": {
+    "from": 102,
+    "to": 139,
+    "samples": 58,
+    "guide": [
+     296,
+     640
+    ],
+    "confident": true
+   }
+  }
+ },
+ "사회|4|2|비상": {
+  "source": "명시",
+  "anchors": 100,
+  "loo": {
+   "n": 96,
+   "정확": 91,
+   "±1쪽": 96,
+   "±2쪽": 96,
+   "중앙오차": 0
+  },
+  "units": {
+   "민주주의와 자치": {
+    "from": 7,
+    "to": 48,
+    "samples": 48,
+    "guide": [
+     147,
+     208
+    ],
+    "confident": true
+   },
+   "지역문제를 해결하고 지역을 알리는 노력": {
+    "from": 48,
+    "to": 93,
+    "samples": 52,
+    "guide": [
+     209,
+     260
+    ],
+    "confident": true
+   },
+   "다양한 환경과 삶의 모습": {
+    "from": 93,
+    "to": 139,
+    "samples": 53,
+    "guide": [
+     261,
+     456
+    ],
+    "confident": true
+   }
+  }
+ },
+ "사회|4|2|아이스크림미디어": {
+  "source": "추출",
+  "anchors": 0,
+  "loo": null,
+  "units": {}
+ },
+ "사회|4|2|천재-김정인": {
+  "source": "명시",
+  "anchors": 76,
+  "loo": {
+   "n": 62,
+   "정확": 29,
+   "±1쪽": 62,
+   "±2쪽": 62,
+   "중앙오차": 1
+  },
+  "units": {
+   "지역문제를 해결하고 지역을 알리는 노력": {
+    "from": 51,
+    "to": 67,
+    "samples": 39,
+    "guide": [
+     173,
+     211
+    ],
+    "confident": true
+   },
+   "민주주의와 자치": {
+    "from": 68,
+    "to": 86,
+    "samples": 29,
+    "guide": [
+     212,
+     273
+    ],
+    "confident": true
+   },
+   "다양한 환경과 삶의 모습": {
+    "from": 96,
+    "to": 132,
+    "samples": 83,
+    "guide": [
+     274,
+     646
+    ],
+    "confident": true
+   }
+  }
+ },
+ "사회|5|1|미래엔": {
+  "source": "명시",
+  "anchors": 54,
+  "loo": {
+   "n": 46,
+   "정확": 45,
+   "±1쪽": 46,
+   "±2쪽": 46,
+   "중앙오차": 0
+  },
+  "units": {
+   "1. 우리나라 국토 여행": {
+    "from": 17,
+    "to": 47,
+    "samples": 22,
+    "guide": [
+     123,
+     178
+    ],
+    "confident": true
+   },
+   "2. 우리나라 지리 탐구": {
+    "from": 64,
+    "to": 96,
+    "samples": 36,
+    "guide": [
+     179,
+     233
+    ],
+    "confident": true
+   },
+   "3. 법과 인권의 보장": {
+    "from": 104,
+    "to": 142,
+    "samples": 42,
+    "guide": [
+     234,
+     408
+    ],
+    "confident": true
+   }
+  }
+ },
+ "사회|5|1|비상": {
+  "source": "명시",
+  "anchors": 91,
+  "loo": {
+   "n": 86,
+   "정확": 77,
+   "±1쪽": 86,
+   "±2쪽": 86,
+   "중앙오차": 0
+  },
+  "units": {
+   "우리나라 국토 여행": {
+    "from": 9,
+    "to": 52,
+    "samples": 51,
+    "guide": [
+     146,
+     217
+    ],
+    "confident": true
+   },
+   "우리나라 지리 탐구": {
+    "from": 52,
+    "to": 100,
+    "samples": 56,
+    "guide": [
+     218,
+     273
+    ],
+    "confident": true
+   },
+   "법과 인권의 보장": {
+    "from": 100,
+    "to": 145,
+    "samples": 55,
+    "guide": [
+     274,
+     450
+    ],
+    "confident": true
+   }
+  }
+ },
+ "사회|5|1|아이스크림미디어": {
+  "source": "추출",
+  "anchors": 285,
+  "loo": {
+   "n": 283,
+   "정확": 283,
+   "±1쪽": 283,
+   "±2쪽": 283,
+   "중앙오차": 0
+  },
+  "units": {
+   "1. 우리나라 국토 여행": {
+    "from": 16,
+    "to": 121,
+    "samples": 106,
+    "guide": [
+     1,
+     106
+    ],
+    "confident": false
+   },
+   "2. 우리나라 지리 탐구": {
+    "from": 122,
+    "to": 261,
+    "samples": 140,
+    "guide": [
+     107,
+     246
+    ],
+    "confident": false
+   },
+   "3. 법과 인권의 보장": {
+    "from": 262,
+    "to": 300,
+    "samples": 39,
+    "guide": [
+     247,
+     308
+    ],
+    "confident": true
+   }
+  }
+ },
+ "사회|5|1|천재-김정인": {
+  "source": "명시",
+  "anchors": 69,
+  "loo": {
+   "n": 47,
+   "정확": 21,
+   "±1쪽": 47,
+   "±2쪽": 47,
+   "중앙오차": 1
+  },
+  "units": {
+   "우리나라 지리 탐구": {
+    "from": 53,
+    "to": 92,
+    "samples": 92,
+    "guide": [
+     178,
+     301
+    ],
+    "confident": true
+   },
+   "법과 인권의 보장": {
+    "from": 100,
+    "to": 138,
+    "samples": 78,
+    "guide": [
+     302,
+     636
+    ],
+    "confident": true
+   }
+  }
+ },
+ "사회|5|2|동아출판": {
+  "source": "명시",
+  "anchors": 69,
+  "loo": {
+   "n": 63,
+   "정확": 33,
+   "±1쪽": 61,
+   "±2쪽": 63,
+   "중앙오차": 0
+  },
+  "units": {
+   "1. 유적과 유물로 살펴본 옛 사람들의 생활": {
+    "from": 7,
+    "to": 53,
+    "samples": 75,
+    "guide": [
+     4,
+     99
+    ],
+    "confident": true
+   },
+   "2. 달라지는 시대, 변화하는 생활 모습": {
+    "from": 61,
+    "to": 99,
+    "samples": 67,
+    "guide": [
+     100,
+     187
+    ],
+    "confident": true
+   },
+   "3. 식민 통치와 저항, 전쟁이 바꾼 사회와 생활": {
+    "from": 109,
+    "to": 142,
+    "samples": 58,
+    "guide": [
+     188,
+     262
+    ],
+    "confident": true
+   }
+  }
+ },
+ "사회|5|2|미래엔": {
+  "source": "명시",
+  "anchors": 24,
+  "loo": {
+   "n": 11,
+   "정확": 9,
+   "±1쪽": 11,
+   "±2쪽": 11,
+   "중앙오차": 0
+  },
+  "units": {
+   "1. 유적과 유물로 살펴본 옛사람들의 생활": {
+    "from": 22,
+    "to": 59,
+    "samples": 32,
+    "guide": [
+     123,
+     195
+    ],
+    "confident": true
+   },
+   "2. 달라지는 시대, 변화하는 생활 모습": {
+    "from": 83,
+    "to": 109,
+    "samples": 31,
+    "guide": [
+     196,
+     255
+    ],
+    "confident": true
+   },
+   "3. 식민 통치와 저항, 전쟁이 바꾼 사회와 생활": {
+    "from": 118,
+    "to": 155,
+    "samples": 14,
+    "guide": [
+     256,
+     444
+    ],
+    "confident": true
+   }
+  }
+ },
+ "사회|5|2|비상": {
+  "source": "명시",
+  "anchors": 102,
+  "loo": {
+   "n": 98,
+   "정확": 89,
+   "±1쪽": 98,
+   "±2쪽": 98,
+   "중앙오차": 0
+  },
+  "units": {
+   "유적과 유물로 살펴본 옛사람들의 생활": {
+    "from": 9,
+    "to": 60,
+    "samples": 63,
+    "guide": [
+     146,
+     229
+    ],
+    "confident": true
+   },
+   "달라지는 시대, 변화하는 생활 모습": {
+    "from": 60,
+    "to": 108,
+    "samples": 56,
+    "guide": [
+     230,
+     285
+    ],
+    "confident": true
+   },
+   "식민 통치와 저항, 전쟁이 바꾼 사회와 생활": {
+    "from": 108,
+    "to": 149,
+    "samples": 47,
+    "guide": [
+     286,
+     462
+    ],
+    "confident": true
+   }
+  }
+ },
+ "사회|5|2|아이스크림미디어": {
+  "source": "명시",
+  "anchors": 18,
+  "loo": {
+   "n": 3,
+   "정확": 2,
+   "±1쪽": 3,
+   "±2쪽": 3,
+   "중앙오차": 0
+  },
+  "units": {
+   "1. 유적과 유물로 살펴본 옛 사람들의 생활": {
+    "from": 13,
+    "to": 61,
+    "samples": 80,
+    "guide": [
+     6,
+     163
+    ],
+    "confident": true
+   },
+   "2. 달라지는 시대, 변화하는 생활 모습": {
+    "from": 82,
+    "to": 105,
+    "samples": 15,
+    "guide": [
+     164,
+     548
+    ],
+    "confident": true
+   }
+  }
+ },
+ "사회|5|2|와이비엠": {
+  "source": "명시",
+  "anchors": 41,
+  "loo": {
+   "n": 27,
+   "정확": 16,
+   "±1쪽": 27,
+   "±2쪽": 27,
+   "중앙오차": 0
+  },
+  "units": {
+   "1. 유적과 유물로 살펴본 옛사람들의 생활": {
+    "from": 10,
+    "to": 57,
+    "samples": 50,
+    "guide": [
+     104,
+     198
+    ],
+    "confident": true
+   },
+   "2. 달라지는 시대, 변화하는 생활 모습": {
+    "from": 68,
+    "to": 109,
+    "samples": 58,
+    "guide": [
+     199,
+     264
+    ],
+    "confident": true
+   },
+   "3. 식민 통치와 저항, 전쟁이 바꾼 사회와 생활": {
+    "from": 109,
+    "to": 147,
+    "samples": 60,
+    "guide": [
+     265,
+     488
+    ],
+    "confident": true
+   }
+  }
+ },
+ "사회|5|2|천재-김정인": {
+  "source": "명시",
+  "anchors": 57,
+  "loo": {
+   "n": 29,
+   "정확": 17,
+   "±1쪽": 28,
+   "±2쪽": 29,
+   "중앙오차": 0
+  },
+  "units": {
+   "1. 유적과 유물로 살펴본 옛 사람들의 생활": {
+    "from": 14,
+    "to": 62,
+    "samples": 97,
+    "guide": [
+     50,
+     220
+    ],
+    "confident": true
+   },
+   "2. 달라지는 시대, 변화하는 생활 모습": {
+    "from": 72,
+    "to": 108,
+    "samples": 66,
+    "guide": [
+     221,
+     328
+    ],
+    "confident": true
+   },
+   "3. 식민 통치와 저항, 전쟁이 바꾼 사회와 생활": {
+    "from": 116,
+    "to": 146,
+    "samples": 64,
+    "guide": [
+     329,
+     658
+    ],
+    "confident": true
+   }
+  }
+ },
+ "사회|5|2|천재-박기범": {
+  "source": "명시",
+  "anchors": 72,
+  "loo": {
+   "n": 62,
+   "정확": 38,
+   "±1쪽": 62,
+   "±2쪽": 62,
+   "중앙오차": 0
+  },
+  "units": {
+   "1. 유적과 유물로 살펴본 옛사람들의 생활": {
+    "from": 12,
+    "to": 71,
+    "samples": 106,
+    "guide": [
+     141,
+     259
+    ],
+    "confident": true
+   },
+   "2. 달라지는 시대, 변화하는 생활 모습": {
+    "from": 78,
+    "to": 114,
+    "samples": 64,
+    "guide": [
+     260,
+     338
+    ],
+    "confident": true
+   },
+   "3. 식민 통치와 저항, 전쟁이 바꾼 사회와 생활": {
+    "from": 122,
+    "to": 157,
+    "samples": 64,
+    "guide": [
+     339,
+     711
+    ],
+    "confident": true
+   }
+  }
+ },
+ "사회|6|1|미래엔": {
+  "source": "명시",
+  "anchors": 41,
+  "loo": {
+   "n": 32,
+   "정확": 30,
+   "±1쪽": 32,
+   "±2쪽": 32,
+   "중앙오차": 0
+  },
+  "units": {
+   "평화 통일을 위한 노력, 민주화와 산업화": {
+    "from": 11,
+    "to": 28,
+    "samples": 18,
+    "guide": [
+     122,
+     179
+    ],
+    "confident": true
+   },
+   "민주주의와 시민 참여": {
+    "from": 56,
+    "to": 110,
+    "samples": 61,
+    "guide": [
+     180,
+     255
+    ],
+    "confident": true
+   },
+   "지구, 대륙 그리고 국가들": {
+    "from": 121,
+    "to": 154,
+    "samples": 24,
+    "guide": [
+     256,
+     444
+    ],
+    "confident": true
+   }
+  }
+ },
+ "사회|6|1|비상": {
+  "source": "명시",
+  "anchors": 87,
+  "loo": {
+   "n": 82,
+   "정확": 78,
+   "±1쪽": 82,
+   "±2쪽": 82,
+   "중앙오차": 0
+  },
+  "units": {
+   "평화 통일을 위한 노력, 민주화와 산업화": {
+    "from": 9,
+    "to": 54,
+    "samples": 49,
+    "guide": [
+     146,
+     215
+    ],
+    "confident": true
+   },
+   "민주주의와 시민 참여": {
+    "from": 54,
+    "to": 112,
+    "samples": 58,
+    "guide": [
+     216,
+     285
+    ],
+    "confident": true
+   },
+   "지구, 대륙 그리고 국가들": {
+    "from": 112,
+    "to": 157,
+    "samples": 54,
+    "guide": [
+     286,
+     474
+    ],
+    "confident": true
+   }
+  }
+ },
+ "사회|6|1|아이스크림미디어": {
+  "source": "명시",
+  "anchors": 21,
+  "loo": {
+   "n": 5,
+   "정확": 1,
+   "±1쪽": 5,
+   "±2쪽": 5,
+   "중앙오차": 1
+  },
+  "units": {
+   "2. 민주주의와 시민 참여": {
+    "from": 59,
+    "to": 106,
+    "samples": 72,
+    "guide": [
+     101,
+     340
+    ],
+    "confident": true
+   }
+  }
+ },
+ "사회|6|1|천재-김정인": {
+  "source": "명시",
+  "anchors": 71,
+  "loo": {
+   "n": 44,
+   "정확": 18,
+   "±1쪽": 40,
+   "±2쪽": 44,
+   "중앙오차": 1
+  },
+  "units": {
+   "평화 통일을 위한 노력, 민주화와 산업화": {
+    "from": 10,
+    "to": 42,
+    "samples": 70,
+    "guide": [
+     49,
+     177
+    ],
+    "confident": true
+   },
+   "민주주의와 시민 참여": {
+    "from": 54,
+    "to": 100,
+    "samples": 103,
+    "guide": [
+     178,
+     337
+    ],
+    "confident": true
+   },
+   "지구, 대륙 그리고 국가들": {
+    "from": 110,
+    "to": 148,
+    "samples": 98,
+    "guide": [
+     338,
+     714
+    ],
+    "confident": true
+   }
+  }
+ },
+ "사회|6|2|동아출판": {
+  "source": "명시",
+  "anchors": 68,
+  "loo": {
+   "n": 59,
+   "정확": 33,
+   "±1쪽": 59,
+   "±2쪽": 59,
+   "중앙오차": 0
+  },
+  "units": {
+   "1. 세계의 자연환경": {
+    "from": 7,
+    "to": 47,
+    "samples": 67,
+    "guide": [
+     4,
+     99
+    ],
+    "confident": true
+   },
+   "2. 시장경제와 국가 간 거래": {
+    "from": 55,
+    "to": 97,
+    "samples": 75,
+    "guide": [
+     100,
+     197
+    ],
+    "confident": true
+   },
+   "3. 지구촌 사람들": {
+    "from": 107,
+    "to": 141,
+    "samples": 64,
+    "guide": [
+     198,
+     276
+    ],
+    "confident": true
+   }
+  }
+ },
+ "사회|6|2|미래엔": {
+  "source": "명시",
+  "anchors": 59,
+  "loo": {
+   "n": 49,
+   "정확": 47,
+   "±1쪽": 49,
+   "±2쪽": 49,
+   "중앙오차": 0
+  },
+  "units": {
+   "세계의 자연환경": {
+    "from": 11,
+    "to": 51,
+    "samples": 45,
+    "guide": [
+     122,
+     173
+    ],
+    "confident": true
+   },
+   "시장경제와 국가 간 거래": {
+    "from": 52,
+    "to": 113,
+    "samples": 43,
+    "guide": [
+     174,
+     257
+    ],
+    "confident": true
+   },
+   "지구촌 사람들": {
+    "from": 123,
+    "to": 156,
+    "samples": 38,
+    "guide": [
+     258,
+     448
+    ],
+    "confident": true
+   }
+  }
+ },
+ "사회|6|2|비상": {
+  "source": "명시",
+  "anchors": 107,
+  "loo": {
+   "n": 102,
+   "정확": 93,
+   "±1쪽": 102,
+   "±2쪽": 102,
+   "중앙오차": 0
+  },
+  "units": {
+   "세계의 자연환경": {
+    "from": 9,
+    "to": 52,
+    "samples": 49,
+    "guide": [
+     149,
+     215
+    ],
+    "confident": true
+   },
+   "시장경제와 국가 간 거래": {
+    "from": 52,
+    "to": 109,
+    "samples": 72,
+    "guide": [
+     216,
+     287
+    ],
+    "confident": true
+   },
+   "지구촌 사람들": {
+    "from": 122,
+    "to": 149,
+    "samples": 36,
+    "guide": [
+     288,
+     474
+    ],
+    "confident": true
+   }
+  }
+ },
+ "사회|6|2|아이스크림미디어": {
+  "source": "명시",
+  "anchors": 30,
+  "loo": {
+   "n": 6,
+   "정확": 3,
+   "±1쪽": 6,
+   "±2쪽": 6,
+   "중앙오차": 1
+  },
+  "units": {
+   "1. 세계의 자연환경": {
+    "from": 15,
+    "to": 41,
+    "samples": 35,
+    "guide": [
+     10,
+     121
+    ],
+    "confident": true
+   },
+   "2. 시장경제와 국가 간 거래": {
+    "from": 54,
+    "to": 109,
+    "samples": 106,
+    "guide": [
+     122,
+     261
+    ],
+    "confident": true
+   },
+   "3. 지구촌 사람들": {
+    "from": 129,
+    "to": 154,
+    "samples": 17,
+    "guide": [
+     262,
+     554
+    ],
+    "confident": true
+   }
+  }
+ },
+ "사회|6|2|와이비엠": {
+  "source": "명시",
+  "anchors": 55,
+  "loo": {
+   "n": 46,
+   "정확": 35,
+   "±1쪽": 44,
+   "±2쪽": 46,
+   "중앙오차": 0
+  },
+  "units": {
+   "1. 세계의 자연환경": {
+    "from": 10,
+    "to": 50,
+    "samples": 63,
+    "guide": [
+     107,
+     182
+    ],
+    "confident": true
+   },
+   "2. 시장경제와 국가 간 거래": {
+    "from": 58,
+    "to": 106,
+    "samples": 53,
+    "guide": [
+     183,
+     262
+    ],
+    "confident": true
+   },
+   "3. 지구촌 사람들": {
+    "from": 114,
+    "to": 150,
+    "samples": 55,
+    "guide": [
+     263,
+     480
+    ],
+    "confident": true
+   }
+  }
+ },
+ "사회|6|2|천재-김정인": {
+  "source": "명시",
+  "anchors": 74,
+  "loo": {
+   "n": 53,
+   "정확": 22,
+   "±1쪽": 53,
+   "±2쪽": 53,
+   "중앙오차": 1
+  },
+  "units": {
+   "2. 시장경제와 국가 간 거래": {
+    "from": 50,
+    "to": 105,
+    "samples": 100,
+    "guide": [
+     177,
+     330
+    ],
+    "confident": true
+   },
+   "3. 지구촌 사람들": {
+    "from": 105,
+    "to": 140,
+    "samples": 73,
+    "guide": [
+     331,
+     658
+    ],
+    "confident": true
+   }
+  }
+ },
+ "사회|6|2|천재-박기범": {
+  "source": "명시",
+  "anchors": 83,
+  "loo": {
+   "n": 75,
+   "정확": 55,
+   "±1쪽": 75,
+   "±2쪽": 75,
+   "중앙오차": 0
+  },
+  "units": {
+   "1. 세계의 자연환경": {
+    "from": 12,
+    "to": 51,
+    "samples": 56,
+    "guide": [
+     141,
+     214
+    ],
+    "confident": true
+   },
+   "2. 시장경제와 국가 간 거래": {
+    "from": 60,
+    "to": 118,
+    "samples": 92,
+    "guide": [
+     215,
+     320
+    ],
+    "confident": true
+   },
+   "3. 지구촌 사람들": {
+    "from": 126,
+    "to": 160,
+    "samples": 57,
+    "guide": [
+     321,
+     675
+    ],
+    "confident": true
+   }
+  }
+ },
+ "수학|3|1|미래엔": {
+  "source": "추출",
+  "anchors": 82,
+  "loo": {
+   "n": 62,
+   "정확": 45,
+   "±1쪽": 62,
+   "±2쪽": 62,
+   "중앙오차": 0
+  },
+  "units": {
+   "덧셈과 뺄셈": {
+    "from": 2,
+    "to": 26,
+    "samples": 62,
+    "guide": [
+     80,
+     159
+    ],
+    "confident": true
+   },
+   "평면도형": {
+    "from": 28,
+    "to": 48,
+    "samples": 35,
+    "guide": [
+     160,
+     213
+    ],
+    "confident": true
+   },
+   "나눗셈": {
+    "from": 50,
+    "to": 64,
+    "samples": 23,
+    "guide": [
+     214,
+     243
+    ],
+    "confident": true
+   },
+   "곱셈": {
+    "from": 66,
+    "to": 82,
+    "samples": 27,
+    "guide": [
+     244,
+     289
+    ],
+    "confident": true
+   },
+   "길이와 시간": {
+    "from": 84,
+    "to": 104,
+    "samples": 31,
+    "guide": [
+     290,
+     329
+    ],
+    "confident": true
+   },
+   "분수와 소수": {
+    "from": 106,
+    "to": 184,
+    "samples": 44,
+    "guide": [
+     330,
+     522
+    ],
+    "confident": false
+   }
+  }
+ },
+ "수학|3|1|아이스크림미디어": {
+  "source": "명시",
+  "anchors": 12,
+  "loo": null,
+  "units": {
+   "덧셈과 뺄셈": {
+    "from": 10,
+    "to": 22,
+    "samples": 3,
+    "guide": [
+     3,
+     48
+    ],
+    "confident": true
+   },
+   "평면도형": {
+    "from": 36,
+    "to": 37,
+    "samples": 2,
+    "guide": [
+     49,
+     107
+    ],
+    "confident": false
+   },
+   "나눗셈": {
+    "from": 59,
+    "to": 60,
+    "samples": 2,
+    "guide": [
+     108,
+     142
+    ],
+    "confident": false
+   },
+   "곱셈": {
+    "from": 80,
+    "to": 81,
+    "samples": 2,
+    "guide": [
+     143,
+     187
+    ],
+    "confident": false
+   },
+   "길이와 시간": {
+    "from": 100,
+    "to": 121,
+    "samples": 3,
+    "guide": [
+     188,
+     292
+    ],
+    "confident": true
+   }
+  }
+ },
+ "수학|3|1|천재교과서(박만구)": {
+  "source": "추출",
+  "anchors": 120,
+  "loo": {
+   "n": 98,
+   "정확": 54,
+   "±1쪽": 98,
+   "±2쪽": 98,
+   "중앙오차": 0
+  },
+  "units": {
+   "1. 평면도형": {
+    "from": 16,
+    "to": 36,
+    "samples": 33,
+    "guide": [
+     165,
+     216
+    ],
+    "confident": true
+   },
+   "2. 덧셈과 뺄셈": {
+    "from": 38,
+    "to": 60,
+    "samples": 37,
+    "guide": [
+     217,
+     266
+    ],
+    "confident": true
+   },
+   "3. 길이와 시간": {
+    "from": 62,
+    "to": 84,
+    "samples": 35,
+    "guide": [
+     267,
+     316
+    ],
+    "confident": true
+   },
+   "4. 나눗셈": {
+    "from": 86,
+    "to": 104,
+    "samples": 29,
+    "guide": [
+     317,
+     360
+    ],
+    "confident": true
+   },
+   "5. 곱셈": {
+    "from": 106,
+    "to": 124,
+    "samples": 29,
+    "guide": [
+     361,
+     404
+    ],
+    "confident": true
+   },
+   "6. 분수와 소수": {
+    "from": 126,
+    "to": 150,
+    "samples": 41,
+    "guide": [
+     405,
+     482
+    ],
+    "confident": true
+   }
+  }
+ },
+ "수학|3|1|천재교과서(한대희)": {
+  "source": "추출",
+  "anchors": 144,
+  "loo": {
+   "n": 129,
+   "정확": 94,
+   "±1쪽": 129,
+   "±2쪽": 129,
+   "중앙오차": 0
+  },
+  "units": {
+   "덧셈과 뺄셈": {
+    "from": 2,
+    "to": 29,
+    "samples": 82,
+    "guide": [
+     10,
+     91
+    ],
+    "confident": true
+   },
+   "평면도형": {
+    "from": 29,
+    "to": 55,
+    "samples": 52,
+    "guide": [
+     92,
+     150
+    ],
+    "confident": true
+   },
+   "나눗셈": {
+    "from": 57,
+    "to": 79,
+    "samples": 33,
+    "guide": [
+     151,
+     192
+    ],
+    "confident": true
+   },
+   "곱셈": {
+    "from": 81,
+    "to": 99,
+    "samples": 29,
+    "guide": [
+     193,
+     238
+    ],
+    "confident": true
+   },
+   "길이와 시간": {
+    "from": 101,
+    "to": 125,
+    "samples": 35,
+    "guide": [
+     239,
+     287
+    ],
+    "confident": true
+   },
+   "분수와 소수": {
+    "from": 127,
+    "to": 153,
+    "samples": 41,
+    "guide": [
+     288,
+     592
+    ],
+    "confident": true
+   }
+  }
+ },
+ "수학|3|2|미래엔": {
+  "source": "추출",
+  "anchors": 80,
+  "loo": {
+   "n": 63,
+   "정확": 50,
+   "±1쪽": 63,
+   "±2쪽": 63,
+   "중앙오차": 0
+  },
+  "units": {
+   "원": {
+    "from": 29,
+    "to": 46,
+    "samples": 25,
+    "guide": [
+     158,
+     202
+    ],
+    "confident": true
+   },
+   "나눗셈": {
+    "from": 48,
+    "to": 70,
+    "samples": 37,
+    "guide": [
+     203,
+     246
+    ],
+    "confident": true
+   },
+   "무게와 들이": {
+    "from": 72,
+    "to": 98,
+    "samples": 43,
+    "guide": [
+     247,
+     310
+    ],
+    "confident": true
+   },
+   "분수": {
+    "from": 100,
+    "to": 120,
+    "samples": 35,
+    "guide": [
+     311,
+     352
+    ],
+    "confident": true
+   },
+   "그림그래프": {
+    "from": 123,
+    "to": 138,
+    "samples": 21,
+    "guide": [
+     353,
+     389
+    ],
+    "confident": true
+   }
+  }
+ },
+ "수학|3|2|아이스크림미디어": {
+  "source": "명시",
+  "anchors": 12,
+  "loo": null,
+  "units": {
+   "곱셈": {
+    "from": 10,
+    "to": 24,
+    "samples": 3,
+    "guide": [
+     12,
+     68
+    ],
+    "confident": true
+   },
+   "나눗셈": {
+    "from": 36,
+    "to": 37,
+    "samples": 2,
+    "guide": [
+     69,
+     116
+    ],
+    "confident": false
+   },
+   "원": {
+    "from": 64,
+    "to": 65,
+    "samples": 2,
+    "guide": [
+     117,
+     162
+    ],
+    "confident": false
+   },
+   "들이와 무게": {
+    "from": 110,
+    "to": 111,
+    "samples": 2,
+    "guide": [
+     216,
+     265
+    ],
+    "confident": false
+   },
+   "그림그래프": {
+    "from": 137,
+    "to": 138,
+    "samples": 2,
+    "guide": [
+     266,
+     304
+    ],
+    "confident": false
+   }
+  }
+ },
+ "수학|3|2|천재교과서(박만구)": {
+  "source": "추출",
+  "anchors": 121,
+  "loo": {
+   "n": 102,
+   "정확": 58,
+   "±1쪽": 102,
+   "±2쪽": 102,
+   "중앙오차": 0
+  },
+  "units": {
+   "1. 곱셈": {
+    "from": 10,
+    "to": 36,
+    "samples": 76,
+    "guide": [
+     136,
+     216
+    ],
+    "confident": true
+   },
+   "2. 나눗셈": {
+    "from": 38,
+    "to": 64,
+    "samples": 45,
+    "guide": [
+     217,
+     280
+    ],
+    "confident": true
+   },
+   "3. 원": {
+    "from": 66,
+    "to": 84,
+    "samples": 27,
+    "guide": [
+     281,
+     320
+    ],
+    "confident": true
+   },
+   "4. 들이와 무게": {
+    "from": 86,
+    "to": 112,
+    "samples": 43,
+    "guide": [
+     321,
+     382
+    ],
+    "confident": true
+   },
+   "5. 분수": {
+    "from": 114,
+    "to": 134,
+    "samples": 33,
+    "guide": [
+     383,
+     428
+    ],
+    "confident": true
+   },
+   "6. 그림그래프": {
+    "from": 136,
+    "to": 152,
+    "samples": 25,
+    "guide": [
+     429,
+     496
+    ],
+    "confident": true
+   }
+  }
+ },
+ "수학|3|2|천재교과서(한대희)": {
+  "source": "추출",
+  "anchors": 146,
+  "loo": {
+   "n": 131,
+   "정확": 97,
+   "±1쪽": 131,
+   "±2쪽": 131,
+   "중앙오차": 0
+  },
+  "units": {
+   "곱셈": {
+    "from": 8,
+    "to": 45,
+    "samples": 82,
+    "guide": [
+     53,
+     134
+    ],
+    "confident": true
+   },
+   "나눗셈": {
+    "from": 46,
+    "to": 57,
+    "samples": 17,
+    "guide": [
+     135,
+     151
+    ],
+    "confident": true
+   },
+   "원": {
+    "from": 59,
+    "to": 79,
+    "samples": 27,
+    "guide": [
+     152,
+     199
+    ],
+    "confident": true
+   },
+   "분수": {
+    "from": 81,
+    "to": 113,
+    "samples": 47,
+    "guide": [
+     200,
+     272
+    ],
+    "confident": true
+   },
+   "무게와 들이": {
+    "from": 114,
+    "to": 133,
+    "samples": 31,
+    "guide": [
+     273,
+     303
+    ],
+    "confident": true
+   },
+   "자료와 그림그래프": {
+    "from": 135,
+    "to": 157,
+    "samples": 31,
+    "guide": [
+     304,
+     602
+    ],
+    "confident": true
+   }
+  }
+ },
+ "수학|4|1|미래엔": {
+  "source": "추출",
+  "anchors": 85,
+  "loo": {
+   "n": 63,
+   "정확": 48,
+   "±1쪽": 63,
+   "±2쪽": 63,
+   "중앙오차": 0
+  },
+  "units": {
+   "큰 수": {
+    "from": 2,
+    "to": 26,
+    "samples": 77,
+    "guide": [
+     80,
+     157
+    ],
+    "confident": true
+   },
+   "각도": {
+    "from": 28,
+    "to": 50,
+    "samples": 37,
+    "guide": [
+     158,
+     207
+    ],
+    "confident": true
+   },
+   "곱셈과 나눗셈": {
+    "from": 52,
+    "to": 72,
+    "samples": 35,
+    "guide": [
+     208,
+     256
+    ],
+    "confident": true
+   },
+   "평면도형의 이동": {
+    "from": 75,
+    "to": 94,
+    "samples": 29,
+    "guide": [
+     257,
+     298
+    ],
+    "confident": true
+   },
+   "분수의 덧셈과 뺄셈": {
+    "from": 96,
+    "to": 118,
+    "samples": 37,
+    "guide": [
+     299,
+     347
+    ],
+    "confident": true
+   },
+   "막대그래프": {
+    "from": 121,
+    "to": 200,
+    "samples": 42,
+    "guide": [
+     348,
+     530
+    ],
+    "confident": false
+   }
+  }
+ },
+ "수학|4|1|아이스크림미디어": {
+  "source": "명시",
+  "anchors": 12,
+  "loo": null,
+  "units": {
+   "큰 수": {
+    "from": 9,
+    "to": 24,
+    "samples": 3,
+    "guide": [
+     1,
+     52
+    ],
+    "confident": true
+   },
+   "곱셈과 나눗셈": {
+    "from": 62,
+    "to": 63,
+    "samples": 2,
+    "guide": [
+     107,
+     159
+    ],
+    "confident": false
+   },
+   "평면도형의 이동": {
+    "from": 86,
+    "to": 87,
+    "samples": 2,
+    "guide": [
+     160,
+     200
+    ],
+    "confident": false
+   },
+   "막대그래프": {
+    "from": 108,
+    "to": 133,
+    "samples": 4,
+    "guide": [
+     201,
+     298
+    ],
+    "confident": true
+   }
+  }
+ },
+ "수학|4|1|천재교과서(박만구)": {
+  "source": "추출",
+  "anchors": 126,
+  "loo": {
+   "n": 107,
+   "정확": 64,
+   "±1쪽": 107,
+   "±2쪽": 107,
+   "중앙오차": 0
+  },
+  "units": {
+   "각도": {
+    "from": 10,
+    "to": 38,
+    "samples": 69,
+    "guide": [
+     132,
+     216
+    ],
+    "confident": true
+   },
+   "큰 수": {
+    "from": 40,
+    "to": 64,
+    "samples": 41,
+    "guide": [
+     217,
+     272
+    ],
+    "confident": true
+   },
+   "평면도형의 이동": {
+    "from": 66,
+    "to": 88,
+    "samples": 31,
+    "guide": [
+     273,
+     316
+    ],
+    "confident": true
+   },
+   "곱셈과 나눗셈": {
+    "from": 90,
+    "to": 112,
+    "samples": 37,
+    "guide": [
+     317,
+     366
+    ],
+    "confident": true
+   },
+   "규칙 찾기": {
+    "from": 114,
+    "to": 138,
+    "samples": 39,
+    "guide": [
+     367,
+     420
+    ],
+    "confident": true
+   },
+   "막대그래프": {
+    "from": 140,
+    "to": 158,
+    "samples": 27,
+    "guide": [
+     421,
+     488
+    ],
+    "confident": true
+   }
+  }
+ },
+ "수학|4|1|천재교과서(한대희)": {
+  "source": "추출",
+  "anchors": 146,
+  "loo": {
+   "n": 131,
+   "정확": 92,
+   "±1쪽": 131,
+   "±2쪽": 131,
+   "중앙오차": 0
+  },
+  "units": {
+   "큰 수": {
+    "from": 2,
+    "to": 29,
+    "samples": 84,
+    "guide": [
+     10,
+     93
+    ],
+    "confident": true
+   },
+   "각도": {
+    "from": 29,
+    "to": 55,
+    "samples": 54,
+    "guide": [
+     94,
+     147
+    ],
+    "confident": true
+   },
+   "곱셈과 나눗셈": {
+    "from": 57,
+    "to": 79,
+    "samples": 35,
+    "guide": [
+     148,
+     197
+    ],
+    "confident": true
+   },
+   "평면도형의 이동": {
+    "from": 81,
+    "to": 105,
+    "samples": 37,
+    "guide": [
+     198,
+     249
+    ],
+    "confident": true
+   },
+   "자료와 막대그래프": {
+    "from": 107,
+    "to": 129,
+    "samples": 29,
+    "guide": [
+     250,
+     293
+    ],
+    "confident": true
+   },
+   "규칙 찾기": {
+    "from": 131,
+    "to": 153,
+    "samples": 37,
+    "guide": [
+     294,
+     598
+    ],
+    "confident": true
+   }
+  }
+ },
+ "수학|4|2|미래엔": {
+  "source": "추출",
+  "anchors": 82,
+  "loo": {
+   "n": 61,
+   "정확": 51,
+   "±1쪽": 61,
+   "±2쪽": 61,
+   "중앙오차": 0
+  },
+  "units": {
+   "소수의 덧셈과 뺄셈": {
+    "from": 1,
+    "to": 32,
+    "samples": 86,
+    "guide": [
+     75,
+     165
+    ],
+    "confident": true
+   },
+   "삼각형": {
+    "from": 34,
+    "to": 52,
+    "samples": 29,
+    "guide": [
+     166,
+     205
+    ],
+    "confident": true
+   },
+   "규칙 찾기와 식 만들기": {
+    "from": 54,
+    "to": 76,
+    "samples": 37,
+    "guide": [
+     206,
+     257
+    ],
+    "confident": true
+   },
+   "사각형": {
+    "from": 79,
+    "to": 100,
+    "samples": 35,
+    "guide": [
+     258,
+     303
+    ],
+    "confident": true
+   },
+   "꺾은선그래프": {
+    "from": 103,
+    "to": 122,
+    "samples": 31,
+    "guide": [
+     304,
+     350
+    ],
+    "confident": true
+   },
+   "다각형": {
+    "from": 125,
+    "to": 200,
+    "samples": 36,
+    "guide": [
+     351,
+     530
+    ],
+    "confident": false
+   }
+  }
+ },
+ "수학|4|2|아이스크림미디어": {
+  "source": "명시",
+  "anchors": 13,
+  "loo": null,
+  "units": {
+   "분수의 덧셈과 뺄셈": {
+    "from": 10,
+    "to": 22,
+    "samples": 3,
+    "guide": [
+     1,
+     50
+    ],
+    "confident": true
+   },
+   "삼각형": {
+    "from": 32,
+    "to": 33,
+    "samples": 2,
+    "guide": [
+     51,
+     92
+    ],
+    "confident": false
+   },
+   "소수의 덧셈과 뺄셈": {
+    "from": 52,
+    "to": 53,
+    "samples": 2,
+    "guide": [
+     93,
+     154
+    ],
+    "confident": false
+   },
+   "사각형": {
+    "from": 81,
+    "to": 82,
+    "samples": 2,
+    "guide": [
+     155,
+     208
+    ],
+    "confident": false
+   },
+   "꺾은선그래프": {
+    "from": 108,
+    "to": 109,
+    "samples": 2,
+    "guide": [
+     209,
+     258
+    ],
+    "confident": false
+   },
+   "다각형": {
+    "from": 132,
+    "to": 133,
+    "samples": 2,
+    "guide": [
+     259,
+     298
+    ],
+    "confident": false
+   }
+  }
+ },
+ "수학|4|2|천재교과서(박만구)": {
+  "source": "추출",
+  "anchors": 121,
+  "loo": {
+   "n": 100,
+   "정확": 56,
+   "±1쪽": 100,
+   "±2쪽": 100,
+   "중앙오차": 0
+  },
+  "units": {
+   "삼각형": {
+    "from": 14,
+    "to": 36,
+    "samples": 35,
+    "guide": [
+     163,
+     214
+    ],
+    "confident": true
+   },
+   "분수의 덧셈과 뺄셈": {
+    "from": 38,
+    "to": 58,
+    "samples": 33,
+    "guide": [
+     215,
+     264
+    ],
+    "confident": true
+   },
+   "사각형": {
+    "from": 60,
+    "to": 82,
+    "samples": 37,
+    "guide": [
+     265,
+     320
+    ],
+    "confident": true
+   },
+   "소수의 덧셈과 뺄셈": {
+    "from": 84,
+    "to": 110,
+    "samples": 45,
+    "guide": [
+     321,
+     378
+    ],
+    "confident": true
+   },
+   "다각형": {
+    "from": 112,
+    "to": 132,
+    "samples": 31,
+    "guide": [
+     379,
+     422
+    ],
+    "confident": true
+   },
+   "꺾은선그래프": {
+    "from": 134,
+    "to": 152,
+    "samples": 27,
+    "guide": [
+     423,
+     490
+    ],
+    "confident": true
+   }
+  }
+ },
+ "수학|4|2|천재교과서(한대희)": {
+  "source": "추출",
+  "anchors": 139,
+  "loo": {
+   "n": 123,
+   "정확": 91,
+   "±1쪽": 123,
+   "±2쪽": 123,
+   "중앙오차": 0
+  },
+  "units": {
+   "분수의 덧셈과 뺄셈": {
+    "from": 6,
+    "to": 27,
+    "samples": 48,
+    "guide": [
+     42,
+     91
+    ],
+    "confident": true
+   },
+   "삼각형": {
+    "from": 29,
+    "to": 49,
+    "samples": 33,
+    "guide": [
+     92,
+     137
+    ],
+    "confident": true
+   },
+   "소수의 덧셈과 뺄셈": {
+    "from": 51,
+    "to": 79,
+    "samples": 45,
+    "guide": [
+     138,
+     199
+    ],
+    "confident": true
+   },
+   "사각형": {
+    "from": 81,
+    "to": 107,
+    "samples": 39,
+    "guide": [
+     200,
+     251
+    ],
+    "confident": true
+   },
+   "자료와 꺾은선그래프": {
+    "from": 109,
+    "to": 131,
+    "samples": 31,
+    "guide": [
+     252,
+     300
+    ],
+    "confident": true
+   },
+   "다각형": {
+    "from": 133,
+    "to": 153,
+    "samples": 27,
+    "guide": [
+     301,
+     590
+    ],
+    "confident": true
+   }
+  }
+ },
+ "수학|5|1|미래엔": {
+  "source": "추출",
+  "anchors": 87,
+  "loo": {
+   "n": 72,
+   "정확": 62,
+   "±1쪽": 72,
+   "±2쪽": 72,
+   "중앙오차": 0
+  },
+  "units": {
+   "자연수의 혼합 계산": {
+    "from": 11,
+    "to": 28,
+    "samples": 30,
+    "guide": [
+     115,
+     161
+    ],
+    "confident": true
+   },
+   "약수와 배수": {
+    "from": 30,
+    "to": 50,
+    "samples": 26,
+    "guide": [
+     162,
+     202
+    ],
+    "confident": true
+   },
+   "약분과 통분": {
+    "from": 52,
+    "to": 70,
+    "samples": 28,
+    "guide": [
+     203,
+     242
+    ],
+    "confident": true
+   },
+   "대응 관계": {
+    "from": 72,
+    "to": 88,
+    "samples": 20,
+    "guide": [
+     243,
+     276
+    ],
+    "confident": true
+   },
+   "분수의 덧셈과 뺄셈": {
+    "from": 90,
+    "to": 110,
+    "samples": 32,
+    "guide": [
+     277,
+     322
+    ],
+    "confident": true
+   },
+   "다각형의 둘레와 넓이": {
+    "from": 112,
+    "to": 144,
+    "samples": 50,
+    "guide": [
+     323,
+     524
+    ],
+    "confident": true
+   }
+  }
+ },
+ "수학|5|1|아이스크림미디어": {
+  "source": "명시",
+  "anchors": 14,
+  "loo": null,
+  "units": {
+   "1. 자연수의 혼합 계산": {
+    "from": 9,
+    "to": 20,
+    "samples": 3,
+    "guide": [
+     2,
+     45
+    ],
+    "confident": true
+   },
+   "2. 약수와 배수": {
+    "from": 29,
+    "to": 50,
+    "samples": 3,
+    "guide": [
+     46,
+     89
+    ],
+    "confident": true
+   },
+   "3. 대응 관계": {
+    "from": 52,
+    "to": 68,
+    "samples": 2,
+    "guide": [
+     90,
+     129
+    ],
+    "confident": false
+   },
+   "4. 약분과 통분": {
+    "from": 70,
+    "to": 92,
+    "samples": 2,
+    "guide": [
+     130,
+     177
+    ],
+    "confident": false
+   },
+   "5. 분수의 덧셈과 뺄셈": {
+    "from": 94,
+    "to": 114,
+    "samples": 2,
+    "guide": [
+     178,
+     223
+    ],
+    "confident": false
+   },
+   "6. 다각형의 둘레와 넓이": {
+    "from": 116,
+    "to": 150,
+    "samples": 2,
+    "guide": [
+     224,
+     290
+    ],
+    "confident": false
+   }
+  }
+ },
+ "수학|5|1|천재교과서(박만구)": {
+  "source": "추출",
+  "anchors": 122,
+  "loo": {
+   "n": 100,
+   "정확": 60,
+   "±1쪽": 100,
+   "±2쪽": 100,
+   "중앙오차": 0
+  },
+  "units": {
+   "1. 자연수의 혼합 계산": {
+    "from": 9,
+    "to": 30,
+    "samples": 47,
+    "guide": [
+     147,
+     212
+    ],
+    "confident": true
+   },
+   "2. 약수와 배수": {
+    "from": 32,
+    "to": 52,
+    "samples": 33,
+    "guide": [
+     213,
+     260
+    ],
+    "confident": true
+   },
+   "3. 대응 관계": {
+    "from": 54,
+    "to": 70,
+    "samples": 25,
+    "guide": [
+     261,
+     300
+    ],
+    "confident": true
+   },
+   "4. 약분과 통분": {
+    "from": 72,
+    "to": 92,
+    "samples": 33,
+    "guide": [
+     301,
+     352
+    ],
+    "confident": true
+   },
+   "5. 분수의 덧셈과 뺄셈": {
+    "from": 94,
+    "to": 114,
+    "samples": 33,
+    "guide": [
+     353,
+     402
+    ],
+    "confident": true
+   },
+   "6. 다각형의 둘레와 넓이": {
+    "from": 116,
+    "to": 150,
+    "samples": 51,
+    "guide": [
+     403,
+     504
+    ],
+    "confident": true
+   }
+  }
+ },
+ "수학|5|1|천재교과서(한대희)": {
+  "source": "추출",
+  "anchors": 145,
+  "loo": {
+   "n": 129,
+   "정확": 93,
+   "±1쪽": 129,
+   "±2쪽": 129,
+   "중앙오차": 0
+  },
+  "units": {
+   "1. 자연수의 혼합 계산": {
+    "from": 6,
+    "to": 25,
+    "samples": 65,
+    "guide": [
+     21,
+     86
+    ],
+    "confident": true
+   },
+   "2. 약수와 배수": {
+    "from": 27,
+    "to": 51,
+    "samples": 39,
+    "guide": [
+     87,
+     140
+    ],
+    "confident": true
+   },
+   "3. 대응 관계": {
+    "from": 53,
+    "to": 69,
+    "samples": 25,
+    "guide": [
+     141,
+     180
+    ],
+    "confident": true
+   },
+   "4. 약분과 통분": {
+    "from": 71,
+    "to": 91,
+    "samples": 33,
+    "guide": [
+     181,
+     228
+    ],
+    "confident": true
+   },
+   "5. 분수의 덧셈과 뺄셈": {
+    "from": 93,
+    "to": 113,
+    "samples": 33,
+    "guide": [
+     229,
+     276
+    ],
+    "confident": true
+   },
+   "6. 다각형의 둘레와 넓이": {
+    "from": 115,
+    "to": 151,
+    "samples": 53,
+    "guide": [
+     277,
+     640
+    ],
+    "confident": true
+   }
+  }
+ },
+ "수학|5|2|동아출판": {
+  "source": "추출",
+  "anchors": 83,
+  "loo": {
+   "n": 71,
+   "정확": 71,
+   "±1쪽": 71,
+   "±2쪽": 71,
+   "중앙오차": 0
+  },
+  "units": {
+   "2. 분수의 곱셈": {
+    "from": 32,
+    "to": 54,
+    "samples": 23,
+    "guide": [
+     46,
+     89
+    ],
+    "confident": true
+   },
+   "3. 합동과 대칭": {
+    "from": 56,
+    "to": 82,
+    "samples": 27,
+    "guide": [
+     90,
+     135
+    ],
+    "confident": true
+   },
+   "4. 소수의 곱셈": {
+    "from": 84,
+    "to": 106,
+    "samples": 23,
+    "guide": [
+     136,
+     175
+    ],
+    "confident": true
+   },
+   "5. 직육면체": {
+    "from": 108,
+    "to": 130,
+    "samples": 23,
+    "guide": [
+     176,
+     215
+    ],
+    "confident": true
+   },
+   "6. 평균과 가능성": {
+    "from": 132,
+    "to": 154,
+    "samples": 23,
+    "guide": [
+     216,
+     256
+    ],
+    "confident": true
+   }
+  }
+ },
+ "수학|5|2|디딤돌": {
+  "source": "추출",
+  "anchors": 134,
+  "loo": {
+   "n": 117,
+   "정확": 116,
+   "±1쪽": 117,
+   "±2쪽": 117,
+   "중앙오차": 0
+  },
+  "units": {
+   "1. 수의 범위와 올림, 버림, 반올림": {
+    "from": 6,
+    "to": 26,
+    "samples": 54,
+    "guide": [
+     131,
+     191
+    ],
+    "confident": true
+   },
+   "2. 분수의 곱셈": {
+    "from": 30,
+    "to": 48,
+    "samples": 19,
+    "guide": [
+     192,
+     227
+    ],
+    "confident": true
+   },
+   "3. 합동과 대칭": {
+    "from": 52,
+    "to": 72,
+    "samples": 21,
+    "guide": [
+     228,
+     263
+    ],
+    "confident": true
+   },
+   "4. 소수의 곱셈": {
+    "from": 76,
+    "to": 94,
+    "samples": 19,
+    "guide": [
+     264,
+     296
+    ],
+    "confident": true
+   },
+   "5. 직육면체": {
+    "from": 98,
+    "to": 120,
+    "samples": 23,
+    "guide": [
+     297,
+     337
+    ],
+    "confident": true
+   },
+   "6. 평균과 가능성": {
+    "from": 124,
+    "to": 155,
+    "samples": 36,
+    "guide": [
+     338,
+     472
+    ],
+    "confident": true
+   }
+  }
+ },
+ "수학|5|2|미래엔": {
+  "source": "추출",
+  "anchors": 88,
+  "loo": {
+   "n": 70,
+   "정확": 60,
+   "±1쪽": 70,
+   "±2쪽": 70,
+   "중앙오차": 0
+  },
+  "units": {
+   "수의 범위와 어림하기": {
+    "from": 11,
+    "to": 30,
+    "samples": 34,
+    "guide": [
+     115,
+     164
+    ],
+    "confident": true
+   },
+   "분수의 곱셈": {
+    "from": 32,
+    "to": 52,
+    "samples": 30,
+    "guide": [
+     165,
+     208
+    ],
+    "confident": true
+   },
+   "합동과 대칭": {
+    "from": 54,
+    "to": 78,
+    "samples": 36,
+    "guide": [
+     209,
+     258
+    ],
+    "confident": true
+   },
+   "소수의 곱셈": {
+    "from": 80,
+    "to": 102,
+    "samples": 36,
+    "guide": [
+     259,
+     308
+    ],
+    "confident": true
+   },
+   "직육면체": {
+    "from": 104,
+    "to": 126,
+    "samples": 34,
+    "guide": [
+     309,
+     356
+    ],
+    "confident": true
+   },
+   "평균과 가능성": {
+    "from": 128,
+    "to": 200,
+    "samples": 36,
+    "guide": [
+     357,
+     546
+    ],
+    "confident": false
+   }
+  }
+ },
+ "수학|5|2|비상": {
+  "source": "추출",
+  "anchors": 87,
+  "loo": {
+   "n": 69,
+   "정확": 40,
+   "±1쪽": 69,
+   "±2쪽": 69,
+   "중앙오차": 0
+  },
+  "units": {
+   "1. 수의 범위와 올림, 버림, 반올림": {
+    "from": 7,
+    "to": 28,
+    "samples": 34,
+    "guide": [
+     142,
+     219
+    ],
+    "confident": true
+   },
+   "2. 분수의 곱셈": {
+    "from": 30,
+    "to": 54,
+    "samples": 39,
+    "guide": [
+     220,
+     275
+    ],
+    "confident": true
+   },
+   "3. 합동과 대칭": {
+    "from": 56,
+    "to": 78,
+    "samples": 35,
+    "guide": [
+     276,
+     325
+    ],
+    "confident": true
+   },
+   "4. 소수의 곱셈": {
+    "from": 80,
+    "to": 104,
+    "samples": 41,
+    "guide": [
+     326,
+     383
+    ],
+    "confident": true
+   },
+   "5. 직육면체와 정육면체": {
+    "from": 106,
+    "to": 128,
+    "samples": 35,
+    "guide": [
+     384,
+     433
+    ],
+    "confident": true
+   },
+   "6. 평균과 가능성": {
+    "from": 130,
+    "to": 158,
+    "samples": 45,
+    "guide": [
+     434,
+     624
+    ],
+    "confident": true
+   }
+  }
+ },
+ "수학|5|2|아이스크림미디어": {
+  "source": "명시",
+  "anchors": 15,
+  "loo": null,
+  "units": {
+   "2. 분수의 곱셈": {
+    "from": 33,
+    "to": 38,
+    "samples": 3,
+    "guide": [
+     213,
+     262
+    ],
+    "confident": true
+   },
+   "3. 합동과 대칭": {
+    "from": 57,
+    "to": 82,
+    "samples": 3,
+    "guide": [
+     263,
+     314
+    ],
+    "confident": true
+   },
+   "4. 소수의 곱셈": {
+    "from": 84,
+    "to": 106,
+    "samples": 2,
+    "guide": [
+     315,
+     366
+    ],
+    "confident": false
+   },
+   "5. 직육면체": {
+    "from": 108,
+    "to": 132,
+    "samples": 2,
+    "guide": [
+     367,
+     410
+    ],
+    "confident": false
+   },
+   "6. 평균과 가능성": {
+    "from": 134,
+    "to": 154,
+    "samples": 2,
+    "guide": [
+     411,
+     473
+    ],
+    "confident": false
+   }
+  }
+ },
+ "수학|5|2|와이비엠": {
+  "source": "명시",
+  "anchors": 25,
+  "loo": {
+   "n": 12,
+   "정확": 7,
+   "±1쪽": 12,
+   "±2쪽": 12,
+   "중앙오차": 0
+  },
+  "units": {
+   "1. 수의 범위와 어림하기": {
+    "from": 16,
+    "to": 22,
+    "samples": 10,
+    "guide": [
+     35,
+     82
+    ],
+    "confident": true
+   },
+   "3. 합동과 대칭": {
+    "from": 56,
+    "to": 67,
+    "samples": 25,
+    "guide": [
+     129,
+     178
+    ],
+    "confident": true
+   },
+   "4. 소수의 곱셈": {
+    "from": 90,
+    "to": 91,
+    "samples": 2,
+    "guide": [
+     179,
+     228
+    ],
+    "confident": false
+   },
+   "5. 직육면체": {
+    "from": 106,
+    "to": 133,
+    "samples": 32,
+    "guide": [
+     229,
+     562
+    ],
+    "confident": true
+   }
+  }
+ },
+ "수학|5|2|천재교과서(박만구)": {
+  "source": "추출",
+  "anchors": 124,
+  "loo": {
+   "n": 102,
+   "정확": 60,
+   "±1쪽": 102,
+   "±2쪽": 102,
+   "중앙오차": 0
+  },
+  "units": {
+   "1. 수의 범위와 올림, 버림, 반올림": {
+    "from": 10,
+    "to": 32,
+    "samples": 66,
+    "guide": [
+     149,
+     218
+    ],
+    "confident": true
+   },
+   "2. 분수의 곱셈": {
+    "from": 34,
+    "to": 56,
+    "samples": 37,
+    "guide": [
+     219,
+     272
+    ],
+    "confident": true
+   },
+   "3. 합동과 대칭": {
+    "from": 58,
+    "to": 82,
+    "samples": 41,
+    "guide": [
+     273,
+     328
+    ],
+    "confident": true
+   },
+   "4. 소수의 곱셈": {
+    "from": 84,
+    "to": 102,
+    "samples": 29,
+    "guide": [
+     329,
+     375
+    ],
+    "confident": true
+   },
+   "5. 직육면체": {
+    "from": 104,
+    "to": 128,
+    "samples": 37,
+    "guide": [
+     376,
+     430
+    ],
+    "confident": true
+   },
+   "6. 평균과 가능성": {
+    "from": 130,
+    "to": 155,
+    "samples": 43,
+    "guide": [
+     431,
+     508
+    ],
+    "confident": true
+   }
+  }
+ },
+ "수학|5|2|천재교과서(한대희)": {
+  "source": "추출",
+  "anchors": 143,
+  "loo": {
+   "n": 128,
+   "정확": 94,
+   "±1쪽": 128,
+   "±2쪽": 128,
+   "중앙오차": 0
+  },
+  "units": {
+   "1. 수의 범위와 어림하기": {
+    "from": 3,
+    "to": 29,
+    "samples": 85,
+    "guide": [
+     10,
+     94
+    ],
+    "confident": true
+   },
+   "2. 분수의 곱셈": {
+    "from": 29,
+    "to": 53,
+    "samples": 51,
+    "guide": [
+     95,
+     146
+    ],
+    "confident": true
+   },
+   "3. 합동과 대칭": {
+    "from": 55,
+    "to": 81,
+    "samples": 35,
+    "guide": [
+     147,
+     196
+    ],
+    "confident": true
+   },
+   "4. 소수의 곱셈": {
+    "from": 83,
+    "to": 105,
+    "samples": 37,
+    "guide": [
+     197,
+     248
+    ],
+    "confident": true
+   },
+   "5. 직육면체": {
+    "from": 107,
+    "to": 129,
+    "samples": 33,
+    "guide": [
+     249,
+     296
+    ],
+    "confident": true
+   },
+   "6. 평균과 가능성": {
+    "from": 131,
+    "to": 153,
+    "samples": 37,
+    "guide": [
+     297,
+     640
+    ],
+    "confident": true
+   }
+  }
+ },
+ "수학|6|1|미래엔": {
+  "source": "추출",
+  "anchors": 83,
+  "loo": {
+   "n": 66,
+   "정확": 58,
+   "±1쪽": 66,
+   "±2쪽": 66,
+   "중앙오차": 0
+  },
+  "units": {
+   "분수의 나눗셈": {
+    "from": 11,
+    "to": 24,
+    "samples": 28,
+    "guide": [
+     117,
+     156
+    ],
+    "confident": true
+   },
+   "각기둥과 각뿔": {
+    "from": 28,
+    "to": 50,
+    "samples": 32,
+    "guide": [
+     157,
+     203
+    ],
+    "confident": true
+   },
+   "소수의 나눗셈": {
+    "from": 52,
+    "to": 74,
+    "samples": 34,
+    "guide": [
+     204,
+     250
+    ],
+    "confident": true
+   },
+   "비와 비율": {
+    "from": 76,
+    "to": 96,
+    "samples": 30,
+    "guide": [
+     251,
+     294
+    ],
+    "confident": true
+   },
+   "여러 가지 그래프": {
+    "from": 98,
+    "to": 120,
+    "samples": 34,
+    "guide": [
+     295,
+     342
+    ],
+    "confident": true
+   },
+   "직육면체의 겉넓이와 부피": {
+    "from": 122,
+    "to": 200,
+    "samples": 28,
+    "guide": [
+     343,
+     520
+    ],
+    "confident": false
+   }
+  }
+ },
+ "수학|6|1|아이스크림미디어": {
+  "source": "명시",
+  "anchors": 14,
+  "loo": null,
+  "units": {
+   "1. 분수의 나눗셈": {
+    "from": 9,
+    "to": 20,
+    "samples": 3,
+    "guide": [
+     2,
+     45
+    ],
+    "confident": true
+   },
+   "2. 각기둥과 각뿔": {
+    "from": 29,
+    "to": 54,
+    "samples": 3,
+    "guide": [
+     46,
+     93
+    ],
+    "confident": true
+   },
+   "3. 소수의 나눗셈": {
+    "from": 56,
+    "to": 78,
+    "samples": 2,
+    "guide": [
+     94,
+     145
+    ],
+    "confident": false
+   },
+   "4. 비와 비율": {
+    "from": 80,
+    "to": 100,
+    "samples": 2,
+    "guide": [
+     146,
+     193
+    ],
+    "confident": false
+   },
+   "5. 여러 가지 그래프": {
+    "from": 102,
+    "to": 124,
+    "samples": 2,
+    "guide": [
+     194,
+     239
+    ],
+    "confident": false
+   },
+   "6. 직육면체의 부피와 겉넓이": {
+    "from": 126,
+    "to": 146,
+    "samples": 2,
+    "guide": [
+     240,
+     282
+    ],
+    "confident": false
+   }
+  }
+ },
+ "수학|6|1|천재교과서(박만구)": {
+  "source": "추출",
+  "anchors": 118,
+  "loo": {
+   "n": 96,
+   "정확": 55,
+   "±1쪽": 96,
+   "±2쪽": 96,
+   "중앙오차": 0
+  },
+  "units": {
+   "1. 분수의 나눗셈": {
+    "from": 9,
+    "to": 30,
+    "samples": 74,
+    "guide": [
+     137,
+     214
+    ],
+    "confident": true
+   },
+   "2. 각기둥과 각뿔": {
+    "from": 32,
+    "to": 52,
+    "samples": 33,
+    "guide": [
+     215,
+     264
+    ],
+    "confident": true
+   },
+   "3. 소수의 나눗셈": {
+    "from": 54,
+    "to": 76,
+    "samples": 37,
+    "guide": [
+     265,
+     316
+    ],
+    "confident": true
+   },
+   "4. 비와 비율": {
+    "from": 78,
+    "to": 98,
+    "samples": 33,
+    "guide": [
+     317,
+     368
+    ],
+    "confident": true
+   },
+   "5. 직육면체의 겉넓이와 부피": {
+    "from": 100,
+    "to": 120,
+    "samples": 29,
+    "guide": [
+     369,
+     412
+    ],
+    "confident": true
+   },
+   "6. 여러 가지 그래프": {
+    "from": 122,
+    "to": 146,
+    "samples": 37,
+    "guide": [
+     413,
+     492
+    ],
+    "confident": true
+   }
+  }
+ },
+ "수학|6|1|천재교과서(한대희)": {
+  "source": "추출",
+  "anchors": 146,
+  "loo": {
+   "n": 129,
+   "정확": 94,
+   "±1쪽": 129,
+   "±2쪽": 129,
+   "중앙오차": 0
+  },
+  "units": {
+   "1. 분수의 나눗셈": {
+    "from": 7,
+    "to": 25,
+    "samples": 71,
+    "guide": [
+     17,
+     88
+    ],
+    "confident": true
+   },
+   "2. 각기둥과 각뿔": {
+    "from": 27,
+    "to": 55,
+    "samples": 41,
+    "guide": [
+     89,
+     144
+    ],
+    "confident": true
+   },
+   "3. 소수의 나눗셈": {
+    "from": 57,
+    "to": 79,
+    "samples": 37,
+    "guide": [
+     145,
+     196
+    ],
+    "confident": true
+   },
+   "4. 비와 비율": {
+    "from": 81,
+    "to": 101,
+    "samples": 33,
+    "guide": [
+     197,
+     246
+    ],
+    "confident": true
+   },
+   "5. 자료와 여러 가지 그래프": {
+    "from": 103,
+    "to": 127,
+    "samples": 39,
+    "guide": [
+     247,
+     300
+    ],
+    "confident": true
+   },
+   "6. 직육면체의 겉넓이와 부피": {
+    "from": 129,
+    "to": 151,
+    "samples": 31,
+    "guide": [
+     301,
+     638
+    ],
+    "confident": true
+   }
+  }
+ },
+ "수학|6|2|동아출판": {
+  "source": "추출",
+  "anchors": 78,
+  "loo": {
+   "n": 66,
+   "정확": 63,
+   "±1쪽": 66,
+   "±2쪽": 66,
+   "중앙오차": 0
+  },
+  "units": {
+   "1. 분수의 나눗셈": {
+    "from": 1,
+    "to": 28,
+    "samples": 35,
+    "guide": [
+     4,
+     43
+    ],
+    "confident": true
+   },
+   "2. 소수의 나눗셈": {
+    "from": 30,
+    "to": 54,
+    "samples": 25,
+    "guide": [
+     44,
+     85
+    ],
+    "confident": true
+   },
+   "3. 공간과 입체": {
+    "from": 56,
+    "to": 82,
+    "samples": 27,
+    "guide": [
+     86,
+     131
+    ],
+    "confident": true
+   },
+   "4. 비례식과 비례배분": {
+    "from": 84,
+    "to": 126,
+    "samples": 42,
+    "guide": [
+     132,
+     207
+    ],
+    "confident": true
+   },
+   "6. 원기둥, 원뿔, 구": {
+    "from": 128,
+    "to": 150,
+    "samples": 23,
+    "guide": [
+     208,
+     248
+    ],
+    "confident": true
+   }
+  }
+ },
+ "수학|6|2|디딤돌": {
+  "source": "추출",
+  "anchors": 120,
+  "loo": {
+   "n": 103,
+   "정확": 103,
+   "±1쪽": 103,
+   "±2쪽": 103,
+   "중앙오차": 0
+  },
+  "units": {
+   "1. 분수의 나눗셈": {
+    "from": 1,
+    "to": 28,
+    "samples": 63,
+    "guide": [
+     105,
+     196
+    ],
+    "confident": true
+   },
+   "2. 공간과 입체": {
+    "from": 32,
+    "to": 50,
+    "samples": 19,
+    "guide": [
+     197,
+     233
+    ],
+    "confident": true
+   },
+   "3. 소수의 나눗셈": {
+    "from": 54,
+    "to": 72,
+    "samples": 19,
+    "guide": [
+     234,
+     267
+    ],
+    "confident": true
+   },
+   "4. 비례식과 비례배분": {
+    "from": 76,
+    "to": 116,
+    "samples": 38,
+    "guide": [
+     268,
+     338
+    ],
+    "confident": true
+   },
+   "6. 원기둥, 원뿔, 구": {
+    "from": 120,
+    "to": 153,
+    "samples": 38,
+    "guide": [
+     339,
+     474
+    ],
+    "confident": true
+   }
+  }
+ },
+ "수학|6|2|미래엔": {
+  "source": "추출",
+  "anchors": 81,
+  "loo": {
+   "n": 63,
+   "정확": 52,
+   "±1쪽": 63,
+   "±2쪽": 63,
+   "중앙오차": 0
+  },
+  "units": {
+   "분수의 나눗셈": {
+    "from": 15,
+    "to": 30,
+    "samples": 42,
+    "guide": [
+     115,
+     164
+    ],
+    "confident": true
+   },
+   "공간과 입체": {
+    "from": 32,
+    "to": 54,
+    "samples": 32,
+    "guide": [
+     165,
+     211
+    ],
+    "confident": true
+   },
+   "소수의 나눗셈": {
+    "from": 56,
+    "to": 76,
+    "samples": 28,
+    "guide": [
+     212,
+     252
+    ],
+    "confident": true
+   },
+   "비례식과 비례배분": {
+    "from": 78,
+    "to": 98,
+    "samples": 32,
+    "guide": [
+     253,
+     300
+    ],
+    "confident": true
+   },
+   "원의 둘레와 넓이": {
+    "from": 100,
+    "to": 120,
+    "samples": 30,
+    "guide": [
+     301,
+     342
+    ],
+    "confident": true
+   },
+   "원기둥, 원뿔, 구": {
+    "from": 122,
+    "to": 142,
+    "samples": 26,
+    "guide": [
+     343,
+     520
+    ],
+    "confident": true
+   }
+  }
+ },
+ "수학|6|2|비상": {
+  "source": "추출",
+  "anchors": 88,
+  "loo": {
+   "n": 69,
+   "정확": 48,
+   "±1쪽": 69,
+   "±2쪽": 69,
+   "중앙오차": 0
+  },
+  "units": {
+   "1. 분수의 나눗셈": {
+    "from": 7,
+    "to": 30,
+    "samples": 51,
+    "guide": [
+     142,
+     229
+    ],
+    "confident": true
+   },
+   "2. 공간과 입체": {
+    "from": 32,
+    "to": 58,
+    "samples": 39,
+    "guide": [
+     230,
+     287
+    ],
+    "confident": true
+   },
+   "3. 소수의 나눗셈": {
+    "from": 60,
+    "to": 80,
+    "samples": 37,
+    "guide": [
+     288,
+     341
+    ],
+    "confident": true
+   },
+   "4. 비례식과 비례배분": {
+    "from": 82,
+    "to": 106,
+    "samples": 39,
+    "guide": [
+     342,
+     400
+    ],
+    "confident": true
+   },
+   "5. 원의 둘레와 넓이": {
+    "from": 108,
+    "to": 128,
+    "samples": 33,
+    "guide": [
+     401,
+     448
+    ],
+    "confident": true
+   },
+   "6. 원기둥, 원뿔, 구": {
+    "from": 130,
+    "to": 158,
+    "samples": 41,
+    "guide": [
+     449,
+     636
+    ],
+    "confident": true
+   }
+  }
+ },
+ "수학|6|2|아이스크림미디어": {
+  "source": "명시",
+  "anchors": 15,
+  "loo": null,
+  "units": {
+   "2. 소수의 나눗셈": {
+    "from": 31,
+    "to": 36,
+    "samples": 3,
+    "guide": [
+     209,
+     256
+    ],
+    "confident": true
+   },
+   "3. 공간과 입체": {
+    "from": 53,
+    "to": 74,
+    "samples": 3,
+    "guide": [
+     257,
+     300
+    ],
+    "confident": true
+   },
+   "4. 비례식과 비례배분": {
+    "from": 76,
+    "to": 96,
+    "samples": 2,
+    "guide": [
+     301,
+     348
+    ],
+    "confident": false
+   },
+   "5. 원의 둘레와 넓이": {
+    "from": 98,
+    "to": 118,
+    "samples": 2,
+    "guide": [
+     349,
+     396
+    ],
+    "confident": false
+   },
+   "6. 원기둥, 원뿔, 구": {
+    "from": 120,
+    "to": 138,
+    "samples": 2,
+    "guide": [
+     397,
+     453
+    ],
+    "confident": false
+   }
+  }
+ },
+ "수학|6|2|와이비엠": {
+  "source": "명시",
+  "anchors": 14,
+  "loo": {
+   "n": 5,
+   "정확": 5,
+   "±1쪽": 5,
+   "±2쪽": 5,
+   "중앙오차": 0
+  },
+  "units": {
+   "4. 원의 둘레와 넓이": {
+    "from": 82,
+    "to": 84,
+    "samples": 3,
+    "guide": [
+     183,
+     228
+    ],
+    "confident": false
+   },
+   "5. 비례식과 비례배분": {
+    "from": 108,
+    "to": 114,
+    "samples": 13,
+    "guide": [
+     229,
+     276
+    ],
+    "confident": true
+   },
+   "6. 원기둥, 원뿔, 구": {
+    "from": 127,
+    "to": 140,
+    "samples": 20,
+    "guide": [
+     277,
+     562
+    ],
+    "confident": true
+   }
+  }
+ },
+ "수학|6|2|천재교과서(박만구)": {
+  "source": "추출",
+  "anchors": 117,
+  "loo": {
+   "n": 103,
+   "정확": 55,
+   "±1쪽": 103,
+   "±2쪽": 103,
+   "중앙오차": 0
+  },
+  "units": {
+   "1. 분수의 나눗셈": {
+    "from": 5,
+    "to": 34,
+    "samples": 78,
+    "guide": [
+     137,
+     218
+    ],
+    "confident": true
+   },
+   "2. 공간과 입체": {
+    "from": 36,
+    "to": 58,
+    "samples": 37,
+    "guide": [
+     219,
+     270
+    ],
+    "confident": true
+   },
+   "3. 소수의 나눗셈": {
+    "from": 60,
+    "to": 80,
+    "samples": 33,
+    "guide": [
+     271,
+     320
+    ],
+    "confident": true
+   },
+   "4. 비례식과 비례배분": {
+    "from": 82,
+    "to": 104,
+    "samples": 37,
+    "guide": [
+     321,
+     372
+    ],
+    "confident": true
+   },
+   "5. 원의 둘레와 넓이": {
+    "from": 106,
+    "to": 126,
+    "samples": 33,
+    "guide": [
+     373,
+     422
+    ],
+    "confident": true
+   },
+   "6. 원기둥, 원뿔, 구": {
+    "from": 128,
+    "to": 146,
+    "samples": 27,
+    "guide": [
+     423,
+     500
+    ],
+    "confident": true
+   }
+  }
+ },
+ "수학|6|2|천재교과서(한대희)": {
+  "source": "추출",
+  "anchors": 146,
+  "loo": {
+   "n": 130,
+   "정확": 98,
+   "±1쪽": 130,
+   "±2쪽": 130,
+   "중앙오차": 0
+  },
+  "units": {
+   "1. 분수의 나눗셈": {
+    "from": 5,
+    "to": 27,
+    "samples": 75,
+    "guide": [
+     17,
+     92
+    ],
+    "confident": true
+   },
+   "2. 소수의 나눗셈": {
+    "from": 29,
+    "to": 53,
+    "samples": 41,
+    "guide": [
+     93,
+     150
+    ],
+    "confident": true
+   },
+   "3. 공간과 입체": {
+    "from": 55,
+    "to": 81,
+    "samples": 39,
+    "guide": [
+     151,
+     204
+    ],
+    "confident": true
+   },
+   "4. 비례식과 비례배분": {
+    "from": 83,
+    "to": 105,
+    "samples": 37,
+    "guide": [
+     205,
+     256
+    ],
+    "confident": true
+   },
+   "5. 원의 넓이": {
+    "from": 107,
+    "to": 127,
+    "samples": 33,
+    "guide": [
+     257,
+     304
+    ],
+    "confident": true
+   },
+   "6. 원기둥, 원뿔, 구": {
+    "from": 129,
+    "to": 153,
+    "samples": 33,
+    "guide": [
+     305,
+     648
+    ],
+    "confident": true
+   }
+  }
+ }
+}

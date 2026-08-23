@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { gradeWithFiles } from "@/lib/openai";
 import { STUDENT_INSTRUCTIONS } from "@/lib/instructions";
 import { lookupAssessment } from "@/lib/google-sheets";
+import { getPageRange, pageRangeHint, sanitizePageCitations } from "@/lib/page-ranges";
 
 // 피드백에서 채점 결과 추출. instructions가 3문단을 '채점 결과: (척도값)(등급) - …' 형식으로
 // 고정하므로 그 라인의 첫 값을 척도 그대로 읽는다. 교사가 척도를 바꾼 경우
@@ -45,6 +46,11 @@ export async function POST(req: NextRequest) {
     // 공용 지도서 라이브러리 + (있으면) 이 평가 전용 교사 보관함
     const vectorStoreIds = [process.env.LIBRARY_VECTORSTORE_ID, extraVectorStoreId];
 
+    // 이 단원의 학생 교과서 쪽 범위. 벡터스토어 텍스트엔 쪽 정보가 없어서 모델이 쪽수를
+    // 지어내는 문제가 있었다(지도서 자체 쪽번호 222를 교과서 쪽으로 인용). 프롬프트로
+    // 범위를 알려주고, 출력에서 한 번 더 검증한다.
+    const pageRange = getPageRange(unitKey);
+
     const feedbacks: { feedback: string; score: string | null }[] = [];
 
     for (let i = 0; i < questions.length; i++) {
@@ -66,6 +72,7 @@ instructions에 따르면 채점 결과에 따라 생성하는 피드백의 내�
 문항, 학생이 입력한 답안, 채점 결과(점수+이유), 피드백 내용(점수에 따라 피드백 형식이 달라짐)을 각각 서로 다른 문단으로 나눠서 읽기 쉽게 보여주세요.
 
 이 평가의 단원: ${unitName || "(미지정)"} — file_search로 이 단원과 관련된 교과서(지도서) 내용을 찾아 그 내용·예시를 근거로 채점하세요.
+${pageRangeHint(pageRange)}
 평가 주의 사항: ${feedbackInstruction || "(없음)"}${
         correctAnswers?.[i]
           ? `
@@ -77,12 +84,19 @@ instructions에 따르면 채점 결과에 따라 생성하는 피드백의 내�
 
       // 문항별 독립 처리: 한 문항이 실패해도 나머지 문항 채점은 계속되도록 함
       try {
-        const feedback = await gradeWithFiles({
+        const raw = await gradeWithFiles({
           instructions: STUDENT_INSTRUCTIONS,
           input,
           vectorStoreIds,
           bookKey,
         });
+        // 모델이 프롬프트의 쪽 범위를 어기는 경우가 있어 출력에서 한 번 더 거른다.
+        const { text: feedback, fixed } = sanitizePageCitations(raw, pageRange);
+        if (fixed.length) {
+          console.warn(
+            `쪽수 교정 (문항 ${i + 1}, ${unitKey}): ${fixed.join(",")}쪽 → ${pageRange?.from}~${pageRange?.to}쪽`
+          );
+        }
         feedbacks.push({ feedback, score: extractScore(feedback) });
       } catch (err) {
         console.error(`Grade error (문항 ${i + 1}):`, err);
