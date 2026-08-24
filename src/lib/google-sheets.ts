@@ -75,6 +75,44 @@ export async function saveAssessment(data: Record<string, string>) {
   await sheet.addRow(data);
 }
 
+/**
+ * 기존 행의 특정 필드를 고친다. (문항 텍스트 수정 등)
+ * addRow만 있던 탓에 등록된 문항을 고치려면 시트를 직접 여는 수밖에 없었다.
+ * settingname으로 행을 찾고, 시트를 한 번만 읽어 여러 건을 이어서 처리한다.
+ */
+export async function updateAssessmentFields(
+  updates: { code: string; field: string; value: string }[]
+): Promise<{ code: string; field: string; status: string }[]> {
+  const sheet = await getQuestionSheet();
+  const rows = await sheet.getRows();
+  const byCode = new Map(rows.map((r) => [r.get("settingname"), r]));
+  const headers = new Set(sheet.headerValues);
+  const result: { code: string; field: string; status: string }[] = [];
+
+  for (const u of updates) {
+    const row = byCode.get(u.code);
+    if (!row) {
+      result.push({ ...u, status: "행 없음" });
+      continue;
+    }
+    if (!headers.has(u.field)) {
+      // 헤더에 없는 컬럼은 조용히 버려지므로 미리 막는다
+      result.push({ ...u, status: "컬럼 없음" });
+      continue;
+    }
+    if (row.get(u.field) === u.value) {
+      result.push({ ...u, status: "이미 동일" });
+      continue;
+    }
+    row.set(u.field, u.value);
+    await row.save();
+    result.push({ ...u, status: "수정됨" });
+    // 시트 쓰기 API 분당 쿼터 회피
+    await new Promise((r) => setTimeout(r, 1200));
+  }
+  return result;
+}
+
 export async function saveResults(sheetUrl: string, rowData: string[]) {
   const auth = getAuth();
 
