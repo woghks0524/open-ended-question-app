@@ -50,21 +50,38 @@ async function getQuestionSheet() {
 //       진행 중인 로드 하나를 공유한다. 이게 없으면 캐시가 있어도 첫 순간에 터진다.
 //   (3) 실패 시 이전 데이터 제공 — 시트가 쿼터로 막혀도 수업이 멈추지 않도록,
 //       만료된 캐시라도 있으면 그것을 쓴다.
-const TTL_MS = 60_000;
+// TTL이 3분인 이유: 캐시는 인스턴스마다 따로 산다. 서버리스라 트래픽이 몰리면
+// 새 인스턴스가 계속 뜨고, 갓 뜬 인스턴스는 캐시가 비어 있어 각자 시트를 읽는다.
+// TTL이 짧을수록 그 재로드가 잦아져 쿼터에 걸린다. 교사가 시트를 직접 고쳐도
+// 3분이면 반영되고, 앱을 통한 저장·수정은 즉시 무효화되므로 3분이 무리가 없다.
+const TTL_MS = 180_000;
 type Snapshot = { rows: Record<string, string>[]; at: number };
 let snapshot: Snapshot | null = null;
 let inFlight: Promise<Snapshot> | null = null;
 
+const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+
 async function loadSnapshot(): Promise<Snapshot> {
-  const sheet = await getQuestionSheet();
-  const raw = await sheet.getRows();
-  const headers = sheet.headerValues;
-  const rows = raw.map((row) => {
-    const o: Record<string, string> = {};
-    for (const h of headers) o[h] = row.get(h) || "";
-    return o;
-  });
-  return { rows, at: Date.now() };
+  // 쿼터 초과는 일시적이다. 곧바로 500을 내지 말고 짧게 물러났다 다시 시도한다.
+  // 지터를 주는 이유: 동시에 뜬 인스턴스들이 같은 순간에 재시도하면 다시 몰린다.
+  let lastErr: unknown;
+  for (let attempt = 0; attempt < 3; attempt++) {
+    if (attempt > 0) await sleep(400 * 2 ** (attempt - 1) + Math.floor(Math.random() * 400));
+    try {
+      const sheet = await getQuestionSheet();
+      const raw = await sheet.getRows();
+      const headers = sheet.headerValues;
+      const rows = raw.map((row) => {
+        const o: Record<string, string> = {};
+        for (const h of headers) o[h] = row.get(h) || "";
+        return o;
+      });
+      return { rows, at: Date.now() };
+    } catch (e) {
+      lastErr = e;
+    }
+  }
+  throw lastErr;
 }
 
 async function getSnapshot(): Promise<Snapshot> {
