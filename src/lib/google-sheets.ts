@@ -62,11 +62,12 @@ let inFlight: Promise<Snapshot> | null = null;
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 async function loadSnapshot(): Promise<Snapshot> {
-  // 쿼터 초과는 일시적이다. 곧바로 500을 내지 말고 짧게 물러났다 다시 시도한다.
+  // 재시도는 1회만 한다. 3회로 늘렸더니 오히려 나빠졌다(50명x5라운드에서 실패가
+  // 10→37건). 이미 쿼터가 포화된 상태에서 재시도는 부하를 더해 증폭시킨다.
   // 지터를 주는 이유: 동시에 뜬 인스턴스들이 같은 순간에 재시도하면 다시 몰린다.
   let lastErr: unknown;
-  for (let attempt = 0; attempt < 3; attempt++) {
-    if (attempt > 0) await sleep(400 * 2 ** (attempt - 1) + Math.floor(Math.random() * 400));
+  for (let attempt = 0; attempt < 2; attempt++) {
+    if (attempt > 0) await sleep(600 + Math.floor(Math.random() * 900));
     try {
       const sheet = await getQuestionSheet();
       const raw = await sheet.getRows();
