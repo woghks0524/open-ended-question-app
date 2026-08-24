@@ -1,4 +1,4 @@
-import { GoogleSpreadsheet, GoogleSpreadsheetRow } from "google-spreadsheet";
+import { GoogleSpreadsheet } from "google-spreadsheet";
 import { JWT } from "google-auth-library";
 
 function getAuth(): JWT {
@@ -13,66 +13,103 @@ function getAuth(): JWT {
   });
 }
 
-async function getQuestionSheet() {
-  const auth = getAuth();
-  const sheetName = process.env.GOOGLE_SHEET_NAME || "서술형 평가 문항";
+// ── 시트 파일 ID 캐시 ───────────────────────────────────────────────
+// Drive 검색은 요청마다 할 필요가 없다. 시트 이름이 바뀌는 일은 사실상 없다.
+let fileIdCache: string | null = null;
 
-  // Open by title - need to search through accessible sheets
+async function getFileId(auth: JWT): Promise<string> {
+  if (fileIdCache) return fileIdCache;
+  const sheetName = process.env.GOOGLE_SHEET_NAME || "서술형 평가 문항";
   const { google } = await import("googleapis");
   const drive = google.drive({ version: "v3", auth });
   const res = await drive.files.list({
     q: `name='${sheetName}' and mimeType='application/vnd.google-apps.spreadsheet'`,
     fields: "files(id)",
   });
+  const id = res.data.files?.[0]?.id;
+  if (!id) throw new Error(`Sheet "${sheetName}" not found`);
+  fileIdCache = id;
+  return id;
+}
 
-  const fileId = res.data.files?.[0]?.id;
-  if (!fileId) throw new Error(`Sheet "${sheetName}" not found`);
-
-  const doc = new GoogleSpreadsheet(fileId, auth);
+async function getQuestionSheet() {
+  const auth = getAuth();
+  const doc = new GoogleSpreadsheet(await getFileId(auth), auth);
   await doc.loadInfo();
   return doc.sheetsByIndex[0];
 }
 
-export async function lookupAssessment(code: string) {
-  const sheet = await getQuestionSheet();
-  const rows = await sheet.getRows();
+// ── 문항 목록 캐시 ─────────────────────────────────────────────────
+// 25명이 수업 시작에 동시에 들어오면 요청마다 Drive 검색 + loadInfo + getRows가
+// 돌아 시트 API 쿼터를 넘긴다. 실측(2026-08-25): 25명 동시 요청 시 중앙 3.7초,
+// 곧이어 재요청하면 20/25가 500. 단독 요청까지 실패하고 1분쯤 지나야 회복됐다.
+//
+// 그래서 세 가지를 건다.
+//   (1) TTL 캐시 — 60초. 교사가 수업 중 문항을 고치는 일은 드물고 60초면 반영된다.
+//   (2) 동시 요청 합치기 — 캐시가 비어 있을 때 25개 요청이 각자 시트를 읽지 않도록
+//       진행 중인 로드 하나를 공유한다. 이게 없으면 캐시가 있어도 첫 순간에 터진다.
+//   (3) 실패 시 이전 데이터 제공 — 시트가 쿼터로 막혀도 수업이 멈추지 않도록,
+//       만료된 캐시라도 있으면 그것을 쓴다.
+const TTL_MS = 60_000;
+type Snapshot = { rows: Record<string, string>[]; at: number };
+let snapshot: Snapshot | null = null;
+let inFlight: Promise<Snapshot> | null = null;
 
-  for (const row of rows) {
-    if (row.get("settingname") === code) {
-      const data: Record<string, string> = {};
-      for (const header of sheet.headerValues) {
-        data[header] = row.get(header) || "";
+async function loadSnapshot(): Promise<Snapshot> {
+  const sheet = await getQuestionSheet();
+  const raw = await sheet.getRows();
+  const headers = sheet.headerValues;
+  const rows = raw.map((row) => {
+    const o: Record<string, string> = {};
+    for (const h of headers) o[h] = row.get(h) || "";
+    return o;
+  });
+  return { rows, at: Date.now() };
+}
+
+async function getSnapshot(): Promise<Snapshot> {
+  if (snapshot && Date.now() - snapshot.at < TTL_MS) return snapshot;
+  if (inFlight) return inFlight;
+  inFlight = loadSnapshot()
+    .then((s) => { snapshot = s; return s; })
+    .catch((e) => {
+      // 쿼터 초과 등으로 못 읽으면 만료된 캐시라도 내준다 (수업 중단 방지)
+      if (snapshot) {
+        console.warn("시트 조회 실패 — 이전 캐시 사용:", String(e).slice(0, 120));
+        return snapshot;
       }
-      return data;
-    }
-  }
-  return null;
+      throw e;
+    })
+    .finally(() => { inFlight = null; });
+  return inFlight;
+}
+
+/** 문항 목록 캐시를 즉시 무효화한다 (문항 저장·수정 직후) */
+function invalidate() {
+  snapshot = null;
+}
+
+export async function lookupAssessment(code: string) {
+  const { rows } = await getSnapshot();
+  return rows.find((r) => r.settingname === code) ?? null;
 }
 
 // 만들어진 평가가 들어있는 마스터 시트의 웹 주소(공유용 링크).
 export async function getQuestionSheetUrl(): Promise<string> {
   const auth = getAuth();
-  const sheetName = process.env.GOOGLE_SHEET_NAME || "서술형 평가 문항";
-  const { google } = await import("googleapis");
-  const drive = google.drive({ version: "v3", auth });
-  const res = await drive.files.list({
-    q: `name='${sheetName}' and mimeType='application/vnd.google-apps.spreadsheet'`,
-    fields: "files(id, webViewLink)",
-  });
-  const file = res.data.files?.[0];
-  if (!file?.id) throw new Error(`Sheet "${sheetName}" not found`);
-  return file.webViewLink || `https://docs.google.com/spreadsheets/d/${file.id}/edit`;
+  const id = await getFileId(auth);
+  return `https://docs.google.com/spreadsheets/d/${id}/edit`;
 }
 
 export async function isCodeDuplicate(code: string): Promise<boolean> {
-  const sheet = await getQuestionSheet();
-  const rows = await sheet.getRows();
-  return rows.some((row: GoogleSpreadsheetRow) => row.get("settingname") === code);
+  const { rows } = await getSnapshot();
+  return rows.some((r) => r.settingname === code);
 }
 
 export async function saveAssessment(data: Record<string, string>) {
   const sheet = await getQuestionSheet();
   await sheet.addRow(data);
+  invalidate();   // 방금 만든 문항이 바로 조회되도록
 }
 
 /**
@@ -110,6 +147,7 @@ export async function updateAssessmentFields(
     // 시트 쓰기 API 분당 쿼터 회피
     await new Promise((r) => setTimeout(r, 1200));
   }
+  invalidate();   // 수정 내용이 바로 조회되도록
   return result;
 }
 
