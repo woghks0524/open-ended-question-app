@@ -1,12 +1,17 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getOpenAIClient } from "@/lib/openai";
 import { toFile } from "openai";
+import { requireTeacher } from "@/lib/teacher-auth";
 
 // POST(multipart): 교사가 이 평가에만 쓸 추가 자료를 업로드한다.
 // - 단원 라이브러리는 공유/읽기전용이라 복사하지 않는다.
 // - 평가별 전용 벡터스토어(개인 보관함)를 만들어 파일을 올리고, 단원 key로 태그한다.
 //   → 채점 시 [라이브러리, 이 보관함]을 key 필터로 함께 검색해도 이 평가 파일만 잡힌다.
+// 교사만: OpenAI 벡터스토어 생성·파일 적재라 호출마다 비용이 나간다.
 export async function POST(req: NextRequest) {
+  const denied = requireTeacher(req);
+  if (denied) return denied;
+
   try {
     const form = await req.formData();
     const file = form.get("file") as File | null;

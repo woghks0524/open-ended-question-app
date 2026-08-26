@@ -1,7 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import { isCodeDuplicate } from "@/lib/assessments";
+import { requireTeacher } from "@/lib/teacher-auth";
 
 export async function POST(req: NextRequest) {
+  const denied = requireTeacher(req);
+  if (denied) return denied;
+
   try {
     const { code } = await req.json();
 

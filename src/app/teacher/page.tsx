@@ -9,6 +9,7 @@ import Step3Materials from "@/components/teacher/Step3Materials";
 import Step4Questions from "@/components/teacher/Step4Questions";
 import Step5Instructions from "@/components/teacher/Step5Instructions";
 import Step6Review from "@/components/teacher/Step6Review";
+import TeacherGate from "@/components/teacher/TeacherGate";
 
 const STEPS = [
   "평가 코드",
@@ -63,7 +64,7 @@ export default function TeacherPage() {
   }, []);
 
   return (
-    <div>
+    <TeacherGate>
       <h1 className="text-2xl font-bold text-gray-900 mb-1">서술형 평가 설계하기 (교사용)</h1>
       <p className="text-sm text-gray-500 mb-6">
         자동채점과 맞춤형 피드백
@@ -122,6 +123,6 @@ export default function TeacherPage() {
         showNext={step < STEPS.length - 1}
         nextDisabled={(step === 0 && !settingName) || (step === 1 && !info.unitKey)}
       />
-    </div>
+    </TeacherGate>
   );
 }

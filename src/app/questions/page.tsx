@@ -3,6 +3,8 @@
 import { useEffect, useMemo, useState } from "react";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import AlertMessage from "@/components/AlertMessage";
+import TeacherGate from "@/components/teacher/TeacherGate";
+import { teacherFetch } from "@/lib/teacher-client";
 
 interface Row {
   settingname: string;
@@ -34,7 +36,7 @@ export default function QuestionsPage() {
   const [sortKey, setSortKey] = useState<SortKey>("recent");
 
   useEffect(() => {
-    fetch("/api/assessment/list")
+    teacherFetch("/api/assessment/list")
       .then(async (res) => {
         const data = await res.json();
         if (!res.ok) throw new Error(data.error);
@@ -65,7 +67,9 @@ export default function QuestionsPage() {
 
   const questionCount = (r: Row) => [r.question1, r.question2, r.question3].filter(Boolean).length;
 
+  // 문항 목록에는 어떤 평가가 출제됐는지 전부 드러나므로 교사 화면으로 잠근다
   return (
+    <TeacherGate>
     <div>
       <h1 className="text-2xl font-bold text-gray-900 mb-1">문항 목록</h1>
       <p className="text-sm text-gray-500 mb-6">지금까지 만들어진 서술형 평가 문항이에요.</p>
@@ -134,5 +138,6 @@ export default function QuestionsPage() {
         </>
       )}
     </div>
+    </TeacherGate>
   );
 }

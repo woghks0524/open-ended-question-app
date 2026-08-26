@@ -1,8 +1,13 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { listAssessments } from "@/lib/assessments";
+import { requireTeacher } from "@/lib/teacher-auth";
 
 // GET: 교사용 문항 목록 (민감 컬럼 제외 — listAssessments가 걸러서 내려줌)
-export async function GET() {
+// 민감 컬럼을 빼도 어떤 문항이 출제됐는지 전부 보이므로 학생에게 열어둘 목록이 아니다.
+export async function GET(req: NextRequest) {
+  const denied = requireTeacher(req);
+  if (denied) return denied;
+
   try {
     const rows = await listAssessments();
     return NextResponse.json({ rows });

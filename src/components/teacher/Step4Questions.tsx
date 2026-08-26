@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { teacherFetch } from "@/lib/teacher-client";
 import AlertMessage from "@/components/AlertMessage";
 import LoadingSpinner from "@/components/LoadingSpinner";
 
@@ -51,7 +52,7 @@ export default function Step4Questions({ questions, correctAnswers, images, onSa
           formData.append("file", file);
           formData.append("prefix", `q${i + 1}`);
 
-          const res = await fetch("/api/upload", { method: "POST", body: formData });
+          const res = await teacherFetch("/api/upload", { method: "POST", body: formData });
           const data = await res.json();
           if (res.ok) {
             uploadedUrls[i] = data.url;

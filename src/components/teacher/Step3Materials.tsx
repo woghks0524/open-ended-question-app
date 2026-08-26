@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { teacherFetch } from "@/lib/teacher-client";
 import AlertMessage from "@/components/AlertMessage";
 import LoadingSpinner from "@/components/LoadingSpinner";
 
@@ -34,7 +35,7 @@ export default function Step3Materials({
       fd.append("settingName", settingName);
       if (extraVectorStoreId) fd.append("vectorStoreId", extraVectorStoreId);
 
-      const res = await fetch("/api/vectorstore", { method: "POST", body: fd });
+      const res = await teacherFetch("/api/vectorstore", { method: "POST", body: fd });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error);
 

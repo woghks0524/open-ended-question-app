@@ -1,10 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
 import { gradeWithFiles } from "@/lib/openai";
 import { TEACHER_INSTRUCTIONS } from "@/lib/instructions";
+import { requireTeacher } from "@/lib/teacher-auth";
+
+export const maxDuration = 60;
 
 // POST: AI로 평가 내용 확인 (교사용 6단계)
 // Responses API + file_search 사용.
 export async function POST(req: NextRequest) {
+  const denied = requireTeacher(req);
+  if (denied) return denied;
+
   try {
     const { questions, correctAnswers, feedbackInstruction, unitKey, extraVectorStoreId } = await req.json();
     const parts = (unitKey || "").split("|");

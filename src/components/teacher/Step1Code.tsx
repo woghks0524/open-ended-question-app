@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { teacherFetch } from "@/lib/teacher-client";
 import AlertMessage from "@/components/AlertMessage";
 import LoadingSpinner from "@/components/LoadingSpinner";
 
@@ -30,7 +31,7 @@ export default function Step1Code({ settingName, onSettingNameChange, onImport }
 
     setLoading(true);
     try {
-      const res = await fetch("/api/assessment/check-code", {
+      const res = await teacherFetch("/api/assessment/check-code", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ code: input }),
@@ -59,7 +60,7 @@ export default function Step1Code({ settingName, onSettingNameChange, onImport }
 
     setImporting(true);
     try {
-      const res = await fetch(`/api/assessment?code=${encodeURIComponent(importCode.trim())}&full=1`);
+      const res = await teacherFetch(`/api/assessment?code=${encodeURIComponent(importCode.trim())}&full=1`);
       const data = await res.json();
       if (!res.ok) {
         setImportAlert({ type: "error", message: data.error || "해당 코드의 문항을 찾을 수 없습니다." });
