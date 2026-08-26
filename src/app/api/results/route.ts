@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { lookupAssessment, saveResults } from "@/lib/google-sheets";
+import { saveResults } from "@/lib/google-sheets";
+import { lookupAssessment } from "@/lib/assessments";
 
 // POST: 학생 결과 저장
 // 교사 결과시트 URL은 클라이언트에 노출하지 않고, 평가 코드로 서버에서 직접 찾아 저장한다.

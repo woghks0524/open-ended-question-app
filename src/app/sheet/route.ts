@@ -1,13 +1,6 @@
-import { NextResponse } from "next/server";
-import { getQuestionSheetUrl } from "@/lib/google-sheets";
+import { NextRequest, NextResponse } from "next/server";
 
-// GET /sheet → 만들어진 평가 문항 마스터 시트(구글 시트)로 바로 이동
-export async function GET() {
-  try {
-    const url = await getQuestionSheetUrl();
-    return NextResponse.redirect(url);
-  } catch (e) {
-    console.error("Sheet redirect error:", e);
-    return NextResponse.json({ error: "시트 주소를 불러오지 못했습니다." }, { status: 500 });
-  }
+// 문항이 구글 시트 → Supabase로 옮겨가면서 시트 링크 대신 앱 내 문항 목록으로 안내
+export async function GET(req: NextRequest) {
+  return NextResponse.redirect(new URL("/questions", req.url));
 }

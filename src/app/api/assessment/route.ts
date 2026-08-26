@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { lookupAssessment, saveAssessment } from "@/lib/google-sheets";
+import { lookupAssessment, saveAssessment } from "@/lib/assessments";
 
 // 학생 화면에 내려보내면 안 되는 컬럼 (모범답안·채점지침·교사 결과시트 등)
 const SENSITIVE_FIELDS = [

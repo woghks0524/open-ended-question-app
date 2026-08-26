@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { gradeWithFiles } from "@/lib/openai";
 import { STUDENT_INSTRUCTIONS } from "@/lib/instructions";
-import { lookupAssessment } from "@/lib/google-sheets";
+import { lookupAssessment } from "@/lib/assessments";
 import { getPageRange, pageRangeHint, sanitizePageCitations } from "@/lib/page-ranges";
 
 // 피드백에서 채점 결과 추출. instructions가 3문단을 '채점 결과: (척도값)(등급) - …' 형식으로
