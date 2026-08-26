@@ -3,6 +3,7 @@ import { gradeWithFiles } from "@/lib/openai";
 import { STUDENT_INSTRUCTIONS } from "@/lib/instructions";
 import { lookupAssessment } from "@/lib/assessments";
 import { getPageRange, pageRangeHint, sanitizePageCitations } from "@/lib/page-ranges";
+import { answerFormHint } from "@/lib/answer-form";
 
 // 피드백에서 채점 결과 추출. instructions가 3문단을 '채점 결과: (척도값)(등급) - …' 형식으로
 // 고정하므로 그 라인의 첫 값을 척도 그대로 읽는다. 교사가 척도를 바꾼 경우
@@ -10,11 +11,18 @@ import { getPageRange, pageRangeHint, sanitizePageCitations } from "@/lib/page-r
 function extractScore(feedback: string): string | null {
   const line = feedback.match(/채점\s*결과\s*[:：]\s*([^\n]*)/);
   if (!line) return null;
-  // "(4점)(매우 우수) - 이유" / "상(잘함) - 이유" / "도달 - 이유" 등에서 첫 값만
-  const m = line[1].replace(/^[(\s]+/, "").match(/^([^()\-–,·\n]{1,12}?)\s*(?:[()\-–,·]|$)/);
-  const v = m?.[1].trim();
+  // "(4점)(매우 우수) - 이유" / "상(잘함) - 이유" / "도달 - 이유" 등에서 첫 값만.
+  // 모델이 "채점 결과: **4점**(매우 우수)"처럼 굵게 쓰는 경우가 있어(실측 56건 중 2건)
+  // 마크다운 기호를 앞뒤로 걷어낸다. 안 걷으면 시트에 "** 4점"으로 저장된다.
+  const m = line[1].replace(/^[(\s*_`]+/, "").match(/^([^()\-–,·\n]{1,12}?)\s*(?:[()\-–,·*_`]|$)/);
+  const v = m?.[1].replace(/[*_`]/g, "").trim();
   return v || null;
 }
+
+// 문항 3개를 모델에 물어야 해서 기본 함수 제한시간(10~15초)으로는 못 끝낸다.
+// 60은 어느 요금제에서나 허용되는 값이라 이걸 쓴다. 그 안에 들어오도록 아래에서
+// 문항을 동시에 채점한다.
+export const maxDuration = 60;
 
 // POST: AI 채점 및 피드백 생성 (학생용 4단계)
 // Responses API + file_search 사용. 문항마다 독립 호출이라 동시 채점이 섞이지 않음.
@@ -51,19 +59,12 @@ export async function POST(req: NextRequest) {
     // 범위를 알려주고, 출력에서 한 번 더 검증한다.
     const pageRange = getPageRange(unitKey);
 
-    const feedbacks: { feedback: string; score: string | null }[] = [];
-
-    for (let i = 0; i < questions.length; i++) {
-      const q = questions[i];
+    // 문항 3개를 순서대로 부르면 한 문항이 20초씩만 걸려도 60초를 넘긴다. 타임아웃이
+    // 나면 학생은 세 문항 피드백을 통째로 잃는다. 문항끼리 의존이 없으므로 동시에 부른다.
+    const feedbacks = await Promise.all(questions.map(async (q, i) => {
       const a = answers?.[i];
-      if (!q) {
-        feedbacks.push({ feedback: "", score: null });
-        continue;
-      }
-      if (!a) {
-        feedbacks.push({ feedback: "답안이 입력되지 않았습니다.", score: null });
-        continue;
-      }
+      if (!q) return { feedback: "", score: null as string | null };
+      if (!a) return { feedback: "답안이 입력되지 않았습니다.", score: null as string | null };
 
       const input = `${i + 1}번 문항에 대해 학생의 답안을 채점하고,
 ** instructions에 따라 1~5문단 형식으로 피드백을 작성해주세요.
@@ -71,8 +72,11 @@ export async function POST(req: NextRequest) {
 instructions에 따르면 채점 결과에 따라 생성하는 피드백의 내용이 달라지므로 꼭 확인하세요.
 문항, 학생이 입력한 답안, 채점 결과(점수+이유), 피드백 내용(점수에 따라 피드백 형식이 달라짐)을 각각 서로 다른 문단으로 나눠서 읽기 쉽게 보여주세요.
 
-이 평가의 단원: ${unitName || "(미지정)"} — file_search로 이 단원과 관련된 교과서(지도서) 내용을 찾아 그 내용·예시를 근거로 채점하세요.
+[자료 검색 힌트] 이 평가가 속한 단원·과제: ${unitName || "(미지정)"}
+이 줄은 file_search로 관련 교과서(지도서) 내용을 찾기 위한 힌트일 뿐이며, 채점 기준이 아닙니다.
+여기 적힌 과제 전체를 학생이 수행했는지 묻지 마세요. 채점은 아래 '문항'에 적힌 것만을 기준으로 합니다.
 ${pageRangeHint(pageRange)}
+${answerFormHint(correctAnswers?.[i])}
 평가 주의 사항: ${feedbackInstruction || "(없음)"}${
         correctAnswers?.[i]
           ? `
@@ -97,15 +101,15 @@ ${pageRangeHint(pageRange)}
             `쪽수 교정 (문항 ${i + 1}, ${unitKey}): ${fixed.join(",")}쪽 → ${pageRange?.from}~${pageRange?.to}쪽`
           );
         }
-        feedbacks.push({ feedback, score: extractScore(feedback) });
+        return { feedback, score: extractScore(feedback) };
       } catch (err) {
         console.error(`Grade error (문항 ${i + 1}):`, err);
-        feedbacks.push({
+        return {
           feedback: "이 문항은 채점 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.",
-          score: null,
-        });
+          score: null as string | null,
+        };
       }
-    }
+    }));
 
     return NextResponse.json({ feedbacks });
   } catch (e) {
