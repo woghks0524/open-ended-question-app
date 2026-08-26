@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { teacherFetch } from "@/lib/teacher-client";
 import AlertMessage from "@/components/AlertMessage";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import { BasicInfo } from "@/components/teacher/Step2BasicInfo";
@@ -32,7 +33,19 @@ export default function Step6Review({
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
   const [localSheetUrl, setLocalSheetUrl] = useState(sheetUrl);
-  const [alert, setAlert] = useState<{ type: "success" | "error"; message: string } | null>(null);
+  const [alert, setAlert] = useState<{ type: "success" | "error" | "warning"; message: string } | null>(null);
+  const [missingConfirmed, setMissingConfirmed] = useState(false);
+
+  // 모범답안이 비어 있는 문항 번호.
+  //
+  // 채점 기준이 모범답안에 걸려 있다. 모범답안이 있으면 "이 문항의 답은 낱말인가
+  // 문장인가"를 코드가 정해 늘 같은 기준으로 채점하지만, 비어 있으면 그 판단이
+  // 모델 몫으로 넘어가 채점할 때마다 흔들린다. 같은 답을 쓴 두 학생이 다른 점수를
+  // 받을 수 있다는 뜻이라, 저장 전에 알린다. 다만 막지는 않는다 —
+  // "뒷이야기를 상상해 써보세요" 같은 창작 문항은 정답이 없는 것이 옳다.
+  const missingAnswers = questions
+    .map((q, i) => (q.trim() && !(correctAnswers[i] || "").trim() ? i + 1 : 0))
+    .filter(Boolean);
 
   const handleVerify = async () => {
     setLoading(true);
@@ -40,7 +53,7 @@ export default function Step6Review({
     setVerifyResult("");
 
     try {
-      const res = await fetch("/api/assessment/verify", {
+      const res = await teacherFetch("/api/assessment/verify", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -68,13 +81,23 @@ export default function Step6Review({
       return;
     }
 
+    // 한 번은 알리고, 그래도 저장하겠다고 하면 그대로 진행한다
+    if (missingAnswers.length && !missingConfirmed) {
+      setMissingConfirmed(true);
+      setAlert({
+        type: "warning",
+        message: `${missingAnswers.join("·")}번 문항에 모범답안이 비어 있습니다. 모범답안은 채점의 기준이라, 없으면 그 문항의 채점 결과가 학생마다 조금씩 달라질 수 있습니다. 4단계에서 채워주시거나, 정답이 정해지지 않는 문항(상상하여 쓰기 등)이라면 그대로 저장하셔도 됩니다. 저장하려면 한 번 더 눌러주세요.`,
+      });
+      return;
+    }
+
     setSaving(true);
     setAlert(null);
     onSheetUrlChange(localSheetUrl);
 
     try {
       const now = new Date().toLocaleString("ko-KR", { timeZone: "Asia/Seoul" });
-      const res = await fetch("/api/assessment", {
+      const res = await teacherFetch("/api/assessment", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -193,12 +216,25 @@ export default function Step6Review({
 
         <hr className="border-gray-200" />
 
+        {missingAnswers.length > 0 && (
+          <div className="p-3 rounded-lg border bg-yellow-50 border-yellow-200 text-yellow-800 text-sm">
+            <strong>{missingAnswers.join("·")}번 문항에 모범답안이 없습니다.</strong>
+            <br />
+            모범답안은 채점의 기준이 됩니다. 비워두면 그 문항은 채점 결과가 학생마다 조금씩
+            달라질 수 있습니다. 4단계에서 채워주시는 편이 좋습니다.
+            <br />
+            <span className="text-yellow-700">
+              다만 &lsquo;상상하여 뒷이야기 쓰기&rsquo;처럼 정답이 정해지지 않는 문항이라면 비워두는 것이 맞습니다.
+            </span>
+          </div>
+        )}
+
         <button
           onClick={handleSave}
           disabled={saving}
           className="px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 disabled:bg-gray-300 transition-colors text-sm font-medium"
         >
-          서술형 평가 저장
+          {missingAnswers.length > 0 && missingConfirmed ? "모범답안 없이 저장" : "서술형 평가 저장"}
         </button>
         {saving && <LoadingSpinner message="저장 중..." />}
         {alert && <AlertMessage type={alert.type} message={alert.message} />}
