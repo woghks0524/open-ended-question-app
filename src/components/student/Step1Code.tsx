@@ -3,6 +3,7 @@
 import { useState } from "react";
 import AlertMessage from "@/components/AlertMessage";
 import LoadingSpinner from "@/components/LoadingSpinner";
+import { useCtrlEnter } from "@/lib/useShortcuts";
 
 interface AssessmentData {
   settingname: string;
@@ -28,6 +29,10 @@ export default function Step1Code({ onLoaded, loaded }: Props) {
   const [code, setCode] = useState("");
   const [loading, setLoading] = useState(false);
   const [alert, setAlert] = useState<{ type: "success" | "error"; message: string } | null>(null);
+
+  useCtrlEnter(() => {
+    if (!loading && !loaded) handleLookup();
+  });
 
   const handleLookup = async () => {
     if (!code.trim()) {

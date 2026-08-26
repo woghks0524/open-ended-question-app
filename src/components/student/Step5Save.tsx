@@ -3,6 +3,7 @@
 import { useState } from "react";
 import AlertMessage from "@/components/AlertMessage";
 import LoadingSpinner from "@/components/LoadingSpinner";
+import { useCtrlEnter } from "@/lib/useShortcuts";
 
 interface FeedbackItem {
   feedback: string;
@@ -32,6 +33,10 @@ export default function Step5Save({
 }: Props) {
   const [loading, setLoading] = useState(false);
   const [alert, setAlert] = useState<{ type: "success" | "error"; message: string } | null>(null);
+
+  useCtrlEnter(() => {
+    if (!loading) handleSave();
+  });
 
   // 피드백에서 3번째 문단 이후만 추출 (기존 로직 재현)
   const getPartialFeedback = (text: string) => {

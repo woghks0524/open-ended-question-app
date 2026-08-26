@@ -3,6 +3,7 @@
 import { useState } from "react";
 import AlertMessage from "@/components/AlertMessage";
 import LoadingSpinner from "@/components/LoadingSpinner";
+import { useCtrlEnter } from "@/lib/useShortcuts";
 
 interface FeedbackItem {
   feedback: string;
@@ -27,6 +28,10 @@ export default function Step4Feedback({
   const [loading, setLoading] = useState(false);
   const [activeTab, setActiveTab] = useState(0);
   const [alert, setAlert] = useState<{ type: "error"; message: string } | null>(null);
+
+  useCtrlEnter(() => {
+    if (!loading && feedbacks.length === 0) handleGrade();
+  });
 
   const handleGrade = async () => {
     setLoading(true);

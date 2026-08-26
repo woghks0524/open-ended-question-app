@@ -4,6 +4,7 @@ import { useState } from "react";
 import AlertMessage from "@/components/AlertMessage";
 import QuestionText from "@/components/QuestionText";
 import ZoomableImage from "@/components/ZoomableImage";
+import { useCtrlEnter } from "@/lib/useShortcuts";
 
 interface Props {
   questions: string[];
@@ -16,6 +17,8 @@ export default function Step3Answers({ questions, images, answers, onSave }: Pro
   const [localAnswers, setLocalAnswers] = useState(answers);
   const [activeTab, setActiveTab] = useState(0);
   const [alert, setAlert] = useState<{ type: "success"; message: string } | null>(null);
+
+  useCtrlEnter(() => handleSave(activeTab));
 
   const updateAnswer = (idx: number, val: string) => {
     const next = [...localAnswers];

@@ -8,6 +8,7 @@ import Step2StudentInfo from "@/components/student/Step2StudentInfo";
 import Step3Answers from "@/components/student/Step3Answers";
 import Step4Feedback from "@/components/student/Step4Feedback";
 import Step5Save from "@/components/student/Step5Save";
+import { useAltEnter } from "@/lib/useShortcuts";
 
 const STEPS = ["평가 코드", "학생 정보", "답안 작성", "채점/피드백", "결과 저장"];
 
@@ -37,6 +38,11 @@ export default function StudentPage() {
 
   const next = () => setStep((s) => Math.min(s + 1, STEPS.length - 1));
   const prev = () => setStep((s) => Math.max(s - 1, 0));
+
+  useAltEnter(() => {
+    if (step === 0 && !assessmentLoaded) return;
+    if (step < STEPS.length - 1) next();
+  });
 
   const handleAssessmentLoaded = useCallback((data: Record<string, string>) => {
     setSettingName(data.settingname || "");
@@ -112,6 +118,11 @@ export default function StudentPage() {
         showNext={step < STEPS.length - 1}
         nextDisabled={step === 0 && !assessmentLoaded}
       />
+
+      <p className="mt-3 text-xs text-gray-400">
+        단축키: <kbd className="px-1 py-0.5 bg-gray-100 border border-gray-300 rounded">Ctrl+Enter</kbd> 저장/확인
+        · <kbd className="px-1 py-0.5 bg-gray-100 border border-gray-300 rounded">Alt+Enter</kbd> 다음 단계
+      </p>
     </div>
   );
 }

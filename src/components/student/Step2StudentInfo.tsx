@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import AlertMessage from "@/components/AlertMessage";
+import { useCtrlEnter } from "@/lib/useShortcuts";
 
 interface StudentInfo {
   grade: string;
@@ -21,6 +22,8 @@ export default function Step2StudentInfo({ info, onSave }: Props) {
   const [studentNumber, setStudentNumber] = useState(info.studentNumber);
   const [studentName, setStudentName] = useState(info.studentName);
   const [alert, setAlert] = useState<{ type: "success" | "warning"; message: string } | null>(null);
+
+  useCtrlEnter(() => handleSave());
 
   const handleSave = () => {
     if (!/^\d+$/.test(grade)) {
