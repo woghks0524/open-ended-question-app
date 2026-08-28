@@ -19,6 +19,41 @@ function extractScore(feedback: string): string | null {
   return v || null;
 }
 
+// ── 모범답안 유출 교정 ─────────────────────────────────────────────
+// 낮은 점수 피드백이 모범답안의 결론을 그대로 옮기는 일이, 지침을 두 번 조여도
+// 남았다(실측: 1점 학생에게 "부피는 늘어나고 무게는 변하지 않는다"를 통째로 설명).
+// 쪽수 교정과 같은 방식으로 출력 단에서 잡는다 — 유출이 감지되면 그 부분만
+// 개념어 힌트로 바꾸는 교정 호출을 한 번 더 한다. 감지된 경우에만 돌므로
+// 평상시 비용·지연은 없다.
+const normText = (t: string) => (t || "").replace(/\s+/g, "");
+
+/** 모범답안의 연속 조각(문항에는 없는)이 피드백에 그대로 있는가 */
+function hasAnswerLeak(feedback: string, modelAnswer: string, question: string): boolean {
+  const f = normText(feedback), a = normText(modelAnswer), q = normText(question);
+  if (a.length < 10) return false;          // 아주 짧은 답은 어휘가 겹칠 수밖에 없다
+  const win = Math.min(14, a.length);
+  for (let i = 0; i + win <= a.length; i += 5) {
+    const c = a.slice(i, i + win);
+    if (f.includes(c) && !q.includes(c)) return true;
+  }
+  return false;
+}
+
+/** 최고 수준이 아님이 확실한 점수인가. 최고 수준(4점 등)은 모범답안 공개가 규칙이고,
+ *  교사 지정 척도의 낯선 값은 판별할 수 없으므로 건드리지 않는다. */
+function isKnownNonTop(score: string | null): boolean {
+  if (!score) return false;
+  if (/^[1-3](\D|$)/.test(score)) return true;   // 1점~3점 (5점 척도의 4점은 애매해서 제외)
+  return /노력|보통|미도달|도움|^하$|^중$/.test(score);
+}
+
+const LEAK_REPAIR_INSTRUCTIONS = `당신은 초등 서술형 피드백의 교정자입니다.
+주어진 피드백에서 '모범답안'의 결론·문장·핵심 진술을 그대로 알려주는 부분만 고칩니다.
+- 결론을 말하는 문장은 삭제하거나, 관련 개념어의 이름과 유도 질문으로 바꿉니다.
+  (예: "부피는 늘어납니다" → "'부피'가 어떻게 되는지 교과서에서 찾아보세요")
+- 그 외 모든 것은 그대로 유지합니다: 문단 구조(5문단), '채점 결과:' 줄, 어투, 쪽수 안내, 칭찬.
+- 교정된 피드백 전문만 출력합니다. 설명을 덧붙이지 않습니다.`;
+
 // 문항 3개를 모델에 물어야 해서 기본 함수 제한시간(10~15초)으로는 못 끝낸다.
 // 60은 어느 요금제에서나 허용되는 값이라 이걸 쓴다. 그 안에 들어오도록 아래에서
 // 문항을 동시에 채점한다.
@@ -95,12 +130,33 @@ ${answerFormHint(correctAnswers?.[i])}
           bookKey,
         });
         // 모델이 프롬프트의 쪽 범위를 어기는 경우가 있어 출력에서 한 번 더 거른다.
-        const { text: feedback, fixed } = sanitizePageCitations(raw, pageRange);
-        if (fixed.length) {
+        const sanitized = sanitizePageCitations(raw, pageRange);
+        let feedback = sanitized.text;
+        if (sanitized.fixed.length) {
           console.warn(
-            `쪽수 교정 (문항 ${i + 1}, ${unitKey}): ${fixed.join(",")}쪽 → ${pageRange?.from}~${pageRange?.to}쪽`
+            `쪽수 교정 (문항 ${i + 1}, ${unitKey}): ${sanitized.fixed.join(",")}쪽 → ${pageRange?.from}~${pageRange?.to}쪽`
           );
         }
+
+        // 낮은 점수인데 모범답안이 새어 있으면 그 부분만 교정한다 (위 hasAnswerLeak 주석 참고)
+        const ca = correctAnswers?.[i] || "";
+        if (ca && isKnownNonTop(extractScore(feedback)) && hasAnswerLeak(feedback, ca, q)) {
+          try {
+            const repaired = await gradeWithFiles({
+              instructions: LEAK_REPAIR_INSTRUCTIONS,
+              input: `모범답안: ${ca}\n\n피드백:\n${feedback}`,
+              vectorStoreIds: [],   // 교정에는 검색이 필요 없다
+            });
+            // 교정본이 형식을 지키고 유출이 실제로 사라졌을 때만 채택
+            if (/채점\s*결과/.test(repaired) && !hasAnswerLeak(repaired, ca, q)) {
+              console.warn(`모범답안 유출 교정 (문항 ${i + 1}, ${code})`);
+              feedback = repaired;
+            }
+          } catch {
+            /* 교정 실패면 원본 유지 — 채점 자체를 잃는 것보다 낫다 */
+          }
+        }
+
         return { feedback, score: extractScore(feedback) };
       } catch (err) {
         console.error(`Grade error (문항 ${i + 1}):`, err);
