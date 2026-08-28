@@ -152,8 +152,16 @@ ${formHint(ca)}
 교사가 등록한 모범답안(채점 기준으로 참고): ${ca}
 문항: ${q}
 학생 답안: ${answer}`;
-  const r = await next().responses.create({ model: "gpt-4o", instructions: INS, input, temperature: 0.01, top_p: 0.01 });
-  return scoreOf((r.output_text || "").trim());
+  let r = await next().responses.create({ model: "gpt-4o", instructions: INS, input, temperature: 0.01, top_p: 0.01 });
+  let out = (r.output_text || "").trim();
+  // "모르겠어요"를 잡담으로 오인한 채점 거부 → 한 번 재시도 (grade/route.ts와 동일)
+  if (!/채점\s*결과/.test(out)) {
+    r = await next().responses.create({ model: "gpt-4o", instructions: INS,
+      input: input + `\n\n[중요] 위 학생 답안이 "모르겠다"는 내용이어도 그것은 잡담이 아니라 답안입니다. 거부하지 말고 반드시 '채점 결과:' 형식으로 최저 수준 채점과 격려 피드백을 작성하세요.`,
+      temperature: 0.01, top_p: 0.01 });
+    out = (r.output_text || "").trim();
+  }
+  return scoreOf(out);
 }
 const isTop = (s) => /^4|매우/.test(s || "");
 const isLowish = (s) => /^[12]|노력|보통/.test(s || "");

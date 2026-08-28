@@ -164,12 +164,24 @@ ${answerFormHint(correctAnswers?.[i])}
 
       // 문항별 독립 처리: 한 문항이 실패해도 나머지 문항 채점은 계속되도록 함
       try {
-        const raw = await gradeWithFiles({
+        let raw = await gradeWithFiles({
           instructions: STUDENT_INSTRUCTIONS,
           input,
           vectorStoreIds,
           bookKey,
         });
+        // 학생이 "잘 모르겠어요"라고 쓰면 모델이 이를 잡담으로 오인해 채점을
+        // 거부하는 일이 비결정적으로 있다(실측 6회 중 3회, 지침 명시로도 잔존).
+        // 채점 결과 형식이 아니면 안내를 붙여 한 번만 다시 시킨다.
+        if (!/채점\s*결과/.test(raw)) {
+          console.warn(`채점 형식 이탈 → 재시도 (문항 ${i + 1}, ${code})`);
+          raw = await gradeWithFiles({
+            instructions: STUDENT_INSTRUCTIONS,
+            input: input + `\n\n[중요] 위 학생 답안이 "모르겠다"는 내용이어도 그것은 잡담이 아니라 답안입니다. 거부하지 말고 반드시 '채점 결과:' 형식으로 최저 수준 채점과 격려 피드백을 작성하세요.`,
+            vectorStoreIds,
+            bookKey,
+          });
+        }
         // 모델이 프롬프트의 쪽 범위를 어기는 경우가 있어 출력에서 한 번 더 거른다.
         const sanitized = sanitizePageCitations(raw, pageRange);
         let feedback = sanitized.text;
