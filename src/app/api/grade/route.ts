@@ -28,15 +28,22 @@ function extractScore(feedback: string): string | null {
 const normText = (t: string) => (t || "").replace(/\s+/g, "");
 
 /** 모범답안의 연속 조각(문항에는 없는)이 피드백에 그대로 있는가 */
-function hasAnswerLeak(feedback: string, modelAnswer: string, question: string): boolean {
-  const f = normText(feedback), a = normText(modelAnswer), q = normText(question);
+function hasAnswerLeak(feedback: string, modelAnswer: string, question: string, studentAnswer: string): boolean {
+  // 1·2문단은 규칙상 문항·학생 답안을 원문 그대로 되풀이하므로 검사에서 뺀다.
+  // 안 빼면 학생이 정답에 가까운 답을 썼을 때 자기 답의 echo가 유출로 오인된다
+  // (실측: 오인 7건 중 6건이 이 경우 — 교정기가 2문단을 올바르게 안 지우니
+  // 매번 "교정 실패"가 되어 헛 호출만 늘었다).
+  const cut = feedback.search(/채점\s*결과/);
+  const body = cut >= 0 ? feedback.slice(cut) : feedback;
+  const f = normText(body), a = normText(modelAnswer), q = normText(question), s = normText(studentAnswer);
   if (a.length < 10) return false;          // 아주 짧은 답은 어휘가 겹칠 수밖에 없다
   // 창을 12자로 잡는 이유: 모델이 어미만 바꿔 옮기는 경우("변하지 않습니다"→
   // "변하지 않는다는")가 실측에서 최장 일치 13자로 나와, 14자 창은 1자 차이로 놓쳤다.
   const win = Math.min(12, a.length);
   for (let i = 0; i + win <= a.length; i += 4) {
     const c = a.slice(i, i + win);
-    if (f.includes(c) && !q.includes(c)) return true;
+    // 문항이나 학생 자신의 답에 이미 있는 구절은 유출이 아니다
+    if (f.includes(c) && !q.includes(c) && !s.includes(c)) return true;
   }
   return false;
 }
@@ -146,7 +153,7 @@ ${answerFormHint(correctAnswers?.[i])}
         const teacherWantsReveal =
           /(모범\s*답안|정답)[^.\n]{0,20}(보여|공개|알려|제시|노출)/.test(feedbackInstruction || "");
         const ca = correctAnswers?.[i] || "";
-        if (ca && !teacherWantsReveal && isKnownNonTop(extractScore(feedback)) && hasAnswerLeak(feedback, ca, q)) {
+        if (ca && !teacherWantsReveal && isKnownNonTop(extractScore(feedback)) && hasAnswerLeak(feedback, ca, q, a)) {
           try {
             const repaired = await gradeWithFiles({
               instructions: LEAK_REPAIR_INSTRUCTIONS,
@@ -154,7 +161,7 @@ ${answerFormHint(correctAnswers?.[i])}
               vectorStoreIds: [],   // 교정에는 검색이 필요 없다
             });
             // 교정본이 형식을 지키고 유출이 실제로 사라졌을 때만 채택
-            if (/채점\s*결과/.test(repaired) && !hasAnswerLeak(repaired, ca, q)) {
+            if (/채점\s*결과/.test(repaired) && !hasAnswerLeak(repaired, ca, q, a)) {
               console.warn(`모범답안 유출 교정 (문항 ${i + 1}, ${code})`);
               feedback = repaired;
             }
