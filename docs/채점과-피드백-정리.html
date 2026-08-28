@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>AI 서술형 평가 도우미 — 채점·피드백 체계 정리</title>
+<style>
+  @page { size: A4; margin: 18mm 16mm; }
+  * { box-sizing: border-box; }
+  body { font-family: "Apple SD Gothic Neo", "Noto Sans KR", sans-serif; color: #1a1a1a;
+         font-size: 10.5pt; line-height: 1.65; margin: 0; }
+  h1 { font-size: 19pt; margin: 0 0 2px; }
+  .sub { color: #666; font-size: 9.5pt; margin-bottom: 18px; }
+  h2 { font-size: 13.5pt; margin: 22px 0 8px; padding: 6px 10px; background: #eef3fb;
+       border-left: 4px solid #3b6fc4; border-radius: 3px; page-break-after: avoid; }
+  h3 { font-size: 11pt; margin: 14px 0 4px; page-break-after: avoid; }
+  p { margin: 5px 0; }
+  table { border-collapse: collapse; width: 100%; margin: 8px 0; font-size: 9.5pt; page-break-inside: avoid; }
+  th, td { border: 1px solid #c9d4e4; padding: 5px 8px; text-align: left; vertical-align: top; }
+  th { background: #f2f6fc; }
+  .flow { background: #f7f9fc; border: 1px solid #dde5f0; border-radius: 6px; padding: 10px 14px; margin: 8px 0; }
+  .flow ol { margin: 4px 0 4px 18px; padding: 0; }
+  .ex { background: #fbf8f1; border: 1px solid #e7dcc2; border-radius: 6px; padding: 8px 12px;
+        margin: 8px 0; font-size: 9.5pt; page-break-inside: avoid; }
+  .ex b.tag { color: #8a6d1a; }
+  .warn { background: #fdf3f3; border: 1px solid #eccaca; border-radius: 6px; padding: 8px 12px; margin: 8px 0; font-size: 9.5pt; }
+  .ok { color: #1d7a3a; font-weight: 600; }
+  .no { color: #b03030; font-weight: 600; }
+  code { font-family: "SF Mono", Menlo, monospace; font-size: 8.8pt; background: #f0f2f5; padding: 1px 4px; border-radius: 3px; }
+  .small { font-size: 9pt; color: #555; }
+  .pagebreak { page-break-before: always; }
+  ul { margin: 4px 0 6px 20px; padding: 0; }
+  li { margin: 2px 0; }
+</style>
+</head>
+<body>
+
+<h1>AI 서술형 평가 도우미 — 채점·피드백 체계 정리</h1>
+<div class="sub">test4school.vercel.app · 2026년 8월 28일 기준 · 본문의 "실측"은 모두 실제 배포 서버에서 채점해 확인한 결과입니다</div>
+
+<h2>1. 채점이 이루어지는 순서</h2>
+<div class="flow">
+<ol>
+<li>학생이 평가 코드와 답안을 제출한다. <b>학생 브라우저에는 문항·이미지만 내려가고</b> 모범답안·채점지침·교사 시트 주소는 서버만 안다.</li>
+<li>서버가 Supabase에서 문항·모범답안·평가 주의 사항·단원 정보를 직접 조회한다.</li>
+<li>문항 1~3번을 <b>동시에</b> 채점한다 (GPT-4o + 지도서 벡터스토어 file search). 문항별 독립 호출이라 한 문항이 실패해도 나머지는 계속된다.</li>
+<li>생성된 피드백이 검증 단계를 통과한다: 쪽수 범위 검사 → 모범답안 유출 검사(필요 시 교정) → 점수 추출.</li>
+<li>학생 화면에 피드백이 표시되고, 5단계에서 교사 개인 결과 시트에 저장된다.</li>
+</ol>
+</div>
+
+<h2>2. 만점의 기준 — 무엇과 비교해 채점하는가</h2>
+<h3>2-1. 교사가 모범답안을 등록한 경우</h3>
+<p><b>교사의 모범답안이 곧 만점의 정의다.</b> 모범답안과 같은 내용을 같은 형태로 답하면 4점이며, AI가 모범답안에 없는 요소(추가 설명·이유·예시)를 스스로 요구 조건으로 만들어 감점하는 것은 금지된다.</p>
+<p>답안의 <b>형태</b>(낱말 / 낱말 나열 / 짧은 구 / 문장 서술)는 AI가 아니라 <b>서버 코드가 모범답안을 보고 판정</b>해 프롬프트에 넣는다. AI에게 맡기면 채점할 때마다 판단이 달라져 같은 답을 쓴 두 학생이 다른 점수를 받을 수 있기 때문이다.</p>
+<div class="ex"><b class="tag">실측 사례</b> — 모범답안이 "경복궁"(낱말)인 문항에서, 예전 척도는 "완성된 문장이 아니다"라며 정답에 2점을 줬다. 형태 판정 도입 후 같은 답이 <span class="ok">4점</span>. 반대로 낱말·나열 문항이 아닌 곳의 척도는 그대로라, 서술형 대조군 점수는 변하지 않았다.</div>
+
+<h3>2-2. 모범답안이 없는 경우</h3>
+<p>AI가 <b>채점 전에 file search로 교과서(지도서) 내용을 찾아 스스로 모범답안을 세우고</b>, 그것을 기준으로 같은 방식으로 채점한다. 스스로 세운 모범답안도 교사 등록본과 동일하게 취급한다(낮은 점수에는 노출 금지). 이 동작은 예전 어시스턴트 시절의 원래 설계로, 마이그레이션 때 유실됐다가 복원됐다.</p>
+<div class="ex"><b class="tag">실측 사례</b> — 모범답안 없는 역사 문항(김상헌 vs 최명길)에서 좋은답 4점 / 부분 3점 / 오답 2점의 정확한 계단이 나왔고, "김상헌은 전쟁을 피하고 싶어했다"는 <b>사실 오류를 벡터스토어 근거만으로 잡아</b> 감점했다. 같은 답안을 4번 반복 채점해 4번 모두 같은 점수(일관성 확인).</div>
+<p>생각·느낌·상상을 요구하는 문항(정답이 하나로 정해지지 않는 문항)은 ① 문항 요구와의 관련성 ② 자료 내용과의 관련성 ③ 구체성으로 판단한다. 상상이라는 이유로 무조건 높은 점수를 주지 않는다.</p>
+
+<h2>3. 채점 척도</h2>
+<table>
+<tr><th style="width:22%">기본 척도 (1~4점)</th><th>기준</th></tr>
+<tr><td><b>4점</b> 매우 우수</td><td>요구 내용을 모두 포함하고 문항이 요구하는 형태를 갖춤. <b>요소가 하나라도 빠지면 나머지가 아무리 좋아도 4점 불가</b> (3점 이하).</td></tr>
+<tr><td><b>3점</b> 우수</td><td>요구 내용 중 일부가 빠졌으나 형태는 갖춤.</td></tr>
+<tr><td><b>2점</b> 보통</td><td>요구 내용의 일부만 담김. 서술 요구 문항에 핵심 단어만 나열. (낱말·나열이 정답인 문항에는 이 사유를 적용하지 않음)</td></tr>
+<tr><td><b>1점</b> 노력 요함</td><td>요구 내용이 대부분 빠짐.</td></tr>
+</table>
+<p>교사가 평가 주의 사항에서 <b>다른 척도를 지정하면 반드시 그 척도로 채점</b>한다 (상/중/하, 5점, 도달/미도달 등). 이때도 "채점 결과:" 줄의 형식은 유지돼 점수가 정상적으로 시트에 저장된다.</p>
+
+<h2>4. 피드백 — 항상 5개 문단</h2>
+<table>
+<tr><th style="width:14%">문단</th><th>내용</th></tr>
+<tr><td>1문단</td><td>문항을 그대로 보여줌</td></tr>
+<tr><td>2문단</td><td>학생이 쓴 답안을 그대로 보여줌</td></tr>
+<tr><td>3문단</td><td>"채점 결과: (척도값)(등급) - (이유)" — 이 줄에서 점수를 추출해 시트에 저장</td></tr>
+<tr><td>4문단</td><td><b>점수 수준에 따라 달라짐</b> (아래 표)</td></tr>
+<tr><td>5문단</td><td>칭찬과 격려, 선생님께 질문하도록 안내 (문항마다 다른 문장)</td></tr>
+</table>
+
+<h3>4문단의 수준별 규칙 — "AI가 학생의 사고를 대신하지 않는다"</h3>
+<table>
+<tr><th style="width:18%">수준</th><th>제공하는 것</th><th>금지되는 것</th></tr>
+<tr><td><b>1~2점</b><br>(낮음)</td><td>관련 <b>개념어·소재의 이름만</b> 제시 (예: "'부피', '상태 변화'라는 말을 찾아보세요") + 공부할 교과서 쪽수</td><td>모범답안 문장 전체, <b>정답이 되는 결론 진술 자체</b> ("부피는 늘어난다" 등)</td></tr>
+<tr><td><b>3점</b><br>(중간)</td><td>빠진 내용을 스스로 생각하게 하는 <b>유도 질문</b> (자기 말로 새로 쓴 질문)</td><td>모범답안의 문장·표현을 그대로 인용하기</td></tr>
+<tr><td><b>4점</b><br>(최고)</td><td><b>모범답안 전체 공개</b> + 자기 답안과 비교·점검 권유</td><td>—</td></tr>
+</table>
+<p class="small">교사 지정 척도에도 같은 원칙이 적용된다 — 예: 도달/미도달 척도의 '미도달'은 낮은 수준 규칙을 따른다.</p>
+<div class="ex"><b class="tag">실측 사례 (1점 학생 "몰라요 어려워요")</b><br>
+<span class="no">고치기 전</span>: "물이 얼면 <u>부피는 늘어나고 무게는 변하지 않는다</u>는 것을 이해하는 것이 중요합니다…" ← 정답을 통째로 알려줌<br>
+<span class="ok">고친 후</span>: "'부피', '무게', '상태 변화'라는 단어를 교과서에서 찾아보세요. 교과서 44쪽을 공부해 보세요." ← 개념어와 쪽수만</div>
+
+<h3>유출 방지 이중 장치</h3>
+<p>지침만으로는 AI가 가끔 결론을 흘리기 때문에, <b>서버 코드가 출력을 한 번 더 검사</b>한다: 낮은 점수인데 모범답안의 연속 조각(문항에는 없는 12자 이상)이 피드백에 있으면, 그 부분만 개념어 힌트로 바꾸는 교정 호출이 자동으로 돈다. 유출이 감지된 경우에만 돌므로 평소 비용·지연은 없다. AI가 어미만 바꿔 옮기는 수법("않습니다"→"않는다는")까지 잡도록 실측으로 조정했다.</p>
+
+<h2 class="pagebreak">5. 교사의 '평가 주의 사항' = 최상위 설정</h2>
+<p>문항 설계 5단계에서 입력하는 평가 주의 사항은 <b>기본 규칙보다 우선</b>한다. 네 방향 모두 실제 배포 서버에서 실측으로 확인했다.</p>
+<table>
+<tr><th style="width:26%">교사가 지정하면</th><th style="width:12%">실측</th><th>확인된 동작</th></tr>
+<tr><td>채점 척도 ("도달/미도달 2단계로만")</td><td class="ok">✓</td><td>"채점 결과: 미도달"로 채점·저장됨</td></tr>
+<tr><td>어투 ("전부 반말로, 친구처럼")</td><td class="ok">✓</td><td>"…생각해볼래? 선생님께 꼭 물어봐!" — 전체 반말</td></tr>
+<tr><td>언어 ("피드백은 영어로")</td><td class="ok">✓</td><td>4~5문단 영어 작성, 점수 줄은 한국어 형식 유지 → 점수 추출 정상</td></tr>
+<tr><td>피드백 방식 ("모든 점수에서 모범답안을 보여주세요")</td><td class="ok">✓</td><td>1점 학생에게도 모범답안 공개. <b>유출 방지 장치도 이 지정을 인식해 개입하지 않음</b></td></tr>
+</table>
+
+<h2>6. 교과서 쪽수 안내</h2>
+<p>문제였던 것: AI가 쪽수를 지어냈다 (지도서 자체 쪽번호를 교과서 쪽으로 인용). 학생이 실제로 교과서를 펼치므로 틀린 쪽수는 안내하지 않는 것만 못하다.</p>
+<ul>
+<li>지도서 원문에서 실제 교과서 쪽수 앵커를 추출해 (쪽수가 안 적힌 페이지는 앞뒤 페이지로 추정) <b>단원별 쪽 범위 표 422단원</b>을 구축. 검증 결과 중앙오차 1쪽.</li>
+<li>채점 프롬프트에 그 범위를 알려주고, <b>출력에서 범위 밖 쪽수를 한 번 더 걸러낸다</b>.</li>
+<li>표기는 "교과서 ○쪽"만 — 내부 파일명은 절대 노출하지 않는다.</li>
+<li><b>생각교실 문항은 쪽수가 나가지 않는다</b> (설계 의도: 대응하는 실물 교과서로 공부할 수 있는 문항이 아니므로). 대신 "이 단원의 ○○ 부분"처럼 내용으로 안내한다.</li>
+</ul>
+<div class="ex"><b class="tag">실측</b> — '물의 상태 변화' 단원(실제 범위 35~57쪽) 채점 3회에서 인용된 쪽수 56쪽 / 44~45쪽 / 44쪽, 전부 범위 안. 파일명 노출 없음.</div>
+
+<h2>7. 문항 유형 2종의 차이</h2>
+<table>
+<tr><th style="width:24%"></th><th>생각을 키우는 교실 (212문항)</th><th>교사 제작 문항 (43건)</th></tr>
+<tr><td>출처</td><td>서울시교육청 PDF를 변환 (3~6학년, 코드 예: 생각교실4사06)</td><td>교사가 6단계 흐름으로 직접 등록</td></tr>
+<tr><td>교과서 벡터스토어</td><td>매칭 안 됨 → <b>루브릭(주의 사항) 기반 채점</b>, 쪽수 안내 없음</td><td>매칭됨 → 교과서 근거 채점 + 쪽수 안내</td></tr>
+<tr><td>모범답안</td><td>사실상 전부 있음 (494자리 중 493)</td><td><b>대부분 없음</b> (43건 중 42건) → AI가 생성해 채점하는 경로를 탄다</td></tr>
+<tr><td>알려진 데이터 이슈</td><td>모범답안이 문항 요구를 다 못 담은 자리 32건 (채점에는 영향 없음이 실측으로 확인됨 — 참고자료 품질 문제)</td><td>—</td></tr>
+</table>
+
+<h2>8. 품질 측정 결과 (2026-08-26~28)</h2>
+<ul>
+<li><b>천장 검사</b>: 모범답안을 그대로 낸 학생이 만점을 받는가 — 생각교실 493자리 전수에서 <b>455건(92.3%) 만점</b>. (수정 전 표본은 6건 중 2건이었다. 만점이 안 나온 38건 중 6건은 이미 수리된 데이터로 재확인 시 만점 → 잔여 32건은 모범답안 쪽 결함)</li>
+<li><b>수준 변별</b>: 완벽/부분/오답 3수준 답안 투입 — 완벽→만점 12/12, 오답→낮은 점수 정상. 부분 답안이 4점을 받는 관대함이 12자리 중 4건 (개선 여지).</li>
+<li><b>일관성</b>: 같은 답안 4회 반복 채점 → 4회 모두 동일 점수.</li>
+<li><b>재현성</b>: 같은 자리 2회 채점 56건 중 53건 동일 판정(94.6%) — 3점↔4점 경계는 흔들릴 수 있음.</li>
+</ul>
+
+<h2>9. 남아 있는 일</h2>
+<ul>
+<li><b>생각교실 모범답안 32건 보강</b> — 문항이 묻는 것의 일부만 답하고 있는 자리. 채점은 문항 기준으로 정상 작동하므로 급하지 않으나, 교사가 가져올 때 보는 참고자료 품질 문제. 목록: <code>scripts/model-answer-defects.json</code></li>
+<li><b>교사 제작 문항의 모범답안 채우기</b> — 6단계 'AI 확인'이 만든 모범답안이 저장되지 않고 버려진다. 채워넣기 버튼을 달면 새 문항부터는 자동으로 기준이 생긴다 (미착수).</li>
+<li><b>부분 답안 상단 관대함</b> — 요소 하나 빠진 답안에 4점이 나오는 경향 일부. "요소가 하나라도 빠지면 3점 이하" 지침을 배포했으나 재측정으로 효과 확정 필요.</li>
+<li>측정 도구: <code>node scripts/check-grading-quality.mjs</code> (실배포 서버로 3수준 채점, 학년·과목 층화 표본)</li>
+</ul>
+
+<h2>10. 관련 코드 위치</h2>
+<table>
+<tr><th style="width:40%">파일</th><th>역할</th></tr>
+<tr><td><code>src/lib/instructions.ts</code></td><td>채점·피드백 지침 전문 (학생용/교사용). 옛 어시스턴트 지침 원문은 <code>scripts/instructions-dump.json</code></td></tr>
+<tr><td><code>src/app/api/grade/route.ts</code></td><td>채점 라우트 — 동시 채점, 쪽수 교정, 유출 감지·교정, 점수 추출</td></tr>
+<tr><td><code>src/lib/answer-form.ts</code></td><td>모범답안에서 답안 형태(낱말/나열/구/서술) 판정</td></tr>
+<tr><td><code>src/lib/page-ranges.ts</code> + <code>src/data/page-ranges.json</code></td><td>단원별 교과서 쪽 범위 422단원, 쪽수 힌트·검증</td></tr>
+<tr><td><code>scripts/check-grading-quality.mjs</code></td><td>채점 품질 측정 (프로덕션 3수준 채점)</td></tr>
+<tr><td><code>scripts/verify-model-answers.mjs --all</code></td><td>모범답안 전수 검사 ("그대로 내면 만점인가")</td></tr>
+</table>
+
+<p class="small" style="margin-top:16px">이 문서는 2026-08-28의 배포 상태를 기준으로 하며, 본문에 "실측"으로 표시된 내용은 모두 test4school.vercel.app 실서버 채점으로 확인한 결과다.</p>
+
+</body>
+</html>
