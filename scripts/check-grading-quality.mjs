@@ -125,11 +125,19 @@ async function gradeProd(code, slot, answer) {
 const isFull = (s) => /4|매우\s*우수|^상$|능숙|도달/.test(s || "");
 const isLow  = (s) => /1|노력|^하$|미도달|도움/.test(s || "");
 const norm = (t) => (t || "").replace(/\s+/g, "");
-function leaked(feedback, modelAnswer) {
-  // 모범답안의 연속 18자 조각이 피드백에 그대로 있으면 유출로 본다
-  const f = norm(feedback), a = norm(modelAnswer);
-  if (a.length < 18) return f.includes(a) && a.length >= 6;
-  for (let i = 0; i + 18 <= a.length; i += 6) if (f.includes(a.slice(i, i + 18))) return true;
+// 배포된 가드(grade/route.ts hasAnswerLeak)와 같은 기준: 3문단 이후만 보고,
+// 문항·학생 답안에 이미 있는 구절은 유출로 세지 않는다. 1·2문단은 원문 echo라
+// 학생이 정답에 가까울수록 가짜 유출이 잡힌다 (실측 오인 7건 중 6건).
+function leaked(feedback, modelAnswer, question, studentAnswer) {
+  const cut = (feedback || "").search(/채점\s*결과/);
+  const body = cut >= 0 ? feedback.slice(cut) : (feedback || "");
+  const f = norm(body), a = norm(modelAnswer), q = norm(question), s = norm(studentAnswer);
+  if (a.length < 10) return false;
+  const win = Math.min(12, a.length);
+  for (let i = 0; i + win <= a.length; i += 4) {
+    const c = a.slice(i, i + win);
+    if (f.includes(c) && !q.includes(c) && !s.includes(c)) return true;
+  }
   return false;
 }
 
@@ -149,9 +157,9 @@ await Promise.all(Array.from({ length: CONCURRENCY }, async () => {
       results.push({ ...s, gen,
         perfect: { score: perfect.score, ok: isFull(perfect.score) },
         partial: { score: partial.score, ok: !isFull(partial.score) && !isLow(partial.score),
-                   leak: leaked(partial.feedback, s.answer), feedback: partial.feedback },
+                   leak: leaked(partial.feedback, s.answer, s.question, gen.partial), feedback: partial.feedback },
         wrong:   { score: wrong.score, ok: isLow(wrong.score),
-                   leak: leaked(wrong.feedback, s.answer), feedback: wrong.feedback },
+                   leak: leaked(wrong.feedback, s.answer, s.question, gen.wrong), feedback: wrong.feedback },
       });
     } catch (e) { results.push({ ...s, error: String(e).slice(0, 100) }); }
     if (++done % 4 === 0) console.log(`  ${done}/${sample.length}자리 …`);
