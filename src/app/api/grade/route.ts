@@ -39,7 +39,10 @@ function hasAnswerLeak(feedback: string, modelAnswer: string, question: string, 
   if (a.length < 10) return false;          // 아주 짧은 답은 어휘가 겹칠 수밖에 없다
   // 창을 12자로 잡는 이유: 모델이 어미만 바꿔 옮기는 경우("변하지 않습니다"→
   // "변하지 않는다는")가 실측에서 최장 일치 13자로 나와, 14자 창은 1자 차이로 놓쳤다.
-  const win = Math.min(12, a.length);
+  // 영어가 주인 답(영어 문항)은 12자가 두세 단어라 "How often do you" 같은
+  // 목표 표현 안내가 오탐된다(실측). 영어면 창을 20자로 넓힌다.
+  const ascii = (a.match(/[A-Za-z]/g) || []).length / a.length;
+  const win = Math.min(ascii > 0.5 ? 20 : 12, a.length);
   for (let i = 0; i + win <= a.length; i += 4) {
     const c = a.slice(i, i + win);
     // 문항이나 학생 자신의 답에 이미 있는 구절은 유출이 아니다
@@ -63,7 +66,8 @@ function leakedChunks(feedback: string, modelAnswer: string, question: string, s
   const cut = feedback.search(/채점\s*결과/);
   const body = cut >= 0 ? feedback.slice(cut) : feedback;
   const f = normText(body), a = normText(modelAnswer), q = normText(question), s = normText(studentAnswer);
-  const win = Math.min(12, a.length);
+  const ascii = (a.match(/[A-Za-z]/g) || []).length / Math.max(1, a.length);
+  const win = Math.min(ascii > 0.5 ? 20 : 12, a.length);
   const hits: [number, number][] = [];
   for (let i = 0; i + win <= a.length; i += 4) {
     const c = a.slice(i, i + win);
