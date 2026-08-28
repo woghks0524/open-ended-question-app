@@ -82,20 +82,28 @@ const sample = [...pick("생각교실"), ...pick("교사제작")];
 console.log(`▶ 표본: 생각교실 ${pick("생각교실").length} + 교사제작 ${pick("교사제작").length}자리, 자리당 3수준 = ${sample.length * 3}회 채점 (대상: ${PROD})\n`);
 
 // ── 수준별 답안 생성 ───────────────────────────────────────────────
+// 부분 답안은 '요소 뺄셈'으로 만든다. "요소 하나를 빼라"고만 하면 요구가 1개뿐인
+// 문항에서 사실상 완전한 답이 나와, 4점이 옳은 채점인데 실패로 집계됐다
+// (실측: 부분→4점 43% 중 상당수가 이 허수). 요소 목록을 먼저 세우게 하고,
+// 뺀 요소를 이름으로 기록해 부실함이 구조적으로 보장되게 한다.
 const GEN_SCHEMA = {
   type: "object", additionalProperties: false,
   properties: {
-    partial: { type: "string", description: "요구 요소 중 하나가 빠진, 그 학년 아이 말투의 부분 답안" },
-    wrong: { type: "string", description: "핵심을 놓친 짧은 오답 또는 회피성 답 (예: 무관한 내용, '잘 모르겠어요'류)" },
+    elements: { type: "array", items: { type: "string" }, description: "문항·모범답안이 요구하는 요소 목록" },
+    dropped: { type: "string", description: "partial에서 뺀 요소 (elements 중 하나)" },
+    partial: { type: "string", description: "dropped 요소를 완전히 뺀, 나머지는 맞는 답. dropped 내용을 암시도 하지 않음" },
+    wrong: { type: "string", description: "핵심을 놓친 짧은 오답 또는 회피성 답" },
   },
-  required: ["partial", "wrong"],
+  required: ["elements", "dropped", "partial", "wrong"],
 };
 async function makeAnswers(s) {
   const res = await client.responses.create({
     model: "gpt-4o", temperature: 0.3,
-    instructions: `초등 ${s.grade}학년 학생 답안을 시뮬레이션합니다. 문항과 모범답안을 보고 두 가지를 만드세요.
-- partial: 모범답안이 담은 요구 요소 중 정확히 하나를 빼고 나머지는 맞게 쓴 답. 그 학년 아이가 실제로 쓸 문장으로.
-- wrong: 핵심을 놓친 짧은 답. 아예 틀린 내용이거나 얼버무리는 답.
+    instructions: `초등 ${s.grade}학년 학생 답안을 시뮬레이션합니다.
+1) 문항과 모범답안이 요구하는 요소를 목록(elements)으로 세세요. 요소가 하나뿐인 문항이면 그 요소를 절반으로 쪼개세요 (예: "정의를 설명" → ①핵심 개념 ②구체 설명).
+2) dropped: elements 중 하나를 고르세요.
+3) partial: dropped를 완전히 뺀 답. 나머지 요소는 그 학년 아이 말투로 맞게 씁니다. dropped의 내용은 한 글자도 들어가면 안 됩니다.
+4) wrong: 핵심을 놓친 짧은 오답.
 모범답안을 그대로 베끼지 마세요.`,
     input: `문항: ${s.question}\n\n모범답안: ${s.answer}`,
     text: { format: { type: "json_schema", name: "answers", strict: true, schema: GEN_SCHEMA } },

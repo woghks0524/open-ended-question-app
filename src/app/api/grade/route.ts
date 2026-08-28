@@ -56,11 +56,39 @@ function isKnownNonTop(score: string | null): boolean {
   return /노력|보통|미도달|도움|^하$|^중$/.test(score);
 }
 
+/** 감지기가 찾은 겹침 구절들을 모아 돌려준다 — 교정기에게 "정확히 이걸 지워라"라고
+ *  알려주기 위해서다. 뭘 지울지 스스로 찾게 했더니 덜 고친 채 내놓는 경우가 많았다
+ *  (실측: 유출 12건 전부 감지는 됐는데 교정본이 채택 기준에 못 미쳐 원본이 나갔다). */
+function leakedChunks(feedback: string, modelAnswer: string, question: string, studentAnswer: string): string[] {
+  const cut = feedback.search(/채점\s*결과/);
+  const body = cut >= 0 ? feedback.slice(cut) : feedback;
+  const f = normText(body), a = normText(modelAnswer), q = normText(question), s = normText(studentAnswer);
+  const win = Math.min(12, a.length);
+  const hits: [number, number][] = [];
+  for (let i = 0; i + win <= a.length; i += 4) {
+    const c = a.slice(i, i + win);
+    if (f.includes(c) && !q.includes(c) && !s.includes(c)) hits.push([i, i + win]);
+  }
+  // 겹치는 창들을 이어붙여 읽을 수 있는 구절로
+  const spans: string[] = [];
+  for (const [st, en] of hits) {
+    const last = spans.length - 1;
+    if (last >= 0 && a.indexOf(spans[last]) + spans[last].length >= st) {
+      const s0 = a.indexOf(spans[last]);
+      spans[last] = a.slice(s0, Math.max(s0 + spans[last].length, en));
+    } else spans.push(a.slice(st, en));
+  }
+  return spans.slice(0, 4);
+}
+
 const LEAK_REPAIR_INSTRUCTIONS = `당신은 초등 서술형 피드백의 교정자입니다.
 주어진 피드백에서 '모범답안'의 결론·문장·핵심 진술을 그대로 알려주는 부분만 고칩니다.
-- 결론을 말하는 문장은 삭제하거나, 관련 개념어의 이름과 유도 질문으로 바꿉니다.
+- 입력에 '반드시 없애야 하는 구절'이 주어집니다. 그 구절(띄어쓰기는 다를 수 있음)이 들어간
+  문장을 찾아, 삭제하거나 관련 개념어의 이름과 유도 질문으로 바꿉니다.
   (예: "부피는 늘어납니다" → "'부피'가 어떻게 되는지 교과서에서 찾아보세요")
-- 그 외 모든 것은 그대로 유지합니다: 문단 구조(5문단), '채점 결과:' 줄, 어투, 쪽수 안내, 칭찬.
+- 같은 내용을 표현만 바꿔 남기는 것도 안 됩니다. 결론 자체가 사라져야 합니다.
+- 그 외 모든 것은 그대로 유지합니다: 문단 구조(5문단), '채점 결과:' 줄(문항·학생 답안을
+  보여주는 1·2문단 포함), 어투, 쪽수 안내, 칭찬.
 - 교정된 피드백 전문만 출력합니다. 설명을 덧붙이지 않습니다.`;
 
 // 문항 3개를 모델에 물어야 해서 기본 함수 제한시간(10~15초)으로는 못 끝낸다.
@@ -155,15 +183,21 @@ ${answerFormHint(correctAnswers?.[i])}
         const ca = correctAnswers?.[i] || "";
         if (ca && !teacherWantsReveal && isKnownNonTop(extractScore(feedback)) && hasAnswerLeak(feedback, ca, q, a)) {
           try {
-            const repaired = await gradeWithFiles({
-              instructions: LEAK_REPAIR_INSTRUCTIONS,
-              input: `모범답안: ${ca}\n\n피드백:\n${feedback}`,
-              vectorStoreIds: [],   // 교정에는 검색이 필요 없다
-            });
+            // 지울 곳을 명시해서 교정하고, 남았으면 한 번 더 (실측: 막연히 시키면 덜 고침)
+            let candidate = feedback;
+            for (let attempt = 0; attempt < 2 && hasAnswerLeak(candidate, ca, q, a); attempt++) {
+              const chunks = leakedChunks(candidate, ca, q, a).map((c) => `"${c}"`).join(", ");
+              const repaired = await gradeWithFiles({
+                instructions: LEAK_REPAIR_INSTRUCTIONS,
+                input: `모범답안: ${ca}\n\n반드시 없애야 하는 구절(모범답안과 겹침): ${chunks}\n\n피드백:\n${candidate}`,
+                vectorStoreIds: [],   // 교정에는 검색이 필요 없다
+              });
+              if (/채점\s*결과/.test(repaired)) candidate = repaired;
+            }
             // 교정본이 형식을 지키고 유출이 실제로 사라졌을 때만 채택
-            if (/채점\s*결과/.test(repaired) && !hasAnswerLeak(repaired, ca, q, a)) {
+            if (/채점\s*결과/.test(candidate) && !hasAnswerLeak(candidate, ca, q, a)) {
               console.warn(`모범답안 유출 교정 (문항 ${i + 1}, ${code})`);
-              feedback = repaired;
+              feedback = candidate;
             }
           } catch {
             /* 교정 실패면 원본 유지 — 채점 자체를 잃는 것보다 낫다 */
