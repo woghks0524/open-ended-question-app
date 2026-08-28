@@ -140,9 +140,13 @@ ${answerFormHint(correctAnswers?.[i])}
           );
         }
 
-        // 낮은 점수인데 모범답안이 새어 있으면 그 부분만 교정한다 (위 hasAnswerLeak 주석 참고)
+        // 낮은 점수인데 모범답안이 새어 있으면 그 부분만 교정한다 (위 hasAnswerLeak 주석 참고).
+        // 단, 교사가 '평가 주의 사항'에서 모범답안·정답 공개를 지정했으면 교사의 뜻이
+        // 우선이므로 교정하지 않는다 — 이 장치가 교사 설정을 밟으면 안 된다.
+        const teacherWantsReveal =
+          /(모범\s*답안|정답)[^.\n]{0,20}(보여|공개|알려|제시|노출)/.test(feedbackInstruction || "");
         const ca = correctAnswers?.[i] || "";
-        if (ca && isKnownNonTop(extractScore(feedback)) && hasAnswerLeak(feedback, ca, q)) {
+        if (ca && !teacherWantsReveal && isKnownNonTop(extractScore(feedback)) && hasAnswerLeak(feedback, ca, q)) {
           try {
             const repaired = await gradeWithFiles({
               instructions: LEAK_REPAIR_INSTRUCTIONS,
