@@ -31,8 +31,10 @@ const normText = (t: string) => (t || "").replace(/\s+/g, "");
 function hasAnswerLeak(feedback: string, modelAnswer: string, question: string): boolean {
   const f = normText(feedback), a = normText(modelAnswer), q = normText(question);
   if (a.length < 10) return false;          // 아주 짧은 답은 어휘가 겹칠 수밖에 없다
-  const win = Math.min(14, a.length);
-  for (let i = 0; i + win <= a.length; i += 5) {
+  // 창을 12자로 잡는 이유: 모델이 어미만 바꿔 옮기는 경우("변하지 않습니다"→
+  // "변하지 않는다는")가 실측에서 최장 일치 13자로 나와, 14자 창은 1자 차이로 놓쳤다.
+  const win = Math.min(12, a.length);
+  for (let i = 0; i + win <= a.length; i += 4) {
     const c = a.slice(i, i + win);
     if (f.includes(c) && !q.includes(c)) return true;
   }
