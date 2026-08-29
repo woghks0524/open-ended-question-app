@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AlertMessage from "@/components/AlertMessage";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import { setTeacherCode, useTeacherCode } from "@/lib/teacher-client";
@@ -20,6 +20,31 @@ export default function TeacherGate({ children }: { children: React.ReactNode })
   const [code, setCode] = useState("");
   const [checking, setChecking] = useState(false);
   const [error, setError] = useState("");
+
+  // 서버가 개방 모드(개발 중, 접속 코드 미설정)면 잠금 없이 바로 연다.
+  // 표식 코드를 저장해 두면 헤더의 '문항 목록' 링크도 함께 열리고, 나중에
+  // 코드를 다시 설정하는 순간 이 표식은 401 → 자동 삭제 → 잠금 화면으로 돌아온다.
+  const [probed, setProbed] = useState(false);
+  useEffect(() => {
+    if (saved) return;
+    (async () => {
+      try {
+        const res = await fetch("/api/teacher/auth", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ code: "" }),
+        });
+        const data = await res.json();
+        if (res.ok && data.open) {
+          setTeacherCode("개방모드");
+          return;
+        }
+      } catch {
+        /* 확인 실패 시 잠금 화면으로 */
+      }
+      setProbed(true);
+    })();
+  }, [saved]);
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -50,6 +75,7 @@ export default function TeacherGate({ children }: { children: React.ReactNode })
   };
 
   if (saved) return <>{children}</>;
+  if (!probed) return null;   // 개방 모드 확인 중 — 잠금 화면이 깜빡이지 않게
 
   return (
     <div className="max-w-md mx-auto mt-10">

@@ -39,22 +39,23 @@ export function isTeacherCodeValid(code: string | null | undefined): boolean {
   return safeEqual(code || "", expected);
 }
 
+/** 개발 중 임시 개방 모드인가 — 환경변수(TEACHER_ACCESS_CODE)가 비어 있으면 개방. */
+export function isOpenMode(): boolean {
+  return !process.env.TEACHER_ACCESS_CODE;
+}
+
 /**
  * 교사 전용 라우트 가드. 통과하면 null, 막히면 그대로 반환할 응답을 돌려준다.
  *
  * 헤더(x-teacher-code)로 받는 게 기본이고, 쿼리 파라미터 t 도 받는다.
  * `<a href="/sheet">` 처럼 헤더를 실을 수 없는 링크 이동 때문이다.
  *
- * 환경변수가 비어 있으면 통과시키지 않는다. 기본값을 '열림'으로 두면 배포 때
- * 설정을 잊는 순간 구멍이 조용히 그대로 남는다.
+ * ⚠ 환경변수가 비어 있으면 전부 통과시킨다 (개발 중 임시 개방 — 2026-08-30 재환님 지시).
+ * 이 상태에서는 모범답안 조회(full=1)·문항 목록·저장이 다시 무인증이 된다.
+ * 다시 잠그려면 Vercel에 TEACHER_ACCESS_CODE만 등록하고 재배포하면 된다.
  */
 export function requireTeacher(req: NextRequest): NextResponse | null {
-  if (!process.env.TEACHER_ACCESS_CODE) {
-    return NextResponse.json(
-      { error: "교사 접속 코드가 서버에 설정되어 있지 않습니다. (환경변수 TEACHER_ACCESS_CODE)" },
-      { status: 503 }
-    );
-  }
+  if (isOpenMode()) return null;
 
   // 헤더는 퍼센트 인코딩되어 온다(한글 코드가 헤더에서 깨지므로). 쿼리 파라미터는
   // searchParams가 이미 풀어준다.
