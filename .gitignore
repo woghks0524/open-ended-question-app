@@ -61,3 +61,7 @@ scripts/model-answer-full.json
 # 보강안 산출물 — 모범답안 본문 포함, 위와 같은 이유로 제외
 scripts/model-answer-drafts.json
 scripts/model-answer-drafts.md
+
+# 블룸 자동 생성 문항 원본(모범답안 포함) — 등록된 문항의 정답이라 공개 저장소 제외
+scripts/bloom-questions.json
+docs/블룸4사-문항검토.pdf
