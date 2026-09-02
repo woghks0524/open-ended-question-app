@@ -30,6 +30,9 @@ export default function TeacherPage() {
   const [info, setInfo] = useState<BasicInfo>(EMPTY_INFO);
   // 이 평가 전용 교사 추가자료 보관함(선택). 비어있으면 단원 라이브러리만 사용.
   const [extraVectorStoreId, setExtraVectorStoreId] = useState("");
+  // 이 보관함이 '가져오기'로 온 남의 것인지. 남의 것이면 3단계 업로드 때
+  // 복사본을 새로 만들어 쓴다 — 원본 문항의 채점 자료를 오염시키면 안 된다.
+  const [vectorStoreImported, setVectorStoreImported] = useState(false);
   const [questions, setQuestions] = useState(["", "", ""]);
   const [correctAnswers, setCorrectAnswers] = useState(["", "", ""]);
   const [images, setImages] = useState(["", "", ""]);
@@ -61,6 +64,7 @@ export default function TeacherPage() {
     setImages([data.image1 || "", data.image2 || "", data.image3 || ""]);
     setFeedbackInstruction(data.feedbackinstruction || "");
     setExtraVectorStoreId(data.vectorapi || ""); // 원본에 딸린 교사 자료 보관함도 채점에 활용
+    setVectorStoreImported(Boolean(data.vectorapi));
   }, []);
 
   return (
@@ -84,7 +88,8 @@ export default function TeacherPage() {
             settingName={settingName}
             unitKey={info.unitKey}
             extraVectorStoreId={extraVectorStoreId}
-            onExtraVectorStore={setExtraVectorStoreId}
+            vectorStoreImported={vectorStoreImported}
+            onExtraVectorStore={(id) => { setExtraVectorStoreId(id); setVectorStoreImported(false); }}
           />
         )}
         {step === 3 && (

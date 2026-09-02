@@ -9,6 +9,8 @@ interface Props {
   settingName: string;
   unitKey: string;
   extraVectorStoreId: string;
+  /** 이 보관함이 '가져오기'로 온 원본 문항의 것인가 (그러면 복사해서 씀) */
+  vectorStoreImported: boolean;
   onExtraVectorStore: (vectorStoreId: string) => void;
 }
 
@@ -16,6 +18,7 @@ export default function Step3Materials({
   settingName,
   unitKey,
   extraVectorStoreId,
+  vectorStoreImported,
   onExtraVectorStore,
 }: Props) {
   const [loading, setLoading] = useState(false);
@@ -33,7 +36,11 @@ export default function Step3Materials({
       fd.append("file", uploadFile);
       fd.append("unitKey", unitKey);
       fd.append("settingName", settingName);
-      if (extraVectorStoreId) fd.append("vectorStoreId", extraVectorStoreId);
+      if (extraVectorStoreId) {
+        // 가져온 문항의 보관함이면 거기에 쓰지 않는다 — 원본 주인의 채점이 바뀐다.
+        // 서버가 사본 보관함을 만들어(원본 파일 참조 복사) 새 파일을 거기 담는다.
+        fd.append(vectorStoreImported ? "copyFrom" : "vectorStoreId", extraVectorStoreId);
+      }
 
       const res = await teacherFetch("/api/vectorstore", { method: "POST", body: fd });
       const data = await res.json();

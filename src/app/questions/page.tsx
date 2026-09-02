@@ -34,6 +34,14 @@ export default function QuestionsPage() {
   const [error, setError] = useState<string | null>(null);
   const [search, setSearch] = useState("");
   const [sortKey, setSortKey] = useState<SortKey>("recent");
+  // 펼쳐진 카드들 — 기본은 문항1 두 줄 미리보기, 클릭하면 문항 1~3 전문
+  const [openCodes, setOpenCodes] = useState<Set<string>>(new Set());
+  const toggle = (code: string) =>
+    setOpenCodes((prev) => {
+      const nx = new Set(prev);
+      if (nx.has(code)) nx.delete(code); else nx.add(code);
+      return nx;
+    });
 
   useEffect(() => {
     teacherFetch("/api/assessment/list")
@@ -108,7 +116,11 @@ export default function QuestionsPage() {
           <p className="text-xs text-gray-400 mb-3">{filtered.length}개 평가</p>
           <div className="space-y-3">
             {filtered.map((r) => (
-              <div key={r.settingname} className="bg-white rounded-lg border border-gray-200 p-5">
+              <div
+                key={r.settingname}
+                onClick={() => toggle(r.settingname)}
+                className="bg-white rounded-lg border border-gray-200 p-5 cursor-pointer hover:border-blue-300 transition-colors"
+              >
                 <div className="flex flex-wrap items-center gap-2 mb-2">
                   <span className="text-sm font-semibold text-blue-600">{r.settingname}</span>
                   {r.subject && (
@@ -126,7 +138,25 @@ export default function QuestionsPage() {
                   </span>
                 </div>
                 {r.unit && <p className="text-xs text-gray-500 mb-1.5">{r.unit}</p>}
-                <p className="text-sm text-gray-700 line-clamp-2">{r.question1}</p>
+                {openCodes.has(r.settingname) ? (
+                  <div className="space-y-3 mt-2">
+                    {[r.question1, r.question2, r.question3].map(
+                      (q, i) =>
+                        q && (
+                          <div key={i}>
+                            <p className="text-xs font-semibold text-blue-500 mb-0.5">문항 {i + 1}</p>
+                            <p className="text-sm text-gray-800 whitespace-pre-wrap">{q}</p>
+                          </div>
+                        )
+                    )}
+                    <p className="text-xs text-gray-400">접으려면 다시 클릭</p>
+                  </div>
+                ) : (
+                  <p className="text-sm text-gray-700 line-clamp-2">
+                    {r.question1}
+                    <span className="text-xs text-gray-400 ml-2">(클릭하면 문항 전체가 보여요)</span>
+                  </p>
+                )}
               </div>
             ))}
             {filtered.length === 0 && (
