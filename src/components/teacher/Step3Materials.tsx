@@ -67,6 +67,28 @@ export default function Step3Materials({
           <span className="block mt-1 text-blue-600">올리지 않아도 됩니다 — 그러면 교과서 자료만으로 채점합니다.</span>
         </div>
 
+        {/* 가져온 문항에 딸려온 원본 참고자료 — 원치 않으면 여기서 뗀다 */}
+        {vectorStoreImported && extraVectorStoreId && (
+          <div className="rounded-lg bg-amber-50 border border-amber-200 p-4 text-sm text-amber-800 flex items-start justify-between gap-3">
+            <div>
+              📎 <strong>원본 문항의 참고자료가 연결되어 있습니다.</strong>
+              <span className="block mt-1 text-amber-700">
+                그대로 두면 원본 교사가 올린 자료도 채점에 함께 쓰입니다. 우리 반과 맞지 않으면
+                연결을 해제하세요 — 교과서 자료만으로 채점하게 됩니다. (원본 문항에는 영향 없음)
+              </span>
+            </div>
+            <button
+              onClick={() => {
+                onExtraVectorStore("");
+                setAlert({ type: "info", message: "원본 참고자료 연결을 해제했습니다. 이제 교과서 자료(와 직접 올리는 자료)만으로 채점합니다." });
+              }}
+              className="shrink-0 px-3 py-1.5 bg-white border border-amber-300 text-amber-700 rounded-lg hover:bg-amber-100 transition-colors text-xs whitespace-nowrap"
+            >
+              연결 해제
+            </button>
+          </div>
+        )}
+
         <div>
           <input
             type="file"
