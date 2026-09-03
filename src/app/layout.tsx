@@ -30,6 +30,12 @@ export default function RootLayout({
         <main className="max-w-5xl mx-auto px-6 py-8">
           {children}
         </main>
+        <footer className="max-w-5xl mx-auto px-6 py-8 mt-8 border-t border-gray-200 text-xs text-gray-400 flex flex-wrap gap-x-4 gap-y-1 items-center">
+          <a href="/privacy.html" className="hover:text-blue-600 underline underline-offset-2">
+            개인정보처리방침
+          </a>
+          <span>운영: 정재환 · woghks0524jjh@gmail.com</span>
+        </footer>
       </body>
     </html>
   );
